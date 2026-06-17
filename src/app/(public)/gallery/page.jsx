@@ -19,7 +19,7 @@ export default function Gallery() {
       Welcome to the Smart Abacus Gallery, where every photograph tells a story
       of learning, creativity, and achievement. Explore memorable moments from
       our classrooms, competitions, workshops, and special events that showcase
-      our students' journey toward developing exceptional mental arithmetic
+      our students journey toward developing exceptional mental arithmetic
       skills, concentration, confidence, and lifelong learning abilities.
     </p>
 
