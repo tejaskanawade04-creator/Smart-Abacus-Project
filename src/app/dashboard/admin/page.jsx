@@ -1,8 +1,8 @@
 "use client";
 
+
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 // Pre-defined initial users to populate the mock database
 const INITIAL_USERS = [
