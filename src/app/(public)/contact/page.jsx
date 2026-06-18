@@ -1,85 +1,159 @@
-import Link from "next/link";
-import Navbar from "../../../components/shared/Navbar";
-import Footer from "../../../components/shared/Footer";
+"use client";
+
+import { useState } from "react";
+import Navbar from "@/components/shared/Navbar";
+import Footer from "@/components/shared/Footer";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function Contact() {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Show popup
+    setShowPopup(true);
+
+    // Reset form fields
+    e.target.reset();
+
+    // Hide popup after 3 seconds
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 3000);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <>
       <Navbar />
 
-      {/* Contact Section */}
-      <section className="py-20 px-6 flex items-center justify-center">
-        <div className="max-w-5xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900">
-            Contact <span className="text-pink-600">Smart Abacus</span>
-          </h1>
+      {/* Success Popup */}
+      {showPopup && (
+        <div className="fixed top-5 right-5 z-50 bg-green-500 text-white px-6 py-4 rounded-xl shadow-lg">
+          ✅ Inquiry Submitted Successfully!
+        </div>
+      )}
 
-          <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto leading-8">
-            We'd love to hear from you! Whether you have questions about our
-            courses, admissions, fees, or would like to enroll your child in
-            our mental math programs, our team is here to assist you. Get in
-            touch with us and we'll respond as soon as possible.
-          </p>
+      <div className="bg-gray-100 min-h-screen py-12 px-6">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
 
-          {/* Contact Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition">
-              <h3 className="text-2xl font-bold text-pink-600">
-                📞 Call Us
-              </h3>
-              <p className="mt-4 text-gray-700 font-medium">
-                +91 98765 43210
-              </p>
-              <p className="text-gray-500">
-                Monday - Saturday, 9:00 AM - 6:00 PM
-              </p>
+          {/* Left Side */}
+          <div className="space-y-8">
+            <div className="bg-white p-8 rounded-3xl shadow-md flex items-center gap-6 hover:shadow-2xl hover:scale-105 hover:bg-blue-50 transition-all duration-300 cursor-pointer">
+              <div className="bg-gray-100 p-5 rounded-full">
+                <Phone className="text-blue-900" size={30} />
+              </div>
+
+              <div>
+                <h3 className="text-3xl font-bold text-gray-800">Phone</h3>
+                <p className="text-gray-600 text-lg mt-2">
+                  +91 98765 43210
+                </p>
+              </div>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition">
-              <h3 className="text-2xl font-bold text-pink-600">
-                📧 Email Us
-              </h3>
-              <p className="mt-4 text-gray-700 font-medium">
-                info@smartabacus.com
-              </p>
-              <p className="text-gray-500">
-                We'll get back to you within 24 hours.
-              </p>
+            <div className="bg-white p-8 rounded-3xl shadow-md flex items-center gap-6 hover:shadow-2xl hover:scale-105 hover:bg-blue-50 transition-all duration-300 cursor-pointer">
+              <div className="bg-gray-100 p-5 rounded-full">
+                <Mail className="text-blue-900" size={30} />
+              </div>
+
+              <div>
+                <h3 className="text-3xl font-bold text-gray-800">Email</h3>
+                <p className="text-gray-600 text-lg mt-2">
+                  smartabacus@gmail.com
+                </p>
+              </div>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition">
-              <h3 className="text-2xl font-bold text-pink-600">
-                📍 Visit Us
-              </h3>
-              <p className="mt-4 text-gray-700 font-medium">
-                Smart Abacus Learning Center
-              </p>
-              <p className="text-gray-500">
-                Khopoli, Maharashtra, India
-              </p>
+            <div className="bg-white p-8 rounded-3xl shadow-md flex items-center gap-6 hover:shadow-2xl hover:scale-105 hover:bg-blue-50 transition-all duration-300 cursor-pointer">
+              <div className="bg-gray-100 p-5 rounded-full">
+                <MapPin className="text-blue-900" size={30} />
+              </div>
+
+              <div>
+                <h3 className="text-3xl font-bold text-gray-800">
+                  Head Office
+                </h3>
+                <p className="text-gray-600 text-lg mt-2">
+                  123 Abacus Street,
+                  <br />
+                  Pune, Maharashtra, India
+                  <br />
+                  411001
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-12">
-            <Link
-              href="/register"
-              className="px-8 py-3 bg-pink-600 text-white font-semibold rounded-xl shadow-lg hover:bg-pink-700 transition"
-            >
-              Enroll Now
-            </Link>
+          {/* Right Side Form */}
+          <div className="bg-white p-10 rounded-3xl shadow-md">
+            <h2 className="text-5xl font-bold text-blue-900 mb-8">
+              Send us a Message
+            </h2>
 
-            <Link
-              href="/courses"
-              className="px-8 py-3 border-2 border-pink-600 text-pink-600 font-semibold rounded-xl hover:bg-pink-600 hover:text-white transition"
-            >
-              Explore Courses
-            </Link>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-5">
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  required
+                  className="border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
+                />
+
+                <input
+                  type="email"
+                  placeholder="Your Email"
+                  required
+                  className="border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-5">
+                <input
+                  type="text"
+                  placeholder="Mobile Number"
+                  required
+                  className="border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
+                />
+
+                <input
+                  type="text"
+                  placeholder="City / Location"
+                  required
+                  className="border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <select
+                required
+                className="w-full border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">Interested In?</option>
+                <option>Abacus Course</option>
+                <option>Franchise</option>
+                <option>Teacher Training</option>
+                <option>Other Inquiry</option>
+              </select>
+
+              <textarea
+                rows="5"
+                placeholder="Your Message..."
+                required
+                className="w-full border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
+              ></textarea>
+
+              <button
+                type="submit"
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold text-xl py-4 rounded-full transition duration-300"
+              >
+                SUBMIT INQUIRY →
+              </button>
+            </form>
           </div>
         </div>
-      </section>
+      </div>
 
       <Footer />
-    </div>
+    </>
   );
 }

@@ -66,7 +66,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-<<<<<<< HEAD
+
 
         {/* About Us Section */}
         <section className="py-16 px-8 bg-white/80 rounded-3xl mb-12">
@@ -195,8 +195,7 @@ export default function Home() {
             </button>
           </div>
         </section>
-=======
->>>>>>> 1ee9e1e8db2942f45e9e6b798cbaab4eab641a94
+
       </main>
 
       <Footer />
