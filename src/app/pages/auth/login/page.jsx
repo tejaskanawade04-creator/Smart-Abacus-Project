@@ -172,7 +172,7 @@ export default function Login() {
 
               <button
                 type="submit"
-                className="w-full bg-green-600 text-white py-4 rounded-xl hover:bg-green-700"
+                className="w-full bg-blue-600 text-white py-4 rounded-xl hover:bg-blue-700"
               >
                 Create Account
               </button>

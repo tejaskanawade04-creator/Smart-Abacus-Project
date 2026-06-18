@@ -45,7 +45,7 @@ export default function ProfessionalCourse() {
           <p className="text-gray-700 mb-4">Prerequisites: Completion of Expert level or equivalent proficiency.</p>
 
           <div className="flex gap-4">
-            <a href="/register" className="px-6 py-3 bg-pink-600 text-white rounded-lg font-semibold">Register Now</a>
+            <a href="/pages/auth/register" className="px-6 py-3 bg-pink-600 text-white rounded-lg font-semibold">Register Now</a>
             <a href="/contact" className="px-6 py-3 border border-pink-600 text-pink-600 rounded-lg">Contact Admissions</a>
           </div>
         </section>
