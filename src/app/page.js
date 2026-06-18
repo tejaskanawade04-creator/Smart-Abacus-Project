@@ -143,7 +143,7 @@ export default function Home() {
                   <p className="text-sm text-gray-600">Mumbai, India</p>
                 </div>
               </div>
-              <p className="text-gray-700 mb-4">"I improved my calculation speed by 10x in just 6 months! Now I solve math problems faster than my calculator. My concentration in studies has also improved significantly."</p>
+              <p className="text-gray-700 mb-4">I improved my calculation speed by 10x in just 6 months! Now I solve math problems faster than my calculator. My concentration in studies has also improved significantly.</p>
               <div className="flex text-yellow-400">★★★★★</div>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-lg border-l-4 border-blue-600">
@@ -154,7 +154,7 @@ export default function Home() {
                   <p className="text-sm text-gray-600">Delhi, India</p>
                 </div>
               </div>
-              <p className="text-gray-700 mb-4">"I won the National Abacus Championship! The training was rigorous but worth every moment. I'm now certified as a junior instructor and helping other students."</p>
+              <p className="text-gray-700 mb-4">I won the National Abacus Championship! The training was rigorous but worth every moment. Im now certified as a junior instructor and helping other students.</p>
               <div className="flex text-yellow-400">★★★★★</div>
             </div>
             <div className="bg-gradient-to-br from-pink-50 to-white p-8 rounded-lg border-l-4 border-pink-600">
@@ -165,7 +165,7 @@ export default function Home() {
                   <p className="text-sm text-gray-600">Bangalore, India</p>
                 </div>
               </div>
-              <p className="text-gray-700 mb-4">"My grades improved from C to A+ in mathematics! I feel more confident in class now and love solving problems. Learning Abacus was the best decision my parents made!"</p>
+              <p className="text-gray-700 mb-4">My grades improved from C to A+ in mathematics! I feel more confident in class now and love solving problems. Learning Abacus was the best decision my parents made!</p>
               <div className="flex text-yellow-400">★★★★★</div>
             </div>
           </div>
