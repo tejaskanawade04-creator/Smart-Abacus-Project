@@ -4,34 +4,81 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-blue-900">
-          SMART <span className="text-orange-500">ABACUS</span>
+    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        
+        {/* Logo */}
+        <Link href="/" className="flex flex-col">
+          <span className="text-3xl font-bold tracking-wide text-blue-900">
+            SMART <span className="text-orange-500">ABACUS</span>
+          </span>
+          <span className="text-xs text-gray-500 tracking-widest">
+            Empowering Young Minds
+          </span>
         </Link>
 
-        <ul className="hidden md:flex gap-8 font-medium text-gray-700">
-          <li className="cursor-pointer hover:text-blue-900">
-            <Link href="/">Home</Link>
+        {/* Navigation Links */}
+        <ul className="hidden md:flex items-center gap-8 text-gray-700 font-medium">
+          <li>
+            <Link
+              href="/"
+              className="hover:text-blue-900 transition duration-300 border-b-2 border-transparent hover:border-orange-500 pb-1"
+            >
+              Home
+            </Link>
           </li>
-          <li className="cursor-pointer hover:text-blue-900">
-            <Link href="/about">About Us</Link>
+
+          <li>
+            <Link
+              href="/about"
+              className="hover:text-blue-900 transition duration-300 border-b-2 border-transparent hover:border-orange-500 pb-1"
+            >
+              About Us
+            </Link>
           </li>
-          <li className="cursor-pointer hover:text-blue-900">
-            <Link href="/courses">Courses</Link>
+
+          <li>
+            <Link
+              href="/courses"
+              className="hover:text-blue-900 transition duration-300 border-b-2 border-transparent hover:border-orange-500 pb-1"
+            >
+              Courses
+            </Link>
           </li>
-          <li className="cursor-pointer hover:text-blue-900">
-            <Link href="/module/dashboard/franchise">Franchise</Link>
+
+          <li>
+            <Link
+              href="/Franchise"
+              className="hover:text-blue-900 transition duration-300 border-b-2 border-transparent hover:border-orange-500 pb-1"
+            >
+              Franchise
+            </Link>
           </li>
-          <li className="cursor-pointer hover:text-blue-900">
-            <Link href="/gallery">Gallery</Link>
+
+          <li>
+            <Link
+              href="/gallery"
+              className="hover:text-blue-900 transition duration-300 border-b-2 border-transparent hover:border-orange-500 pb-1"
+            >
+              Gallery
+            </Link>
           </li>
-          <li className="cursor-pointer hover:text-blue-900">
-            <Link href="/contact">Contact Us</Link>
+
+          <li>
+            <Link
+              href="/contact"
+              className="hover:text-blue-900 transition duration-300 border-b-2 border-transparent hover:border-orange-500 pb-1"
+            >
+              Contact Us
+            </Link>
           </li>
         </ul>
 
-        <Link href="/pages/auth/login" className="bg-orange-500 text-white px-5 py-2 rounded-full hover:bg-orange-600">
+        {/* Button */}
+        <Link
+          href="/pages/auth/login"
+          className="bg-orange-500 text-white px-6 py-2.5 rounded-full font-medium shadow-md hover:bg-orange-600 hover:scale-105 transition duration-300"
+        >
           Join Now
         </Link>
       </div>
