@@ -4,31 +4,29 @@ import React, { useState } from "react";
 import { UserPlus, GraduationCap, Users, ShieldAlert, CheckCircle2, MessageSquare, Clock, Pencil, Trash, X, Save } from "lucide-react";
 
 export default function FranchiseStudents() {
-  
+  // १. स्टेट मॅनेजमेंट (विद्यार्थ्यांची यादी)
   const [students, setStudents] = useState([
     { id: "STU-99", name: "Rohan Deshmukh", level: "Level 1", teacher: "Aman Sharma", status: "Active", feeStatus: "Paid", batch: "Sat | 04:00 PM", phone: "9876543210" },
     { id: "STU-102", name: "Isha Sharma", level: "Level 2", teacher: "Neha Patel", status: "Active", feeStatus: "Pending", batch: "Sun | 10:30 AM", phone: "9545123456" },
     { id: "STU-88", name: "Aditya Patil", level: "Level 4", teacher: "Sarah Jenkins", status: "Suspended", feeStatus: "Overdue", batch: "Sat | 05:30 PM", phone: "8888777766" },
   ]);
 
-  
+  // मॉडल्स आणि एडिट करण्यासाठी लागणाऱ्या स्टेट्स
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState(null);
 
-  // फॉर्मसाठी टेम्पलेट स्टेट
   const [formData, setFormData] = useState({
     name: "", level: "Level 1", teacher: "Aman Sharma", status: "Active", feeStatus: "Paid", batch: "Sat | 04:00 PM", phone: ""
   });
 
-  // २. नवीन ॲडमिशन किंवा एडिट सबमिट करण्याचे फंक्शन
   const handleSubmit = (e) => {
     e.preventDefault();
     if (editingStudent) {
-      // जर एडिट मोड असेल तर अपडेट करा
+    
       setStudents(students.map(s => s.id === editingStudent.id ? { ...s, ...formData } : s));
       setEditingStudent(null);
     } else {
-      // नवीन ॲडमिशन असेल तर नवीन आयडी देऊन ॲड करा
+      
       const newId = `STU-${Math.floor(100 + Math.random() * 900)}`;
       setStudents([...students, { id: newId, ...formData }]);
     }
@@ -36,27 +34,23 @@ export default function FranchiseStudents() {
     resetForm();
   };
 
-  // ३. डिलीट करण्याचे फंक्शन
   const handleDelete = (id) => {
     if (confirm("Are you sure you want to delete this student?")) {
       setStudents(students.filter(student => student.id !== id));
     }
   };
 
-  // ४. एडिट मोड ओपन करण्याचे फंक्शन
   const handleEdit = (student) => {
     setEditingStudent(student);
     setFormData(student);
     setIsModalOpen(true);
   };
 
-  // ५. फी स्टेटसवर क्लिक केल्यावर ते बदलण्याचे फंक्शन (Paid -> Pending -> Overdue)
   const toggleFeeStatus = (id, currentStatus) => {
     const nextStatus = currentStatus === "Paid" ? "Pending" : currentStatus === "Pending" ? "Overdue" : "Paid";
     setStudents(students.map(s => s.id === id ? { ...s, feeStatus: nextStatus } : s));
   };
 
-  // ६. अकाऊंट स्टेटसवर क्लिक केल्यावर ते बदलण्याचे फंक्शन (Active <-> Suspended)
   const toggleAccountStatus = (id, currentStatus) => {
     const nextStatus = currentStatus === "Active" ? "Suspended" : "Active";
     setStudents(students.map(s => s.id === id ? { ...s, status: nextStatus } : s));
@@ -66,7 +60,6 @@ export default function FranchiseStudents() {
     setFormData({ name: "", level: "Level 1", teacher: "Aman Sharma", status: "Active", feeStatus: "Paid", batch: "Sat | 04:00 PM", phone: "" });
   };
 
-  // व्हाट्सॲप फंक्शन
   const sendWhatsAppReminder = (phone, name, feeStatus) => {
     let message = `Hello Parent, this is an update from Smart Abacus regarding your child ${name}.`;
     if (feeStatus !== "Paid") message += ` Please note that the term fee is currently ${feeStatus}.`;
@@ -75,8 +68,7 @@ export default function FranchiseStudents() {
 
   return (
     <div className="space-y-6 animate-fadeIn">
-      
-      {/* हेडर */}
+  
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-900 pb-5">
         <div>
           <h2 className="text-2xl font-black text-white tracking-tight">
@@ -96,7 +88,6 @@ export default function FranchiseStudents() {
         </button>
       </div>
 
-      {/* डेटा टेबल */}
       <div className="bg-slate-950/40 border border-slate-800/60 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
@@ -134,8 +125,7 @@ export default function FranchiseStudents() {
                   <td className="py-4 px-6 text-slate-400 font-semibold flex items-center gap-1.5 mt-1.5">
                     <Users size={13} className="text-purple-400" /> {student.teacher}
                   </td>
-                  
-                  {/* क्लिक करण्यायोग्य फी स्टेटस */}
+
                   <td className="py-4 px-6">
                     <button 
                       onClick={() => toggleFeeStatus(student.id, student.feeStatus)}
@@ -148,8 +138,7 @@ export default function FranchiseStudents() {
                       {student.feeStatus}
                     </button>
                   </td>
-                  
-                  {/* क्लिक करण्यायोग्य अकाऊंट स्टेटस */}
+
                   <td className="py-4 px-6">
                     <button 
                       onClick={() => toggleAccountStatus(student.id, student.status)}
@@ -162,8 +151,7 @@ export default function FranchiseStudents() {
                       {student.status}
                     </button>
                   </td>
-                  
-                  {/* ॲक्शन बटन्स */}
+
                   <td className="py-4 px-6 text-center">
                     <div className="flex items-center justify-center gap-2">
                       <button onClick={() => sendWhatsAppReminder(student.phone, student.name, student.feeStatus)} className="p-1.5 rounded-lg text-slate-500 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all"><MessageSquare size={14} /></button>
@@ -179,7 +167,6 @@ export default function FranchiseStudents() {
         </div>
       </div>
 
-      {/* ७. डायनॅमिक फॉर्म मॉडल (Admission & Edit Form) */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
           <div className="bg-[#0d1527] border border-slate-800 w-full max-w-md rounded-2xl p-6 shadow-2xl relative animate-fadeIn">

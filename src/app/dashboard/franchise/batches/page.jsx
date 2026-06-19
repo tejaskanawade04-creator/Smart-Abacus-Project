@@ -1,25 +1,21 @@
 "use client";
 
 import React, { useState } from 'react';
-// सर्व आयकॉन्स व्यवस्थित इंपोर्ट केले आहेत
 import { Users, X, Plus, Save, Filter, Eye, Trash2, CheckCircle, AlertTriangle } from 'lucide-react';
 
 export default function FranchiseBatches() {
-  // डेटा स्टेट
   const [centerBatches, setCenterBatches] = useState([
     { code: 'B-MUM-01', name: 'Morning Standard', level: 'Level 1', teacher: 'Aman Sharma', schedule: 'Mon, Wed, Fri', timing: '09:00 AM', enrolled: 12, maxSeats: 15, status: 'Active' },
     { code: 'B-MUM-02', name: 'Evening Advance', level: 'Level 2', teacher: 'Neha Patel', schedule: 'Tue, Thu', timing: '04:00 PM', enrolled: 10, maxSeats: 10, status: 'Full' },
     { code: 'B-MUM-03', name: 'Weekend Junior', level: 'Level 1', teacher: 'Rahul Mane', schedule: 'Sat, Sun', timing: '11:00 AM', enrolled: 4, maxSeats: 12, status: 'Active' },
   ]);
 
-  // स्टेट्स
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [statusFilter, setStatusFilter] = useState('All');
   const [formData, setFormData] = useState({
     name: '', level: 'Level 1', teacher: '', schedule: 'Mon, Wed, Fri', timing: '', maxSeats: '15'
   });
 
-  // नवीन बॅच तयार करण्याचे लॉजिक
   const handleCreateBatchSubmit = (e) => {
     e.preventDefault();
     if (!formData.name || !formData.teacher || !formData.timing) {
@@ -43,19 +39,17 @@ export default function FranchiseBatches() {
     setFormData({ name: '', level: 'Level 1', teacher: '', schedule: 'Mon, Wed, Fri', timing: '', maxSeats: '15' });
   };
 
-  // 🔄 सुधारलेले डिलीट लॉजिक (मेसेज आता इंग्रजीमध्ये आहे)
   const handleDeleteBatch = (code) => {
     if (confirm(`Are you sure you want to delete batch ${code}?`)) {
       setCenterBatches(centerBatches.filter(b => b.code !== code));
     }
   };
 
-  // काऊंटर्स कॅल्क्युलेशन
   const totalBatches = centerBatches.length;
   const totalStudentsEnrolled = centerBatches.reduce((sum, b) => sum + b.enrolled, 0);
   const totalCapacity = centerBatches.reduce((sum, b) => sum + b.maxSeats, 0);
 
-  // फिल्टर लॉजिक
+
   const filteredBatches = statusFilter === 'All' 
     ? centerBatches 
     : centerBatches.filter(b => b.status === statusFilter);
@@ -63,7 +57,6 @@ export default function FranchiseBatches() {
   return (
     <div className="space-y-6 text-xs text-slate-300 relative">
       
-      {/* हेडर सेक्शन */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-5">
         <div>
           <h2 className="text-2xl font-bold text-white tracking-tight">Center Batches</h2>
@@ -78,7 +71,6 @@ export default function FranchiseBatches() {
         </button>
       </div>
 
-      {/* समरी काऊंटर्स */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-[#0d1527]/40 border border-gray-800 p-4 rounded-xl">
           <p className="text-gray-400 font-medium">Total Batches</p>
@@ -96,7 +88,6 @@ export default function FranchiseBatches() {
         </div>
       </div>
 
-      {/* फिल्टर बटन्स */}
       <div className="flex items-center gap-2 bg-[#0d1527]/40 border border-gray-800 p-2 rounded-xl w-fit">
         <span className="text-gray-400 px-2 flex items-center gap-1"><Filter size={12}/> Filter:</span>
         {['All', 'Active', 'Full'].map((status) => (
@@ -114,7 +105,6 @@ export default function FranchiseBatches() {
         ))}
       </div>
 
-      {/* डेटा टेबल */}
       <div className="bg-[#0d1527]/60 border border-gray-800 rounded-2xl overflow-hidden shadow-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -145,7 +135,6 @@ export default function FranchiseBatches() {
                     <td className="py-4 px-6 text-gray-400">{batch.schedule}</td>
                     <td className="py-4 px-6 text-gray-400 font-mono">🕒 {batch.timing}</td>
                     
-                    {/* Occupancy Progress */}
                     <td className="py-4 px-6">
                       <div className="flex flex-col items-center gap-1 min-w-[100px]">
                         <span className={`font-bold font-mono text-[11px] ${isFull ? 'text-rose-400' : 'text-gray-200'}`}>
@@ -160,7 +149,6 @@ export default function FranchiseBatches() {
                       </div>
                     </td>
 
-                    {/* Status Tag */}
                     <td className="py-4 px-6 text-center">
                       <span className={`px-2 py-0.5 rounded text-[10px] font-bold inline-flex items-center gap-1 ${
                         batch.status === 'Full' ? 'bg-rose-950 text-rose-400' : 'bg-emerald-950 text-emerald-400'
@@ -170,7 +158,6 @@ export default function FranchiseBatches() {
                       </span>
                     </td>
 
-                    {/* Actions Buttons */}
                     <td className="py-4 px-6 text-center">
                       <div className="flex items-center justify-center gap-2">
                         <button 
@@ -199,7 +186,6 @@ export default function FranchiseBatches() {
         </div>
       </div>
 
-      {/* CREATE BATCH MODAL */}
       {isModalOpen && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="bg-[#0d1527] border border-gray-800 w-full max-w-sm rounded-2xl p-5 shadow-2xl relative">

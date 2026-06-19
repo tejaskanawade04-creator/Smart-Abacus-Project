@@ -1,28 +1,23 @@
 "use client";
 
 import React, { useState } from "react";
-// सर्व प्रीमियम आयकॉन्स इम्पोर्ट केले आहेत
 import { IndianRupee, GraduationCap, Calendar, CheckCircle2, AlertCircle, ShieldAlert, Search, Download, Bell, X, FileText, Save, Send } from "lucide-react";
 
 export default function FranchiseFees() {
-  // १. तुमचा मूळ डेटा - आपण स्टेटमध्ये घेतला आहे जेणेकरून तो लाईव्ह अपडेट होईल
   const [feeRecords, setFeeRecords] = useState([
     { id: "TXN-701", student: "Isha Sharma", level: "Level 2", amount: "₹3,500", dueDate: "2026-06-15", status: "Pending", phone: "9545123456" },
     { id: "TXN-699", student: "Rohan Deshmukh", level: "Level 1", amount: "₹4,500", dueDate: "2026-06-02", status: "Paid", phone: "9876543210" },
     { id: "TXN-654", student: "Aditya Patil", level: "Level 4", amount: "₹3,500", dueDate: "2026-05-20", status: "Overdue", phone: "8888777766" },
   ]);
 
-  // पॉप-अप्स मॅनेज करण्यासाठी स्टेट्स
   const [isRecordModalOpen, setIsRecordModalOpen] = useState(false);
   const [selectedReceipt, setSelectedReceipt] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // नवीन पेमेंट रेकॉर्ड करण्यासाठी फॉर्म स्टेट
   const [newPayment, setNewPayment] = useState({
     student: "", level: "Level 1", amount: "", dueDate: new Date().toISOString().split('T')[0], status: "Paid", phone: ""
   });
 
-  // २. नवीन फी पेमेंट रेकॉर्ड करण्याचे फंक्शन
   const handleRecordPayment = (e) => {
     e.preventDefault();
     const txnId = `TXN-${Math.floor(600 + Math.random() * 200)}`;
@@ -33,19 +28,16 @@ export default function FranchiseFees() {
     setNewPayment({ student: "", level: "Level 1", amount: "", dueDate: new Date().toISOString().split('T')[0], status: "Paid", phone: "" });
   };
 
-  // ३. फी स्टेटसवर थेट क्लिक करून ते बदलण्याचे फंक्शन (Paid 🔁 Pending 🔁 Overdue)
   const toggleStatus = (id, currentStatus) => {
     const nextStatus = currentStatus === "Paid" ? "Pending" : currentStatus === "Pending" ? "Overdue" : "Paid";
     setFeeRecords(feeRecords.map(rec => rec.id === id ? { ...rec, status: nextStatus } : rec));
   };
 
-  // ४. BRD वाईज व्हॉट्सॲप रिमाइंडर फंक्शन
   const sendWhatsAppReminder = (record) => {
     const message = `Dear Parent, this is a reminder from Smart Abacus Academy regarding the fee collection of ₹${record.amount.replace('₹', '')} for student ${record.student} (${record.level}). Currently, it is ${record.status}. Please settle it soon. Thank you!`;
     window.open(`https://wa.me/91${record.phone || '9876543210'}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
-  // सर्च फिल्टर
   const filteredRecords = feeRecords.filter(rec => 
     rec.student.toLowerCase().includes(searchTerm.toLowerCase()) || rec.id.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -53,7 +45,7 @@ export default function FranchiseFees() {
   return (
     <div className="space-y-6 animate-fadeIn text-xs">
       
-      {/* हेडर विभाग */}
+  
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-900 pb-5">
         <div>
           <h2 className="text-2xl font-black text-white tracking-tight">
@@ -73,7 +65,6 @@ export default function FranchiseFees() {
         </button>
       </div>
 
-      {/* क्विक सर्च बार */}
       <div className="relative max-w-sm">
         <input 
           type="text"
@@ -85,7 +76,6 @@ export default function FranchiseFees() {
         <Search size={14} className="absolute right-3.5 top-3.5 text-slate-600" />
       </div>
 
-      {/* डेटा टेबल */}
       <div className="bg-slate-950/40 border border-slate-800/60 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -104,28 +94,22 @@ export default function FranchiseFees() {
               {filteredRecords.map((record) => (
                 <tr key={record.id} className="hover:bg-white/5 transition-colors group">
                   
-                  {/* TXN ID */}
                   <td className="py-4 px-6 font-mono text-orange-400 font-bold">{record.id}</td>
                   
-                  {/* Student Name */}
                   <td className="py-4 px-6 font-bold text-white">{record.student}</td>
                   
-                  {/* Level */}
                   <td className="py-4 px-6">
                     <span className="flex items-center gap-1.5 text-blue-400 font-bold">
                       <GraduationCap size={14} /> {record.level}
                     </span>
                   </td>
-                  
-                  {/* Amount */}
+            
                   <td className="py-4 px-6 font-bold font-mono text-slate-100">{record.amount}</td>
                   
-                  {/* Due Date */}
                   <td className="py-4 px-6 text-slate-500 font-mono flex items-center gap-1.5 mt-1">
                     <Calendar size={13} /> {record.dueDate}
                   </td>
                   
-                  {/* Status Toggle Button */}
                   <td className="py-4 px-6">
                     <button
                       onClick={() => toggleStatus(record.id, record.status)}
@@ -139,8 +123,7 @@ export default function FranchiseFees() {
                     </button>
                   </td>
                   
-                  {/* Receipt / Remind Column */}
-                  <td className="py-4 px-6 text-center">
+                                 <td className="py-4 px-6 text-center">
                     {record.status === 'Paid' ? (
                       <button 
                         onClick={() => setSelectedReceipt(record)}
@@ -165,7 +148,6 @@ export default function FranchiseFees() {
         </div>
       </div>
 
-      {/* ५. 💵 RECORD PAYMENT FORM POP-UP (Modal) */}
       {isRecordModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
           <div className="bg-[#0d1527] border border-slate-800 w-full max-w-md rounded-2xl p-6 shadow-2xl relative animate-fadeIn">
@@ -222,7 +204,6 @@ export default function FranchiseFees() {
         </div>
       )}
 
-      {/* ६. 📥 VIEW & DOWNLOAD DIGITAL SLIP POP-UP (Modal) */}
       {selectedReceipt && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="bg-[#0b111e] border border-slate-800 w-full max-w-sm rounded-2xl p-6 shadow-2xl relative text-slate-300">

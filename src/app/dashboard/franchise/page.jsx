@@ -4,7 +4,7 @@ import React from "react";
 import { GraduationCap, Users, IndianRupee, Box, ArrowUpRight, TrendingUp } from "lucide-react";
 
 export default function FranchiseOverview() {
-  // तुमचा मूळ डेटा - जसाच्या तसा सुरक्षित
+  
   const stats = [
     { title: "Total Students", count: "148", change: "+12 this month", icon: GraduationCap, color: "text-blue-400", bg: "bg-blue-500/10" },
     { title: "Active Teachers", count: "6", change: "All active", icon: Users, color: "text-purple-400", bg: "bg-purple-500/10" },
@@ -12,7 +12,6 @@ export default function FranchiseOverview() {
     { title: "Abacus Stock", count: "32 Kits", change: "Low stock warning", icon: Box, color: "text-amber-400", bg: "bg-amber-500/10" },
   ];
 
-  // तुमचा मूळ ॲक्टिव्हिटी डेटा
   const recentActivity = [
     { id: "REG-104", student: "Rohan Deshmukh", type: "New Admission", amount: "₹4,500", date: "2026-06-17", status: "Paid" },
     { id: "INV-402", student: "Abacus Kit - Level 1", type: "Inventory Sale", amount: "₹600", date: "2026-06-16", status: "Paid" },
@@ -21,8 +20,7 @@ export default function FranchiseOverview() {
 
   return (
     <div className="space-y-8 animate-fadeIn">
-      
-      {/* १. हेडर विभाग (Title Section) */}
+
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-900 pb-5">
         <div>
           <h2 className="text-2xl font-black text-white tracking-tight">
@@ -32,15 +30,13 @@ export default function FranchiseOverview() {
             Real-time overview of your franchise branch operations and finances.
           </p>
         </div>
-        
-        {/* छोटा लाईव्ह इंडिकेटर */}
+     
         <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-xl self-start sm:self-center">
           <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span className="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider">Live Branch Syncing</span>
         </div>
       </div>
 
-      {/* २. स्टॅट्स कार्ड्स ग्रिड (STATS CARDS GRID) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {stats.map((stat, idx) => {
           const Icon = stat.icon;
@@ -66,7 +62,6 @@ export default function FranchiseOverview() {
         })}
       </div>
 
-      {/* ३. रिसेन्ट ट्रान्झॅक्शन्स टेबल विभाग */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest font-mono">
