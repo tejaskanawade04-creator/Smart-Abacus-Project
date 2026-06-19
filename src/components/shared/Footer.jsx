@@ -6,7 +6,7 @@ import { MapPin, Phone, Globe, Award, Calendar } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="bg-slate-700 text-gray-300">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+      <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid md:grid-cols-4 gap-12">
           {/* Company */}
           <div>
@@ -20,7 +20,7 @@ export default function Footer() {
               calculation speed.
             </p>
 
-            <div className="flex gap-3 mt-6">
+            <div className="flex gap-3 mt-4">
               <span className="border border-gray-700 px-4 py-2 rounded-lg text-sm">
                 ISO Certified
               </span>
@@ -31,7 +31,7 @@ export default function Footer() {
               </span>
             </div>
 
-            <div className="flex gap-4 mt-8">
+            <div className="flex gap-4 mt-4">
               {/* WhatsApp */}
               <a className="h-10 w-10 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-center hover:bg-emerald-500/20 hover:border-emerald-500/40 text-emerald-400 transition-all cursor-pointer" title="WhatsApp">
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -128,13 +128,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-slate-800 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-slate-800 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm">
             © 2026 Smart Abacus. All Rights Reserved.
           </p>
 
           <p className="text-slate-500 text-[11px] font-mono">
-            Designed & Developed by Smart Abacus Tech Team
+            Designed & Developed by Veagle Space Private limited
           </p>
         </div>
       </div>
