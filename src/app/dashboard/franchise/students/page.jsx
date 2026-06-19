@@ -4,14 +4,14 @@ import React, { useState } from "react";
 import { UserPlus, GraduationCap, Users, ShieldAlert, CheckCircle2, MessageSquare, Clock, Pencil, Trash, X, Save } from "lucide-react";
 
 export default function FranchiseStudents() {
-  // १. स्टेट मॅनेजमेंट (विद्यार्थ्यांची यादी)
+  
   const [students, setStudents] = useState([
     { id: "STU-99", name: "Rohan Deshmukh", level: "Level 1", teacher: "Aman Sharma", status: "Active", feeStatus: "Paid", batch: "Sat | 04:00 PM", phone: "9876543210" },
     { id: "STU-102", name: "Isha Sharma", level: "Level 2", teacher: "Neha Patel", status: "Active", feeStatus: "Pending", batch: "Sun | 10:30 AM", phone: "9545123456" },
     { id: "STU-88", name: "Aditya Patil", level: "Level 4", teacher: "Sarah Jenkins", status: "Suspended", feeStatus: "Overdue", batch: "Sat | 05:30 PM", phone: "8888777766" },
   ]);
 
-  // मॉडल्स आणि एडिट करण्यासाठी लागणाऱ्या स्टेट्स
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState(null);
 

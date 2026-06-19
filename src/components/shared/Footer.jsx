@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-// स्वच्छ आणि कडक आयकॉन्स वापरण्यासाठी
+
 import { MapPin, Phone, Globe, Award, Calendar } from "lucide-react";
 
 export default function Footer() {
@@ -64,7 +64,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* २. क्विक लिंक्स (Column 2) */}
+         
           <div>
             <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 font-mono">
               Quick Links
@@ -79,7 +79,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* ३. प्रेझेन्स (Column 3) */}
+          
           <div>
             <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 font-mono">
               Our Presence
@@ -95,7 +95,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* ४. संपर्क माहिती (Column 4) */}
+        
           <div>
             <h3 className="text-xs font-bold text-white uppercase tracking-widest mb-6 font-mono">
               Contact Us
