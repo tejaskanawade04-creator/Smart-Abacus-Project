@@ -4,21 +4,17 @@ import React, { useState } from "react";
 import { Package, X, CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function FranchiseInventory() {
-  // १. तुमचा मूळ डेटा स्टेट (सर्व कॉलम्ससह)
   const [stockItems, setStockItems] = useState([
     { code: 'KIT-L1', itemName: 'Abacus Tool & Level 1 Book Kit', category: 'Student Material', availableStock: 24, minRequired: 10, status: 'In Stock' },
     { code: 'KIT-L2', itemName: 'Abacus Level 2 Worksheet Set', category: 'Student Material', availableStock: 4, minRequired: 10, status: 'Low Stock' },
     { code: 'CERT-ALL', itemName: 'Official Completion Certificates', category: 'Admin', availableStock: 50, minRequired: 15, status: 'In Stock' },
   ]);
 
-  // मॉडेल आणि फिल्टर स्टेट्स
   const [isRequestModalOpen, setIsRequestModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
   
-  // स्टॉक रिक्वेस्ट फॉर्म स्टेट
   const [requestForm, setRequestForm] = useState({ itemCode: "KIT-L1", quantity: "" });
 
-  // २. Issue Kit चं अचूक लॉजिक (स्टॉक वजा करणे + ऑटो स्टेटस अपडेट)
   const handleIssueKit = (code) => {
     setStockItems(stockItems.map(item => {
       if (item.code === code && item.availableStock > 0) {
@@ -30,7 +26,7 @@ export default function FranchiseInventory() {
     }));
   };
 
-  // ३. कॅटेगरी फिल्टर
+
   const filteredItems = selectedCategory === "All" 
     ? stockItems 
     : stockItems.filter(item => item.category === selectedCategory);
@@ -38,7 +34,6 @@ export default function FranchiseInventory() {
   return (
     <div className="space-y-4 text-xs text-slate-300">
       
-      {/* हेडर विभाग */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-white tracking-tight">Material & Kit Inventory</h2>
@@ -46,7 +41,6 @@ export default function FranchiseInventory() {
         </div>
         
         <div className="flex items-center gap-2">
-          {/* कॅटेगरी फिल्टर ऑप्शन */}
           <select 
             onChange={(e) => setSelectedCategory(e.target.value)}
             className="bg-[#0d1527] border border-gray-800 p-2 rounded-lg text-white cursor-pointer"
@@ -65,7 +59,6 @@ export default function FranchiseInventory() {
         </div>
       </div>
 
-      {/* डेटा टेबल (तुमचे मूळचे सर्व कॉलम्स परत आणले आहेत) */}
       <div className="bg-[#0d1527]/60 border border-gray-800 rounded-2xl overflow-hidden shadow-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -89,7 +82,7 @@ export default function FranchiseInventory() {
                   <td className="py-4 px-6 font-bold font-mono text-gray-100">{item.availableStock} Units</td>
                   <td className="py-4 px-6 text-gray-500 font-mono">{item.minRequired}</td>
                   
-                  {/* मूळचे सुंदर स्टेटस बॅजेस */}
+               
                   <td className="py-4 px-6">
                     <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold inline-flex items-center gap-1 ${
                       item.status === 'In Stock' ? 'bg-emerald-950 text-emerald-400' : 'bg-rose-950 text-rose-400 animate-pulse'
@@ -99,7 +92,7 @@ export default function FranchiseInventory() {
                     </span>
                   </td>
 
-                  {/* ⚡ Quick Issue Action */}
+                
                   <td className="py-4 px-6 text-center">
                     <button
                       onClick={() => handleIssueKit(item.code)}
@@ -120,7 +113,6 @@ export default function FranchiseInventory() {
         </div>
       </div>
 
-      {/* 📦 सर्व ऑप्शन्ससह सुटसुटीत पॉप-अप (Modal) */}
       {isRequestModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
           <div className="bg-[#0d1527] border border-gray-800 w-full max-w-sm rounded-2xl p-5 shadow-2xl relative">
@@ -132,7 +124,7 @@ export default function FranchiseInventory() {
             </h3>
             
             <div className="space-y-3">
-              {/* १. आयटम सिलेक्ट करण्याचा ड्रॉपडाउन ऑप्शन */}
+
               <div>
                 <label className="block text-gray-400 mb-1 font-semibold">Select Material Item</label>
                 <select 
@@ -146,7 +138,6 @@ export default function FranchiseInventory() {
                 </select>
               </div>
 
-              {/* २. क्वांटिटी इनपुट */}
               <div>
                 <label className="block text-gray-400 mb-1 font-semibold">Quantity Needed</label>
                 <input 
@@ -158,7 +149,6 @@ export default function FranchiseInventory() {
                 />
               </div>
 
-              {/* सेंड बटन */}
               <button 
                 onClick={() => { 
                   const selected = stockItems.find(i => i.code === requestForm.itemCode);

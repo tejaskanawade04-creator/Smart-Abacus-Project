@@ -1,4 +1,4 @@
-"use client"; // usePathname आणि स्टेट्स वापरण्यासाठी हे आवश्यक आहे
+"use client"; 
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -8,7 +8,6 @@ export default function FranchiseLayout({ children }) {
   const pathname = usePathname();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
-  // Sidebar items - तुमचे सर्व मूळचे ऑप्शन्स सुरक्षित आहेत
   const sidebarItems = [
     { name: 'Overview', href: '/dashboard/franchise', icon: '📊' },
     { name: 'Students', href: '/dashboard/franchise/students', icon: '🎓' },
@@ -21,14 +20,12 @@ export default function FranchiseLayout({ children }) {
     { name: 'Reports', href: '/dashboard/franchise/reports', icon: '📈' },
   ];
 
-  // सध्याच्या पाथवरून वरच्या हेडरचे नाव ठरवणे
   const currentActiveItem = sidebarItems.find(item => item.href === pathname);
   const pageTitle = currentActiveItem ? currentActiveItem.name : "Center Metrics";
 
   return (
     <div className="flex h-screen bg-[#070b19] text-gray-100 font-sans overflow-hidden">
-      
-      {/* 📱 मोबाईलसाठी बॅकड्रॉप (जेव्हा मोबाईल साइडबार ओपन असेल) */}
+
       {isMobileOpen && (
         <div 
           onClick={() => setIsMobileOpen(false)} 
@@ -36,24 +33,22 @@ export default function FranchiseLayout({ children }) {
         />
       )}
       
-      {/* 📋 SIDEBAR (डेस्कटॉपवर कायम दिसेल, मोबाईलवर टॉगल होईल) */}
       <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#0d1527] border-r border-gray-800 flex flex-col justify-between p-4 overflow-y-auto transition-transform duration-300 md:translate-x-0 md:static md:block shrink-0 ${
         isMobileOpen ? "translate-x-0" : "-translate-x-full"
       }`}>
         <div>
-          {/* Logo Section */}
+
           <div className="mb-6 px-2 flex items-center justify-between">
             <div>
               <h1 className="text-xl font-bold tracking-wider text-white">SMART ABACUS</h1>
               <p className="text-xs text-amber-400 font-semibold tracking-widest mt-1">FRANCHISE PORTAL</p>
             </div>
-            {/* मोबाईलवर साइडबार बंद करण्यासाठी क्लोज बटन */}
+
             <button onClick={() => setIsMobileOpen(false)} className="md:hidden text-gray-400 hover:text-white text-xl">
               ✕
             </button>
           </div>
 
-          {/* Navigation Links */}
           <nav className="space-y-1">
             {sidebarItems.map((item) => {
               const isActive = pathname === item.href;
@@ -61,7 +56,7 @@ export default function FranchiseLayout({ children }) {
                 <Link
                   key={item.name}
                   href={item.href}
-                  onClick={() => setIsMobileOpen(false)} // लिंकवर क्लिक केल्यावर मोबाईलवर साइडबार बंद होईल
+                  onClick={() => setIsMobileOpen(false)} 
                   className={`flex items-center space-x-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                     isActive
                       ? "bg-blue-600/10 text-blue-400 border border-blue-500/20 shadow-md shadow-blue-950/20"
@@ -76,7 +71,6 @@ export default function FranchiseLayout({ children }) {
           </nav>
         </div>
 
-        {/* User Profile & Sign Out */}
         <div className="border-t border-gray-800 pt-4 mt-4">
           <div className="flex items-center space-x-3 p-2 bg-[#141f35] rounded-xl mb-3">
             <div className="w-9 h-9 rounded-full bg-amber-600 flex items-center justify-center text-sm font-bold text-white shrink-0">
@@ -96,13 +90,12 @@ export default function FranchiseLayout({ children }) {
         </div>
       </aside>
 
-      {/* 🖥️ MAIN CONTENT AREA */}
+    
       <div className="flex-1 flex flex-col h-full overflow-hidden">
         
-        {/* NAVBAR */}
         <header className="h-16 border-b border-gray-800 bg-[#0d1527] px-4 md:px-8 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            {/* मोबाईलसाठी हॅम्बर्गर मेनू बटन */}
+
             <button 
               onClick={() => setIsMobileOpen(true)}
               className="p-2 -ml-2 rounded-lg bg-[#141f35] border border-gray-800 md:hidden text-white"
@@ -123,7 +116,6 @@ export default function FranchiseLayout({ children }) {
           </div>
         </header>
 
-        {/* PAGE CONTENT */}
         <main className="p-4 md:p-8 flex-1 overflow-y-auto bg-[#070b19]">
           <div className="max-w-7xl mx-auto">
             {children}

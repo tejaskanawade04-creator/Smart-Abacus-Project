@@ -1,4 +1,3 @@
-// src/app/dashboard/franchise/payments/page.jsx
 import React from 'react';
 
 export default function FranchisePayments() {
