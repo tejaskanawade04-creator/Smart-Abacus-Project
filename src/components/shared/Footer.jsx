@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-700 text-gray-300">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-4 gap-12">
+   <footer className="bg-slate-800 text-gray-600">
+  <div className="max-w-7xl mx-auto px-6 py-10">
+    <div className="grid md:grid-cols-4 gap-8">
           {/* Company */}
           <div>
             <h2 className="text-3xl font-bold text-white">
@@ -17,7 +17,7 @@ export default function Footer() {
               calculation speed.
             </p>
 
-            <div className="flex gap-3 mt-6">
+            <div className="flex gap-3 mt-4">
               <span className="border border-gray-700 px-4 py-2 rounded-lg text-sm">
                 ISO Certified
               </span>
@@ -27,7 +27,7 @@ export default function Footer() {
               </span>
             </div>
 
-            <div className="flex gap-4 mt-8">
+           <div className="flex gap-4 mt-5">
               {/* WhatsApp */}
               <a className="h-11 w-11 rounded-full bg-slate-800 flex items-center justify-center hover:bg-orange-500 transition cursor-pointer" title="WhatsApp">
                 <svg className="w-5 h-5 text-white fill-current" viewBox="0 0 24 24">
@@ -107,7 +107,7 @@ export default function Footer() {
               Contact Us
             </h3>
 
-            <div className="space-y-6">
+           <div className="space-y-4">
               <div className="flex gap-4">
                 {/* Location pin */}
                 <svg className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
@@ -142,7 +142,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-slate-800 mt-14 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-slate-800 mt-8 pt-5 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm">
             © 2026 Smart Abacus. All Rights Reserved.
           </p>

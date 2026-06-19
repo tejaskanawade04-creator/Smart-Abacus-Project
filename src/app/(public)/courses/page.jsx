@@ -23,7 +23,7 @@ export default function Contact() {
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
           <Link
-            href="/register"
+            href="/app/pages/auth/register"
             className="px-8 py-3 bg-pink-600 text-white font-semibold rounded-xl shadow-lg hover:bg-pink-700 transition duration-300"
           >
             Enroll Now
