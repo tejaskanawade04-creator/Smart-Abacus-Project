@@ -74,7 +74,7 @@ export default function Footer() {
               <li><Link href="/" className="hover:text-orange-400 transition-colors">Home Portal</Link></li>
               <li><Link href="/about" className="hover:text-orange-400 transition-colors">About Us</Link></li>
               <li><Link href="/courses" className="hover:text-orange-400 transition-colors">Our Courses</Link></li>
-              <li><Link href="/franchise" className="hover:text-orange-400 transition-colors">Franchise Network</Link></li>
+              <li><Link href="/Franchise" className="hover:text-orange-400 transition-colors">Franchise Network</Link></li>
               <li><Link href="/contact" className="hover:text-orange-400 transition-colors">Contact Support</Link></li>
             </ul>
           </div>
