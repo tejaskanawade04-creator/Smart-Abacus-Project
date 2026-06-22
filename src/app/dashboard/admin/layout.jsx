@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { AdminDataProvider, useAdminData } from "./AdminContext";
-import SystemClock from "@/components/shared/SystemClock";
+
 
 function AdminLayoutInner({ children }) {
   const router = useRouter();

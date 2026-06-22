@@ -4,7 +4,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="py-16 md:py-20 bg-gray-100 text-center px-4">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-pink-600">
-          Smart Abacus
+          Smart Abacus  
         </h1>
 
         <p className="mt-4 text-base sm:text-lg text-gray-700 max-w-2xl mx-auto">

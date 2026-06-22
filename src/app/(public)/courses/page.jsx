@@ -7,62 +7,36 @@ export default function Contact() {
       <Navbar />
         {/* Header */}
         
-    <section className="min-h-screen bg-gradient-to-r from-pink-50 to-purple-50 flex items-center">
-      <div className="max-w-7xl mx-auto px-6 py-20 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
-          Unlock Your Childs
-          <span className="text-pink-600"> Mental Math Potential</span>
-        </h1>
-
-        <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-          Smart Abacus empowers children with faster calculations,
-          better concentration, improved memory, and enhanced creativity
-          through interactive and fun abacus learning programs.
-        </p>
-
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-4 mt-10">
-          
-
-          <Link
-            href="/courses/professional"
-            className="px-8 py-3 border-2 border-pink-600 text-pink-600 font-semibold rounded-xl hover:bg-pink-600 hover:text-white transition duration-300"
-          >
-            View Syllabus
-          </Link>
-        </div>
-
-        {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-          <div className="bg-white p-6 rounded-2xl shadow-md">
-            <h3 className="text-xl font-bold text-pink-600">
-              Faster Calculations
-            </h3>
-            <p className="mt-3 text-gray-600">
-              Develop lightning-fast mental arithmetic skills.
-            </p>
+    <section className="py-16 px-8 bg-white/80 rounded-3xl mb-12">
+          <h2 className="text-4xl font-bold mb-8 text-center text-blue-900">Our Comprehensive Course Levels</h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="p-8 shadow-lg rounded-lg bg-gradient-to-br from-white to-blue-50 hover:shadow-xl transition">
+              <div className="text-4xl font-bold text-pink-600 mb-2">Level 1</div>
+              <h3 className="text-xl font-semibold text-blue-900 mb-3">Beginner</h3>
+              <p className="text-gray-600 mb-4">Introduction to Abacus fundamentals, basic operations, and number recognition</p>
+              <div className="text-sm text-gray-500">Duration: 3 months | 2 sessions/week</div>
+            </div>
+            <div className="p-8 shadow-lg rounded-lg bg-gradient-to-br from-white to-pink-50 hover:shadow-xl transition">
+              <div className="text-4xl font-bold text-pink-600 mb-2">Level 2</div>
+              <h3 className="text-xl font-semibold text-blue-900 mb-3">Intermediate</h3>
+              <p className="text-gray-600 mb-4">Advanced calculations, multi-digit operations, and mental arithmetic speed building</p>
+              <div className="text-sm text-gray-500">Duration: 4 months | 2 sessions/week</div>
+            </div>
+            <div className="p-8 shadow-lg rounded-lg bg-gradient-to-br from-white to-blue-50 hover:shadow-xl transition">
+              <div className="text-4xl font-bold text-pink-600 mb-2">Level 3</div>
+              <h3 className="text-xl font-semibold text-blue-900 mb-3">Expert</h3>
+              <p className="text-gray-600 mb-4">High-speed calculations, competition preparation, and advanced problem solving</p>
+              <div className="text-sm text-gray-500">Duration: 5 months | 3 sessions/week</div>
+            </div>
+            <div className="p-8 shadow-lg rounded-lg bg-gradient-to-br from-white to-pink-50 hover:shadow-xl transition">
+              <div className="text-4xl font-bold text-pink-600 mb-2">Level 4</div>
+              <h3 className="text-xl font-semibold text-blue-900 mb-3">Industry</h3>
+              <p className="text-gray-600 mb-4">Professional mastery, instructor certification, and competitive championship training</p>
+              <div className="text-sm text-gray-500">Duration: 6 months | 4 sessions/week</div>
+            </div>
           </div>
+        </section>
 
-          <div className="bg-white p-6 rounded-2xl shadow-md">
-            <h3 className="text-xl font-bold text-pink-600">
-              Better Concentration
-            </h3>
-            <p className="mt-3 text-gray-600">
-              Improve focus, memory, and analytical thinking.
-            </p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl shadow-md">
-            <h3 className="text-xl font-bold text-pink-600">
-              Interactive Learning
-            </h3>
-            <p className="mt-3 text-gray-600">
-              Fun activities and expert guidance for every child.
-            </p>
-          </div>
-        </div>
-      </div>
-  </section>
        <Footer />
     </div>
   );
