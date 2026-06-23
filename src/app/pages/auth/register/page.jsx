@@ -20,7 +20,7 @@ export default function RegisterPage() {
     password: "",
     confirmPassword: "",
     gender: "Male",
-    city: "Pune",
+    city: "",
     emergencyContact: "",
     currentAddress: "",
     permanentAddress: ""

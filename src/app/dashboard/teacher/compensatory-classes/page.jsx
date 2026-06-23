@@ -66,7 +66,7 @@ export default function CompensatoryClassesPage() {
                 <td className="py-4 px-6 font-semibold text-white">{item.originalBatch}</td>
                 
                 {/* Reason */}
-                <td className="py-4 px-6 text-gray-400 italic">"{item.reason}"</td>
+                <td className="py-4 px-6 text-gray-400 italic">{item.reason}</td>
                 
                 {/* Date & Time */}
                 <td className="py-4 px-6">

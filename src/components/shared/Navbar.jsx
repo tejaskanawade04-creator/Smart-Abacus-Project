@@ -12,18 +12,25 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
 
-        {/* Logo */}
-        <Link href="/" className="flex flex-col">
-          <span className="text-2xl sm:text-3xl font-bold text-blue-900">
-            SMART <span className="text-orange-500">ABACUS</span>
-          </span>
-          <span className="text-[10px] sm:text-xs text-gray-500 tracking-widest">
-            Empowering Young Minds
-          </span>
+        {/* Logo and Brand Name Container */}
+        <Link href="/" className="flex items-center  gap-4 group">
+          {/* Logo wrapper to handle proper sizing and spacing */}
+          <div className="flex-shrink-0 flex items-center justify-center">
+            <Logo />
+          </div>
+          
+          <div className="flex flex-col justify-center">
+            <span className="text-2xl sm:text-3xl font-bold text-blue-900 leading-none">
+              SMART <span className="text-orange-500">ABACUS</span>
+            </span>
+            <span className="text-[10px] sm:text-xs text-gray-500 tracking-widest mt-1 leading-none">
+              Empowering Young Minds
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-8">
           <ul className="flex items-center gap-8 text-gray-700 font-medium">
             <li><Link href="/" className="hover:text-blue-900">Home</Link></li>
             <li><Link href="/about" className="hover:text-blue-900">About Us</Link></li>
@@ -75,7 +82,7 @@ export default function Navbar() {
 
             <Link
               href="/pages/auth/login"
-              className="bg-orange-500 text-white text-center py-3 rounded-full"
+              className="bg-orange-500 text-white text-center py-3 rounded-full font-bold"
             >
               Join Now
             </Link>
