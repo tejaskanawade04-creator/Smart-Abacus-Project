@@ -2,7 +2,7 @@
 import React from 'react';
 
 export default function TeacherOverview() {
-  // Mock Data: विद्यार्थ्यांची माहिती दाखवण्यासाठी
+  // Mock Data: 
   const studentData = [
     { id: 1, name: 'Aman Sharma', email: 'aman@abacus.com', level: 'Level 2', batch: 'New Delhi - Evening', status: 'Active', joiningDate: '2025-05-02' },
     { id: 2, name: 'Neha Patel', email: 'neha@abacus.com', level: 'Level 1', batch: 'Mumbai West - Morning', status: 'Active', joiningDate: '2025-05-12' },

@@ -52,17 +52,16 @@ const galleryItems = [
 export default function GalleryPage() {
   const [activeFilter, setActiveFilter] = useState("All");
 
-  // Filter Categories dynamic काढण्यासाठी
+  // Filter Categories dynamic 
   const categories = ["All", "Classroom", "Competitions", "Events", "Celebrations", "Brain Gym"];
 
-  // Filter केलेल्या इमेज दाखवण्यासाठी logic
   const filteredItems = activeFilter === "All" 
     ? galleryItems 
     : galleryItems.filter(item => item.category === activeFilter);
 
   return (
     <div className="bg-slate-50 min-h-screen w-full flex flex-col justify-between">
-      {/* Navbar पूर्ण रुंदीत वरती सेंटर राहील */}
+   
       <div className="w-full">
         <Navbar />
       </div>

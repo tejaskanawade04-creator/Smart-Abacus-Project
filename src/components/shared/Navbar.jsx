@@ -33,7 +33,7 @@ export default function Navbar() {
             <li><Link href="/contact" className="hover:text-blue-900">Contact Us</Link></li>
           </ul>
 
-          {/* Authentication Buttons (दोन्ही बटनांना सारखाच बॅकग्राउंड ग्लो इफेक्ट) */}
+          {/* Authentication Buttons  */}
           <div className="flex items-center gap-4 pl-4 border-l border-gray-200">
             {/* Sign In Button (Deep Blue Background + Glow) */}
             <Link

@@ -10,7 +10,7 @@ import {
 export const Sidebar = ({ role }) => {
   const pathname = usePathname();
 
-  // Ultra Smart Abacus BRD रोल-बेस्ड मॅपिंग
+  // Ultra Smart 
   const menuConfig = {
     admin: [
       { name: "Dashboard", href: "/dashboard/admin", icon: LayoutDashboard },

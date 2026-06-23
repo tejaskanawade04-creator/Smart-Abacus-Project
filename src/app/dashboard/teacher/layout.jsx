@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 export default function TeacherLayout({ children }) {
-  // Sidebar चे items - Teacher 
+  // Sidebar  items - Teacher 
   const sidebarItems = [
     { name: 'Overview', href: '/dashboard/teacher', icon: '📊' },
     { name: 'Attendance', href: '/dashboard/teacher/attendance', icon: '📝' },

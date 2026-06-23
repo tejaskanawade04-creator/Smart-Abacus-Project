@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header className="w-full relative z-50 bg-[#070b13]/60 backdrop-blur-md border-b border-slate-800/40 px-6 md:px-12 py-5 flex flex-col md:flex-row justify-between items-center gap-4">
       
-      {/* १. ब्रँडिंग आणि स्लोगन विभाग (डावी बाजू) */}
+    
       <div className="flex flex-col text-center md:text-left">
         <Link href="/">
           <h1 className="text-2xl font-black tracking-wider text-blue-500 cursor-pointer">
@@ -14,11 +14,11 @@ const Header = () => {
           </h1>
         </Link>
         <p className="text-[10px] tracking-widest text-slate-400 uppercase font-mono mt-0.5">
-          India's leading abacus mental arithmetic institute
+          Indias leading abacus mental arithmetic institute
         </p>
       </div>
 
-      {/* २. हायलाईट्स / फीचर्स विभाग (मध्यभागी - बारीक अक्षरात आणि प्रीमियम लुकमध्ये) */}
+      
       <div className="hidden lg:flex items-center space-x-6 text-xs font-medium text-slate-300 bg-slate-950/40 border border-slate-800/50 px-5 py-2 rounded-full backdrop-blur-sm">
         <div className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
@@ -32,9 +32,7 @@ const Header = () => {
           <span className="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
           <span>Boost Confidence</span>
         </div>
-      </div>
-
-      {/* ३. ॲक्शन बट्सन्स विभाग (उजवी बाजू) */}
+</div>
       <div className="flex items-center gap-3">
         {/* Explore Courses Button */}
         <Link href="/courses">

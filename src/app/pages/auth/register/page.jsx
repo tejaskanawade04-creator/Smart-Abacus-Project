@@ -11,7 +11,7 @@ export default function RegisterPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
-  // इनपुट व्हॅल्यूज ट्रॅक करण्यासाठी स्टेट (Referral Code काढला आहे)
+  
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",

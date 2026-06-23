@@ -9,12 +9,12 @@ export default function FranchiseFees() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   
-  // मॉडेल्स उघडण्यासाठी/बंद करण्यासाठी स्टेट्स
+
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isActionModalOpen, setIsActionModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   
-  // डेटा मॅनेजमेंट स्टेट्स
+  
   const [selectedRow, setSelectedRow] = useState(null);
   const [formData, setFormData] = useState({ id: "", student: "", level: "Level 1", amount: "", dueDate: "", status: "Overdue" });
 
@@ -25,18 +25,16 @@ export default function FranchiseFees() {
     { id: "TXN-642", student: "Ananya Joshi", level: "Level 3", amount: 4000, dueDate: "2026-06-18", status: "Paid" },
   ]);
 
-  // स्टॅट्स कॅल्क्युलेशन्स (डेटा रिकामा असला तरी एरर येणार नाही)
   const totalCollected = feeData.filter(f => f.status === "Paid").reduce((sum, f) => sum + Number(f.amount), 0);
   const totalPending = feeData.filter(f => f.status === "Overdue").reduce((sum, f) => sum + Number(f.amount), 0);
   const totalTarget = totalCollected + totalPending || 1;
 
-  // रोवर क्लिक केल्यावर पॉप-अप उघडेल
+  
   const handleRowClick = (row) => {
     setSelectedRow(row);
     setIsActionModalOpen(true);
   };
 
-  // १. नवीन ट्रान्झॅक्शन ॲड करणे
   const handleAddSubmit = (e) => {
     e.preventDefault();
     if (!formData.student || !formData.amount) return;
@@ -54,7 +52,6 @@ export default function FranchiseFees() {
     setFormData({ id: "", student: "", level: "Level 1", amount: "", dueDate: "", status: "Overdue" });
   };
 
-  // २. एडिट फॉर्म उघडणे
   const handleEditTrigger = () => {
     if (!selectedRow) return;
     setFormData(selectedRow);
@@ -62,7 +59,6 @@ export default function FranchiseFees() {
     setIsEditModalOpen(true);
   };
 
-  // ३. एडिट सेव्ह करणे
   const handleEditSubmit = (e) => {
     e.preventDefault();
     const updatedData = feeData.map(item => item.id === selectedRow.id ? { ...formData, amount: parseInt(formData.amount) } : item);
@@ -71,7 +67,7 @@ export default function FranchiseFees() {
     setSelectedRow(null);
   };
 
-  // ४. ट्रान्झॅक्शन डिलीट करणे
+  
   const handleDeleteTrigger = () => {
     if (!selectedRow) return;
     if (window.confirm(`Are you sure you want to delete transaction ${selectedRow.id}?`)) {
@@ -81,7 +77,6 @@ export default function FranchiseFees() {
     }
   };
 
-  // ५. पॉप-अपच्या आत स्टेटस बदलणे (Paid <=> Overdue)
   const toggleStatus = () => {
     if (!selectedRow) return;
     const nextStatus = selectedRow.status === "Paid" ? "Overdue" : "Paid";
@@ -89,7 +84,7 @@ export default function FranchiseFees() {
     setSelectedRow({ ...selectedRow, status: nextStatus });
   };
 
-  // सर्च आणि फिल्टर लॉजिक
+  
   const filteredData = feeData.filter(item => {
     const matchesSearch = item.student.toLowerCase().includes(searchTerm.toLowerCase()) || item.id.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = statusFilter === "All" || item.status === statusFilter;
@@ -99,7 +94,7 @@ export default function FranchiseFees() {
   return (
     <div className="space-y-6 text-xs text-slate-300 relative">
       
-      {/* हेडर */}
+     
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-gray-800 pb-6">
         <div>
           <h2 className="text-2xl font-black text-white tracking-tight flex items-center gap-2">
@@ -115,7 +110,7 @@ export default function FranchiseFees() {
         </button>
       </div>
 
-      {/* स्टॅट्स कार्ड्स */}
+  
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-gradient-to-br from-[#0e172c] to-[#0a1021] border border-gray-800/80 p-4 rounded-2xl">
           <p className="text-gray-400 font-medium">Total Collected</p>
@@ -131,7 +126,7 @@ export default function FranchiseFees() {
         </div>
       </div>
 
-      {/* फिल्टर्स */}
+   
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#0d1527]/40 border border-gray-800 p-3 rounded-2xl">
         <div className="relative w-full sm:max-w-xs">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
@@ -159,7 +154,7 @@ export default function FranchiseFees() {
         </div>
       </div>
 
-      {/* टेबल व्ह्यू */}
+ 
       <div className="bg-[#0d1527]/60 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -209,7 +204,6 @@ export default function FranchiseFees() {
         </div>
       </div>
 
-      {/* १. मास्टर अ‍ॅक्शन पॉप-अप */}
       {isActionModalOpen && selectedRow && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="bg-[#0d1527] border border-gray-800 w-full max-w-sm rounded-2xl p-6 shadow-2xl relative overflow-hidden">
@@ -243,7 +237,7 @@ export default function FranchiseFees() {
                 ) : (
                   <button type="button" className="w-full bg-amber-950/60 hover:bg-amber-500 text-amber-400 hover:text-slate-950 border border-amber-900/60 rounded-xl py-2 font-bold flex items-center justify-center gap-1.5 cursor-pointer"><Bell size={13} /> Remind</button>
                 )}
-                {/* ⚠️ जर तुम्ही [id]/page.jsx फाईल बनवली नसेल, तर खालील बटण दाबल्यावर ४०४ एरर येईल. फाईल बनवेपर्यंत हे बटन फक्त डिझाइन म्हणून काम करेल */}
+              
                 <button type="button" onClick={() => router.push(`/dashboard/franchise/fees/${selectedRow.id}`)} className="w-full bg-slate-900 hover:bg-slate-800 border border-gray-800 text-slate-300 rounded-xl py-2 font-bold flex items-center justify-center gap-1.5 cursor-pointer"><Eye size={13} /> Profile</button>
               </div>
 

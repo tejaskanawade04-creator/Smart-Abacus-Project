@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 export default function FranchiseLayout({ children }) {
   const pathname = usePathname();
-  const router = useRouter(); // Router हुक
+  const router = useRouter(); // Router 
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const sidebarItems = [
@@ -21,8 +21,8 @@ export default function FranchiseLayout({ children }) {
     { name: 'Reports', href: '/dashboard/franchise/reports', icon: '📈' },
   ];
 
-  // Sign Out लॉजिक
-  const handleSignOut = () => {
+  // Sign Out 
+    const handleSignOut = () => {
     router.push('/login'); 
   };
 

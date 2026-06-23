@@ -2,7 +2,7 @@
 import React from 'react';
 
 export default function CompensatoryClassesPage() {
-  // Mock Data: शेड्यूल केलेले आणि प्रलंबित भरपाई क्लासेस
+  // Mock Data: 
   const compensatoryClasses = [
     {
       id: 'CC-101',
