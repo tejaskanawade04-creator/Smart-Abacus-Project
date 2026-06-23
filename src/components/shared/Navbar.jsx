@@ -13,71 +13,49 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
-        <div className="flex items-center gap-3">
-          <Logo />
-
-          <Link href="/" className="flex flex-col">
-            <span className="text-2xl sm:text-3xl font-bold text-blue-900">
-              SMART <span className="text-orange-500">ABACUS</span>
-            </span>
-
-            <span className="text-[10px] sm:text-xs text-gray-500 tracking-widest">
-              Empowering Young Minds Through Abacus
-            </span>
-          </Link>
-        </div>
+        <Link href="/" className="flex flex-col">
+          <span className="text-2xl sm:text-3xl font-bold text-blue-900">
+            SMART <span className="text-orange-500">ABACUS</span>
+          </span>
+          <span className="text-[10px] sm:text-xs text-gray-500 tracking-widest">
+            Empowering Young Minds
+          </span>
+        </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           <ul className="flex items-center gap-8 text-gray-700 font-medium">
-            <li>
-              <Link href="/" className="hover:text-blue-900">
-                Home
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/about" className="hover:text-blue-900">
-                About Us
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/courses" className="hover:text-blue-900">
-                Courses
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/Franchise" className="hover:text-blue-900">
-                Franchise
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/gallery" className="hover:text-blue-900">
-                Gallery
-              </Link>
-            </li>
-
-            <li>
-              <Link href="/contact" className="hover:text-blue-900">
-                Contact Us
-              </Link>
-            </li>
+            <li><Link href="/" className="hover:text-blue-900">Home</Link></li>
+            <li><Link href="/about" className="hover:text-blue-900">About Us</Link></li>
+            <li><Link href="/courses" className="hover:text-blue-900">Courses</Link></li>
+            <li><Link href="/Franchise" className="hover:text-blue-900">Franchise</Link></li>
+            <li><Link href="/gallery" className="hover:text-blue-900">Gallery</Link></li>
+            <li><Link href="/contact" className="hover:text-blue-900">Contact Us</Link></li>
           </ul>
 
-          <Link
-            href="/pages/auth/login"
-            className="bg-orange-500 text-white px-6 py-2.5 rounded-full font-medium shadow-md hover:bg-orange-600 transition"
-          >
-            Join Now
-          </Link>
+          {/* Authentication Buttons (दोन्ही बटनांना सारखाच बॅकग्राउंड ग्लो इफेक्ट) */}
+          <div className="flex items-center gap-4 pl-4 border-l border-gray-200">
+            {/* Sign In Button (Deep Blue Background + Glow) */}
+            <Link
+              href="/pages/auth/login"
+              className="bg-[#1e3a8a] hover:bg-[#172554] text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-blue-900/30 transition-all"
+            >
+              Sign In
+            </Link>
+            
+            {/* Register Button (Orange Background + Glow) */}
+            <Link
+              href="/pages/auth/register"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-orange-500/30 transition-all"
+            >
+              Register
+            </Link>
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden text-blue-900"
+          className="lg:hidden text-[#1e3a8a]"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -88,38 +66,19 @@ export default function Navbar() {
       {isOpen && (
         <div className="lg:hidden bg-white border-t shadow-md">
           <ul className="flex flex-col p-4 space-y-4 text-gray-700 font-medium">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/about">About Us</Link></li>
+            <li><Link href="/courses">Courses</Link></li>
+            <li><Link href="/Franchise">Franchise</Link></li>
+            <li><Link href="/gallery">Gallery</Link></li>
+            <li><Link href="/contact">Contact Us</Link></li>
 
-            <li>
-              <Link href="/about">About Us</Link>
-            </li>
-
-            <li>
-              <Link href="/courses">Courses</Link>
-            </li>
-
-            <li>
-              <Link href="/Franchise">Franchise</Link>
-            </li>
-
-            <li>
-              <Link href="/gallery">Gallery</Link>
-            </li>
-
-            <li>
-              <Link href="/contact">Contact Us</Link>
-            </li>
-
-            <li>
-              <Link
-                href="/pages/auth/login"
-                className="block bg-orange-500 text-white text-center py-3 rounded-full"
-              >
-                Join Now
-              </Link>
-            </li>
+            <Link
+              href="/pages/auth/login"
+              className="bg-orange-500 text-white text-center py-3 rounded-full"
+            >
+              Join Now
+            </Link>
           </ul>
         </div>
       )}

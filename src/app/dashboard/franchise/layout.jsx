@@ -1,11 +1,12 @@
-"use client"; 
+"use client";
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function FranchiseLayout({ children }) {
   const pathname = usePathname();
+  const router = useRouter(); // Router हुक
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const sidebarItems = [
@@ -20,12 +21,16 @@ export default function FranchiseLayout({ children }) {
     { name: 'Reports', href: '/dashboard/franchise/reports', icon: '📈' },
   ];
 
+  // Sign Out लॉजिक
+  const handleSignOut = () => {
+    router.push('/login'); 
+  };
+
   const currentActiveItem = sidebarItems.find(item => item.href === pathname);
   const pageTitle = currentActiveItem ? currentActiveItem.name : "Center Metrics";
 
   return (
     <div className="flex h-screen bg-[#070b19] text-gray-100 font-sans overflow-hidden">
-
       {isMobileOpen && (
         <div 
           onClick={() => setIsMobileOpen(false)} 
@@ -37,16 +42,12 @@ export default function FranchiseLayout({ children }) {
         isMobileOpen ? "translate-x-0" : "-translate-x-full"
       }`}>
         <div>
-
           <div className="mb-6 px-2 flex items-center justify-between">
             <div>
               <h1 className="text-xl font-bold tracking-wider text-white">SMART ABACUS</h1>
               <p className="text-xs text-amber-400 font-semibold tracking-widest mt-1">FRANCHISE PORTAL</p>
             </div>
-
-            <button onClick={() => setIsMobileOpen(false)} className="md:hidden text-gray-400 hover:text-white text-xl">
-              ✕
-            </button>
+            <button onClick={() => setIsMobileOpen(false)} className="md:hidden text-gray-400 hover:text-white text-xl">✕</button>
           </div>
 
           <nav className="space-y-1">
@@ -73,16 +74,14 @@ export default function FranchiseLayout({ children }) {
 
         <div className="border-t border-gray-800 pt-4 mt-4">
           <div className="flex items-center space-x-3 p-2 bg-[#141f35] rounded-xl mb-3">
-            <div className="w-9 h-9 rounded-full bg-amber-600 flex items-center justify-center text-sm font-bold text-white shrink-0">
-              FO
-            </div>
+            <div className="w-9 h-9 rounded-full bg-amber-600 flex items-center justify-center text-sm font-bold text-white shrink-0">FO</div>
             <div className="truncate">
               <p className="text-xs font-semibold text-white truncate">Mumbai West Center</p>
               <p className="text-[10px] text-gray-400">Franchise Owner</p>
             </div>
           </div>
           <button 
-            onClick={() => alert("Signing out...")} 
+            onClick={handleSignOut} 
             className="w-full text-left text-sm text-red-400 hover:text-red-300 font-medium px-4 py-2 transition-colors flex items-center gap-2"
           >
             <span>🚪</span> Sign Out
@@ -90,18 +89,13 @@ export default function FranchiseLayout({ children }) {
         </div>
       </aside>
 
-    
       <div className="flex-1 flex flex-col h-full overflow-hidden">
-        
         <header className="h-16 border-b border-gray-800 bg-[#0d1527] px-4 md:px-8 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-
             <button 
               onClick={() => setIsMobileOpen(true)}
               className="p-2 -ml-2 rounded-lg bg-[#141f35] border border-gray-800 md:hidden text-white"
-            >
-              ☰
-            </button>
+            >☰</button>
             <div className="text-[11px] md:text-xs text-gray-400 font-medium tracking-wide">
               DASHBOARD / FRANCHISE / <span className="text-amber-400 uppercase">{pageTitle}</span>
             </div>
@@ -109,7 +103,6 @@ export default function FranchiseLayout({ children }) {
 
           <div className="flex items-center space-x-4 text-[11px] md:text-xs">
             <span className="text-gray-400 hidden sm:inline">CENTER STATUS: <span className="text-emerald-400 font-bold">● ACTIVE</span></span>
-            <span className="text-gray-500 hidden sm:inline">|</span>
             <span className="bg-amber-950/40 text-amber-400 px-3 py-1 rounded-full font-semibold border border-amber-900/50">
               Franchise Mode
             </span>
@@ -122,7 +115,6 @@ export default function FranchiseLayout({ children }) {
           </div>
         </main>
       </div>
-
     </div>
   );
 }
