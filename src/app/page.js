@@ -4,7 +4,7 @@ import Link from "next/link";
 import confetti from "canvas-confetti"; 
 import Navbar from "../components/shared/Navbar";
 import Footer from "../components/shared/Footer";
-import { ChevronDown, HelpCircle } from "lucide-react"; // 💡 Icons for FAQ Section
+import { ChevronDown, HelpCircle, CheckCircle2 } from "lucide-react"; 
 
 const abacusCourses = [
   {
@@ -57,7 +57,6 @@ const abacusCourses = [
   }
 ];
 
-// 📑 FAQ Data Array
 const faqs = [
   {
     id: 1,
@@ -81,8 +80,8 @@ const faqs = [
   },
   {
     id: 5,
-    answer: "Yes, generally every child starts from Level 1 because Abacus requires learning specific finger movements and bead formulas from scratch, regardless of the child's age or school grade.",
     question: "Does every child have to enroll from Level 1 in your academy?",
+    answer: "Yes, generally every child starts from Level 1 because Abacus requires learning specific finger movements and bead formulas from scratch, regardless of the child's age or school grade.",
   },
   {
     id: 6,
@@ -93,31 +92,18 @@ const faqs = [
 
 export default function Home() {
   const [hasMounted, setHasMounted] = useState(false); 
-  const [openFaq, setOpenFaq] = useState(1); // 💡 State to track open FAQ accordion
+  const [openFaq, setOpenFaq] = useState(1); 
   const [formData, setFormData] = useState({
     name: "", email: "", phone: "", subject: "General Inquiry", message: ""
   });
 
   useEffect(() => {
     setHasMounted(true);  
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { x: 0, y: 0.6 }
-    });
-    
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { x: 1, y: 0.6 }
-    });
+    confetti({ particleCount: 100, spread: 70, origin: { x: 0, y: 0.6 } });
+    confetti({ particleCount: 100, spread: 70, origin: { x: 1, y: 0.6 } });
 
     const timeout = setTimeout(() => {
-      confetti({
-        particleCount: 150,
-        spread: 100,
-        origin: { x: 0.5, y: 0.4 }
-      });
+      confetti({ particleCount: 150, spread: 100, origin: { x: 0.5, y: 0.4 } });
     }, 400);
 
     return () => clearTimeout(timeout);
@@ -125,12 +111,6 @@ export default function Home() {
 
   const toggleFaq = (id) => {
     setOpenFaq(openFaq === id ? null : id);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(`Thank you for reaching out, ${formData.name}! Our team will get back to you shortly.`);
-    setFormData({ name: "", email: "", phone: "", subject: "General Inquiry", message: "" });
   };
 
   if (!hasMounted) {
@@ -241,6 +221,35 @@ export default function Home() {
           </div>
         </section>
 
+        {/* 🧠 Benefits of Abacus Section (Video Removed - Full Width Layout) */}
+        <section className="py-16 px-8 bg-slate-100 rounded-3xl shadow-inner border border-slate-200">
+          <div className="max-w-5xl mx-auto space-y-6">
+            <h2 className="text-3xl sm:text-4xl font-black text-blue-900 tracking-tight uppercase text-center md:text-left">
+              BENEFITS OF <span className="text-orange-500">ABACUS</span>
+            </h2>
+            <p className="text-gray-700 text-base sm:text-lg leading-relaxed text-center md:text-left">
+              Smart <span className="font-semibold text-blue-900">Abacus training</span> develops a dynamic number sense in children. The specific game-based technique keeps kids engaged. It removes the fear of math right from childhood. Other than Mental Math, it also improves academic performance with the development of crucial life skills such as:
+            </p>
+
+            {/* Key Highlights Grid (Expanded to 3 columns for better look) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
+              {[
+                "Self-Confidence",
+                "Ability To Recall",
+                "Concentration",
+                "Visualization",
+                "Photographic Memory",
+                "Listening Skill"
+              ].map((benefit, i) => (
+                <div key={i} className="flex items-center gap-3 bg-white p-5 rounded-xl border border-slate-200/60 shadow-sm transition-all hover:border-orange-500/40 hover:shadow-md">
+                  <CheckCircle2 className="h-5 w-5 text-orange-500 flex-shrink-0" />
+                  <span className="font-bold text-blue-900 text-sm sm:text-base">{benefit}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Dynamic Detailed Courses Grid Section */}
         <section className="py-16 px-8 bg-white rounded-3xl shadow-sm border border-slate-100">
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
@@ -337,7 +346,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 🆕 📑 Frequently Asked Questions (FAQ) Section - Added Here */}
+        {/* Frequently Asked Questions (FAQ) Section */}
         <section className="py-16 px-8 bg-white rounded-3xl shadow-sm border border-slate-100">
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
             <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 tracking-tight uppercase">
@@ -359,7 +368,6 @@ export default function Home() {
                     isOpen ? "border-orange-500 ring-1 ring-orange-500/20" : "border-gray-200"
                   }`}
                 >
-                  {/* Question Header */}
                   <button
                     onClick={() => toggleFaq(faq.id)}
                     className={`w-full flex items-center justify-between p-5 text-left font-semibold text-sm sm:text-base transition-colors ${
@@ -377,7 +385,6 @@ export default function Home() {
                     />
                   </button>
 
-                  {/* Answer Accordion Box */}
                   <div
                     className={`transition-all duration-300 ease-in-out overflow-hidden ${
                       isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"

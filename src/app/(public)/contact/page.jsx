@@ -54,8 +54,8 @@ export default function ContactPage() {
                 <div className="text-2xl mt-0.5">📞</div>
                 <div>
                   <h4 className="font-bold text-slate-900 text-sm">Call Us Directly</h4>
-                  <p className="text-gray-600 text-xs mt-1">+91 98765 43210</p>
-                  <p className="text-gray-600 text-xs">+91 98765 43211</p>
+                  <p className="text-gray-600 text-xs mt-1">+91 8767876567</p>
+                  <p className="text-gray-600 text-xs">+91 7867896734</p>
                 </div>
               </div>
 
