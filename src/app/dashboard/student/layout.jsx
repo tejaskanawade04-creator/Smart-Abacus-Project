@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { StudentDataProvider, useStudentData } from "./StudentContext";
-import SystemClock from "@/components/shared/SystemClock";
+
 
 function StudentLayoutInner({ children }) {
   const router = useRouter();
@@ -176,7 +176,7 @@ function StudentLayoutInner({ children }) {
               <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">
                 System Status: Online
               </span>
-              <SystemClock />
+              
             </div>
             
             <div className="w-px h-6 bg-white/10 hidden md:block" />
