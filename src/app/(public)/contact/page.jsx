@@ -1,159 +1,183 @@
 "use client";
-
 import { useState } from "react";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
-import { Phone, Mail, MapPin } from "lucide-react";
+import Navbar from "../../../components/shared/Navbar";
+import Footer from "../../../components/shared/Footer";
 
-export default function Contact() {
-  const [showPopup, setShowPopup] = useState(false);
+export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "General Inquiry",
+    message: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Show popup
-    setShowPopup(true);
-
-    // Reset form fields
-    e.target.reset();
-
-    // Hide popup after 3 seconds
-    setTimeout(() => {
-      setShowPopup(false);
-    }, 3000);
+    alert(`Thank you for reaching out, ${formData.name}! Our team will get back to you shortly.`);
+    setFormData({ name: "", email: "", phone: "", subject: "General Inquiry", message: "" });
   };
 
   return (
-    <>
-      <Navbar />
+    <div className="bg-slate-50 min-h-screen w-full flex flex-col justify-between">
+      {/* Navbar Layout */}
+      <div className="w-full">
+        <Navbar />
+      </div>
 
-      {/* Success Popup */}
-      {showPopup && (
-        <div className="fixed top-5 right-5 z-50 bg-green-500 text-white px-6 py-4 rounded-xl shadow-lg">
-          ✅ Inquiry Submitted Successfully!
+      {/* Main Content Area */}
+      <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-16 flex-grow space-y-16">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <span className="px-4 py-1.5 bg-orange-100 text-orange-600 font-bold rounded-full text-xs uppercase tracking-wider">
+            Get In Touch
+          </span>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 tracking-tight">
+            Contact Our Academy
+          </h2>
+          <p className="text-gray-600">
+            Have questions about admissions, course details, or trial batches? Reach out to us, and we will guide you forward.
+          </p>
         </div>
-      )}
 
-      <div className="bg-gray-100 min-h-screen py-12 px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
-
-          {/* Left Side */}
-          <div className="space-y-8">
-            <div className="bg-white p-8 rounded-3xl shadow-md flex items-center gap-6 hover:shadow-2xl hover:scale-105 hover:bg-blue-50 transition-all duration-300 cursor-pointer">
-              <div className="bg-gray-100 p-5 rounded-full">
-                <Phone className="text-blue-900" size={30} />
+        {/* Contact Page Layout Grid */}
+        <div className="grid lg:grid-cols-3 gap-12 items-start">
+          
+          {/* Left Column: Academy Details */}
+          <div className="lg:col-span-1 space-y-6">
+            <h3 className="text-2xl font-bold text-slate-800">Our Information</h3>
+            
+            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-6">
+              {/* Phone Detail */}
+              <div className="flex items-start gap-4">
+                <div className="text-2xl mt-0.5">📞</div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm">Call Us Directly</h4>
+                  <p className="text-gray-600 text-xs mt-1">+91 98765 43210</p>
+                  <p className="text-gray-600 text-xs">+91 98765 43211</p>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-3xl font-bold text-gray-800">Phone</h3>
-                <p className="text-gray-600 text-lg mt-2">
-                  +91 98765 43210
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white p-8 rounded-3xl shadow-md flex items-center gap-6 hover:shadow-2xl hover:scale-105 hover:bg-blue-50 transition-all duration-300 cursor-pointer">
-              <div className="bg-gray-100 p-5 rounded-full">
-                <Mail className="text-blue-900" size={30} />
+              {/* Email Detail */}
+              <div className="flex items-start gap-4">
+                <div className="text-2xl mt-0.5">✉️</div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm">Email Inquiries</h4>
+                  <p className="text-gray-600 text-xs mt-1">info@smartabacus.com</p>
+                  <p className="text-gray-600 text-xs">admissions@smartabacus.com</p>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-3xl font-bold text-gray-800">Email</h3>
-                <p className="text-gray-600 text-lg mt-2">
-                  smartabacus@gmail.com
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-white p-8 rounded-3xl shadow-md flex items-center gap-6 hover:shadow-2xl hover:scale-105 hover:bg-blue-50 transition-all duration-300 cursor-pointer">
-              <div className="bg-gray-100 p-5 rounded-full">
-                <MapPin className="text-blue-900" size={30} />
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-bold text-gray-800">
-                  Head Office
-                </h3>
-                <p className="text-gray-600 text-lg mt-2">
-                  123 Abacus Street,
-                  <br />
-                  Pune, Maharashtra, India
-                  <br />
-                  411001
-                </p>
+              {/* Timing Detail */}
+              <div className="flex items-start gap-4">
+                <div className="text-2xl mt-0.5">🕒</div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm">Working Hours</h4>
+                  <p className="text-gray-600 text-xs mt-1">Monday - Saturday</p>
+                  <p className="text-gray-600 text-xs">09:00 AM - 06:00 PM (IST)</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Side Form */}
-          <div className="bg-white p-10 rounded-3xl shadow-md">
-            <h2 className="text-5xl font-bold text-blue-900 mb-8">
-              Send us a Message
-            </h2>
+          {/* Right 2 Columns: Single Unified Contact Form */}
+          <div className="lg:col-span-2 bg-white p-8 rounded-3xl border border-slate-100 shadow-xl shadow-slate-600/[0.02] space-y-6">
+            <div className="space-y-1">
+              <h3 className="text-2xl font-bold text-slate-900">Send Us A Message</h3>
+              <p className="text-xs text-gray-500">Please provide your valid details below so our academic counselor can assist you.</p>
+            </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-5">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  required
-                  className="border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
-                />
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid sm:grid-cols-2 gap-4">
+                {/* Name Field */}
+                <div>
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Your Name</label>
+                  <input 
+                    type="text" 
+                    required 
+                    placeholder="Enter Full Name"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                    value={formData.name}
+                    onChange={(e) => setFormData({...formData, name: e.target.value})}
+                  />
+                </div>
 
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  required
-                  className="border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                {/* Phone Field */}
+                <div>
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Contact Number</label>
+                  <input 
+                    type="tel" 
+                    required 
+                    placeholder="Enter 10-Digit Mobile"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                  />
+                </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-5">
-                <input
-                  type="text"
-                  placeholder="Mobile Number"
-                  required
-                  className="border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
-                />
+              <div className="grid sm:grid-cols-2 gap-4">
+                {/* Email Field */}
+                <div>
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Email Address</label>
+                  <input 
+                    type="email" 
+                    required 
+                    placeholder="name@example.com"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                  />
+                </div>
 
-                <input
-                  type="text"
-                  placeholder="City / Location"
-                  required
-                  className="border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                {/* Subject Selection */}
+                <div>
+                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Inquiry Purpose</label>
+                  <select 
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50 h-[46px]"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                  >
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Abacus Course Admission">Abacus Course Admission</option>
+                    <option value="Reading & Handwriting Track">Reading & Handwriting Track</option>
+                    <option value="Vedic Math Class">Vedic Math Class</option>
+                    <option value="Free Demo Session">Request Free Demo Session</option>
+                  </select>
+                </div>
               </div>
 
-              <select
-                required
-                className="w-full border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">Interested In?</option>
-                <option>Abacus Course</option>
-                <option>Franchise</option>
-                <option>Teacher Training</option>
-                <option>Other Inquiry</option>
-              </select>
+              {/* Message Field */}
+              <div>
+                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Message / Questions</label>
+                <textarea 
+                  rows="4" 
+                  required
+                  placeholder="Describe your query or mention your child's age group here..."
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50 resize-none"
+                  value={formData.message}
+                  onChange={(e) => setFormData({...formData, message: e.target.value})}
+                ></textarea>
+              </div>
 
-              <textarea
-                rows="5"
-                placeholder="Your Message..."
-                required
-                className="w-full border border-gray-300 p-4 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
-              ></textarea>
-
-              <button
-                type="submit"
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold text-xl py-4 rounded-full transition duration-300"
+              {/* Submit Button */}
+              <button 
+                type="submit" 
+                className="w-full py-3.5 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white text-sm font-bold uppercase tracking-wider rounded-xl transition shadow-lg shadow-orange-500/20 active:scale-95"
               >
-                SUBMIT INQUIRY →
+                Send Message
               </button>
             </form>
           </div>
-        </div>
-      </div>
 
-      <Footer />
-    </>
+        </div>
+      </main>
+
+      {/* Footer Layout */}
+      <div className="w-full mt-auto">
+        <Footer />
+      </div>
+    </div>
   );
 }

@@ -11,12 +11,12 @@ export default function LoginPage() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // पासवर्ड दाखवण्यासाठी/लपवण्यासाठी स्टेट
+  const [showPassword, setShowPassword] = useState(false); 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // युझर आधीच लॉगिन असेल तर थेट रिडायरेक्ट करा
+    
     if (user) {
       redirectByRole(user.role);
     }
@@ -64,14 +64,14 @@ export default function LoginPage() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center bg-[#070b13] px-4 overflow-hidden">
-      {/* बॅकग्राउंड ग्लो इफेक्ट्स */}
+   
       <div className="absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-orange-500/10 blur-[120px]"></div>
       <div className="absolute -right-32 -bottom-32 h-[500px] w-[500px] rounded-full bg-blue-600/10 blur-[120px]"></div>
 
-      {/* मुख्य ग्लास-मॉर्फिक कार्ड */}
+    
       <div className="w-full max-w-md rounded-2xl bg-slate-950/40 backdrop-blur-md p-8 shadow-2xl relative border border-slate-800/60 z-10">
         
-        {/* ब्रँड लोगो आणि हेडिंग */}
+       
         <div className="flex flex-col items-center mb-8">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-orange-500 to-amber-600 font-black text-xl text-white shadow-lg shadow-orange-500/20 mb-3">
             S
@@ -82,7 +82,7 @@ export default function LoginPage() {
           <p className="text-xs text-slate-400 mt-1 font-mono uppercase tracking-widest">Class Management System</p>
         </div>
 
-        {/* एरर मेसेज डिस्प्ले */}
+      
         {error && (
           <div className="mb-6 flex items-start gap-3 rounded-xl bg-rose-500/10 border border-rose-500/20 p-3.5 text-sm text-rose-400 animate-fadeIn">
             <AlertTriangle className="h-5 w-5 shrink-0 mt-0.5" />
@@ -90,10 +90,9 @@ export default function LoginPage() {
           </div>
         )}
 
-        {/* लॉगिन फॉर्म */}
+       
         <form onSubmit={handleSubmit} className="space-y-5">
-          
-          {/* ईमेल इनपुट */}
+         
           <div>
             <label className="block text-[11px] font-mono uppercase tracking-widest text-slate-400 mb-2 pl-1">
               Email Address
@@ -111,7 +110,7 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* पासवर्ड इनपुट */}
+         
           <div>
             <div className="flex items-center justify-between mb-2 px-1">
               <label className="block text-[11px] font-mono uppercase tracking-widest text-slate-400">
@@ -131,7 +130,7 @@ export default function LoginPage() {
                 placeholder="••••••••"
                 className="w-full rounded-xl bg-slate-900/60 border border-slate-800/80 py-3 pl-11 pr-11 text-xs text-white placeholder-slate-600 focus:border-orange-500/50 focus:outline-none focus:ring-1 focus:ring-orange-500/20 transition-all font-mono"
               />
-              {/* पासवर्ड दाखवण्यासाठी आयकॉन बटन */}
+            
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
@@ -142,7 +141,7 @@ export default function LoginPage() {
             </div>
           </div>
 
-          {/* सबमिट बटन */}
+          
           <button
             type="submit"
             disabled={loading || authLoading}
