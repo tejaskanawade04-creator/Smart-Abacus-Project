@@ -79,12 +79,22 @@ export default function StudentFeeDetail() {
   return (
     <div className="space-y-6 text-xs text-slate-300 relative px-2 sm:px-4 max-w-7xl mx-auto">
       
-      {/* 🌟 Responsive Header */}
+      {/* 🌟 HERE IS THE UPDATED RESPONSIVE HEADER WITH CLEAR BACK OPTION */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-4">
         <div className="flex items-center gap-3">
-          <button onClick={() => router.back()} className="p-2.5 bg-[#0d1527] border border-gray-800 rounded-xl text-gray-400 hover:text-white transition-colors cursor-pointer">
-            <ArrowLeft size={14} />
+          
+          {/* कडक आणि स्पष्ट बॅक बटन */}
+          <button 
+            onClick={() => router.back()} 
+            className="flex items-center gap-2 px-3 py-2 bg-[#0d1527] border border-gray-800 hover:border-gray-700 rounded-xl text-gray-400 hover:text-white transition-all cursor-pointer group shadow-md"
+            title="Go Back to Student List"
+          >
+            <ArrowLeft size={15} className="group-hover:-translate-x-0.5 transition-transform" />
+            <span className="text-xs font-bold tracking-wide">Back to List</span>
           </button>
+
+          <div className="h-8 w-px bg-gray-800 hidden sm:block mx-1" />
+
           <div>
             <span className="text-[9px] sm:text-[10px] uppercase font-black text-amber-500 font-mono tracking-wider">{currentStudent.id}</span>
             <h2 className="text-lg sm:text-xl font-black text-white mt-0.5 tracking-tight">Student Invoice Profile</h2>
@@ -92,7 +102,7 @@ export default function StudentFeeDetail() {
         </div>
 
         <div className="flex items-center gap-2">
-          {/* 🎯 कंडिशनल रिमाइंडर: फक्त 'Overdue' विद्यार्थ्यांनाच रिमाइंडर बटन दिसेल (Isha & Rohan) */}
+          {/* 🎯 कंडिशनल रिमाइंडर */}
           {currentStudent.status !== 'Paid' && (
             <button 
               onClick={() => setIsReminderModalOpen(true)}
@@ -128,7 +138,7 @@ export default function StudentFeeDetail() {
             </div>
           </div>
 
-          {/* पेमेंट टाइमलाईन (सर्वांसाठी स्लिप दाखवणारे ऑप्शन) */}
+          {/* पेमेंट टाइमलाईन */}
           <div className="bg-[#0d1527]/60 border border-gray-800 rounded-2xl p-4 sm:p-5 space-y-4 shadow-xl">
             <h3 className="text-sm font-bold text-white flex items-center gap-2 border-b border-gray-800/60 pb-2">
               <History size={14} className="text-amber-500" /> Past Payment Timeline
@@ -173,7 +183,6 @@ export default function StudentFeeDetail() {
                 <Printer size={13} /> Print Full Statement
               </button>
               
-              {/* 🎯 कंडिशनल फी अपडेट: जर विद्यार्थी Paid असेल (Aditya & Ananya) तर हे बटन लपवले जाईल */}
               {currentStudent.status !== 'Paid' && (
                 <button onClick={() => setIsUpdateModalOpen(true)} className="w-full bg-slate-900 hover:bg-slate-800 border border-gray-800 text-white font-bold py-3 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1">
                   <CreditCard size={13} className="text-rose-400" /> Update Payment Status
@@ -184,7 +193,7 @@ export default function StudentFeeDetail() {
         </div>
       </div>
 
-      {/* 🔴 १. PAYMENT REMINDER POP-UP (फक्त Overdue विद्यार्थ्यांसाठीच उघडेल) */}
+      {/* 🔴 १. PAYMENT REMINDER POP-UP */}
       {isReminderModalOpen && currentStudent.status !== 'Paid' && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="bg-[#0d1527] border border-gray-800 w-full max-w-sm rounded-2xl p-5 shadow-2xl relative">
@@ -193,7 +202,7 @@ export default function StudentFeeDetail() {
               <Bell size={14} />
               <h3 className="text-white font-black font-mono uppercase text-xs tracking-wider">Send Outstandings Reminder</h3>
             </div>
-            <div className="bg-slate-950 p-3 rounded-xl border border-gray-900 text-[11px] mb-4 space-y-1 text-gray-400">
+            <div className="slate-950 p-3 rounded-xl border border-gray-900 text-[11px] mb-4 space-y-1 text-gray-400">
               <p><strong>Parent Name:</strong> {currentStudent.parent}</p>
               <p><strong>Due Amount:</strong> <span className="text-rose-400 font-bold">₹{currentStudent.balance}</span></p>
             </div>
@@ -213,7 +222,7 @@ export default function StudentFeeDetail() {
         </div>
       )}
 
-      {/* 🔵 २. CORPORATE RECEIPT SLIP POP-UP (सर्वांसाठी सारखेच स्लिप ऑप्शन्स उघडतील - Aditya, Ananya, Isha, Rohan) */}
+      {/* 🔵 २. CORPORATE RECEIPT SLIP POP-UP */}
       {isHistoryModalOpen && selectedHistory && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4">
           <div className="bg-white text-black w-full max-w-sm rounded-2xl p-5 shadow-2xl relative font-mono text-[11px] border border-gray-300">
