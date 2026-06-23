@@ -1,10 +1,10 @@
-
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import confetti from "canvas-confetti"; 
 import Navbar from "../components/shared/Navbar";
 import Footer from "../components/shared/Footer";
+import { ChevronDown, HelpCircle } from "lucide-react"; // 💡 Icons for FAQ Section
 
 const abacusCourses = [
   {
@@ -57,20 +57,54 @@ const abacusCourses = [
   }
 ];
 
+// 📑 FAQ Data Array
+const faqs = [
+  {
+    id: 1,
+    question: "What are the main benefits of enrolling my child in Smart Abacus training?",
+    answer: "Abacus training significantly enhances mental math skills. After completion of the course, your child will be able to calculate five times faster with accuracy. It also improves concentration, memory, and overall cognitive development, helping children excel in academics.",
+  },
+  {
+    id: 2,
+    question: "How often are classes held, and what is the structure of the levels in the program?",
+    answer: "Typically, classes are conducted twice a week for 2 hours per session, or as a weekend batch. The program is divided into different progressive levels (Level 1 to 8), each lasting around 3 to 4 months depending on the child's learning pace.",
+  },
+  {
+    id: 3,
+    question: "How long does it take for a child to complete the entire abacus program?",
+    answer: "To complete the complete foundation and advanced levels, it usually takes around 2 to 2.5 years. However, noticeable improvements in calculation speed and focus can be seen within the first 3-6 months.",
+  },
+  {
+    id: 4,
+    question: "Are twice-a-week classes sufficient for Abacus learning?",
+    answer: "Yes, twice-a-week interactive sessions are perfect, provided the child practices at home for at least 10-15 minutes daily. Consistent daily practice is key to mastering mental arithmetic.",
+  },
+  {
+    id: 5,
+    answer: "Yes, generally every child starts from Level 1 because Abacus requires learning specific finger movements and bead formulas from scratch, regardless of the child's age or school grade.",
+    question: "Does every child have to enroll from Level 1 in your academy?",
+  },
+  {
+    id: 6,
+    question: "How can I, as a parent, support my child's abacus learning and practice at home?",
+    answer: "You don't need to know Abacus to help them! Just ensure they spend 10 minutes daily doing their homework, encourage them to use the mental theory methods, and appreciate their efforts to boost their confidence.",
+  }
+];
+
 export default function Home() {
-  const [hasMounted, setHasMounted] = useState(false); // 👈 Hydration 
+  const [hasMounted, setHasMounted] = useState(false); 
+  const [openFaq, setOpenFaq] = useState(1); // 💡 State to track open FAQ accordion
   const [formData, setFormData] = useState({
     name: "", email: "", phone: "", subject: "General Inquiry", message: ""
   });
 
   useEffect(() => {
-    setHasMounted(true); // 👈 
+    setHasMounted(true);  
     confetti({
       particleCount: 100,
       spread: 70,
       origin: { x: 0, y: 0.6 }
     });
-    
     
     confetti({
       particleCount: 100,
@@ -78,7 +112,6 @@ export default function Home() {
       origin: { x: 1, y: 0.6 }
     });
 
-    
     const timeout = setTimeout(() => {
       confetti({
         particleCount: 150,
@@ -90,13 +123,16 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, []);
 
+  const toggleFaq = (id) => {
+    setOpenFaq(openFaq === id ? null : id);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(`Thank you for reaching out, ${formData.name}! Our team will get back to you shortly.`);
     setFormData({ name: "", email: "", phone: "", subject: "General Inquiry", message: "" });
   };
 
-  
   if (!hasMounted) {
     return null; 
   }
@@ -127,11 +163,11 @@ export default function Home() {
 
       {/* Hero Section */}
       <section
-  className="relative w-full min-h-[90vh] flex items-center justify-center text-center bg-cover bg-center bg-no-repeat bg-fixed px-6 py-24"
-  style={{
-    backgroundImage: "url('/images/banner.jpg')",
-  }}
->
+        className="relative w-full min-h-[90vh] flex items-center justify-center text-center bg-cover bg-center bg-no-repeat bg-fixed px-6 py-24"
+        style={{
+          backgroundImage: "url('/images/banner.jpg')",
+        }}
+      >
         <div className="absolute inset-0 bg-slate-950/60 z-0"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center">
@@ -298,6 +334,62 @@ export default function Home() {
               <p className="text-gray-600 text-sm mb-4">My grades improved from C to A+ in mathematics! I feel more confident in class now and love solving problems.</p>
               <div className="flex text-yellow-400">★★★★★</div>
             </div>
+          </div>
+        </section>
+
+        {/* 🆕 📑 Frequently Asked Questions (FAQ) Section - Added Here */}
+        <section className="py-16 px-8 bg-white rounded-3xl shadow-sm border border-slate-100">
+          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 tracking-tight uppercase">
+              Frequently Asked <span className="text-orange-500">Questions</span>
+            </h2>
+            <p className="text-gray-600">
+              Have questions about our Abacus classes? Find the answers right here.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto space-y-4">
+            {faqs.map((faq) => {
+              const isOpen = openFaq === faq.id;
+              
+              return (
+                <div
+                  key={faq.id}
+                  className={`border rounded-xl transition-all duration-300 overflow-hidden bg-white shadow-sm ${
+                    isOpen ? "border-orange-500 ring-1 ring-orange-500/20" : "border-gray-200"
+                  }`}
+                >
+                  {/* Question Header */}
+                  <button
+                    onClick={() => toggleFaq(faq.id)}
+                    className={`w-full flex items-center justify-between p-5 text-left font-semibold text-sm sm:text-base transition-colors ${
+                      isOpen ? "bg-orange-500 text-white" : "text-gray-800 hover:bg-gray-50"
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 pr-4">
+                      <HelpCircle className={`h-5 w-5 flex-shrink-0 ${isOpen ? "text-white" : "text-orange-500"}`} />
+                      <span>{faq.question}</span>
+                    </div>
+                    <ChevronDown
+                      className={`h-5 w-5 flex-shrink-0 transition-transform duration-300 ${
+                        isOpen ? "rotate-180 text-white" : "text-gray-400"
+                      }`}
+                    />
+                  </button>
+
+                  {/* Answer Accordion Box */}
+                  <div
+                    className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                      isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <div className="p-5 text-sm sm:text-base text-gray-600 leading-relaxed border-t border-gray-100 bg-gray-50/50">
+                      {faq.answer}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 
