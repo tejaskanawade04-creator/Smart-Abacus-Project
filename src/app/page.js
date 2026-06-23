@@ -150,7 +150,7 @@ export default function Home() {
               Sign In to ERP Portal
             </Link>
             <Link
-              href="#contact-section"
+              href="/contact"
               className="px-8 py-3.5 bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/30 backdrop-blur-md font-bold rounded-full text-sm transition-all active:scale-[0.97] cursor-pointer"
             >
               Join Academy
