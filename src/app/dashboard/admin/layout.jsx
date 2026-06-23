@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { AdminDataProvider, useAdminData } from "./AdminContext";
 
-
 function AdminLayoutInner({ children }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -58,7 +57,7 @@ function AdminLayoutInner({ children }) {
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-600/10 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-purple-500/10 blur-[130px] pointer-events-none" />
 
-      {/* MOBILE SIDEBAR DRAWEROVERLAY */}
+      {/* MOBILE SIDEBAR DRAWER OVERLAY */}
       {sidebarOpen && (
         <div 
           onClick={() => setSidebarOpen(false)}
@@ -183,7 +182,7 @@ function AdminLayoutInner({ children }) {
               <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold">
                 System Status: Online
               </span>
-              <SystemClock />
+             
             </div>
             
             <div className="w-px h-6 bg-white/10 hidden md:block" />
