@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { 
   Check, X, Calendar, Search, Users, UserCheck, UserX, 
-  Star, Save, BookOpen, ChevronRight, Award 
+  Star, Save, BookOpen, ChevronRight, Award, Download 
 } from "lucide-react";
 
 export default function AttendanceProgress() {
@@ -59,6 +59,32 @@ export default function AttendanceProgress() {
     };
   }, [students, selectedBatch]);
 
+  // 📥 Native Chrome Excel/CSV Download Engine
+  const downloadAttendanceExcel = () => {
+    const headers = ["Student ID", "Student Name", "Batch ID", "Attendance Status", "Abacus Speed (1-5)", "Formula Accuracy (1-5)", "Homework Status"];
+    
+    const rows = filteredStudents.map(s => [
+      s.id,
+      `"${s.name}"`, // Names inside quotes to handle spaces/commas safely
+      s.batchId,
+      s.status,
+      s.speed,
+      s.accuracy,
+      s.homework ? "Completed" : "Incomplete"
+    ].join(","));
+
+    // \uFEFF forces Excel to read file correctly in UTF-8
+    const csvContent = "data:text/csv;charset=utf-8,\uFEFF" + [headers.join(","), ...rows].join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `Attendance_Batch_${selectedBatch}_${selectedDate}.csv`);
+    document.body.appendChild(link);
+    
+    link.click(); // Triggers Chrome's native download bar
+    document.body.removeChild(link);
+  };
+
   const handleSaveLogs = () => {
     alert(`Attendance & Progress logs for date ${selectedDate} synced successfully!`);
   };
@@ -72,9 +98,15 @@ export default function AttendanceProgress() {
           <h2 className="text-xl md:text-2xl font-black tracking-tight text-white">Attendance & <span className="text-indigo-400">Progress Tracker</span></h2>
           <p className="text-xs text-slate-400 mt-1">Mark daily rosters, evaluate calculation velocity, and audit curriculum performance.</p>
         </div>
-        <button onClick={handleSaveLogs} className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-xs font-extrabold rounded-xl text-white hover:brightness-110 shadow-lg shadow-indigo-600/10 transition-all cursor-pointer self-end sm:self-center">
-          <Save size={14} /><span>Save Session Logs</span>
-        </button>
+        <div className="flex items-center gap-2 self-end sm:self-center">
+          {/* Chrome Download Button */}
+          <button onClick={downloadAttendanceExcel} className="flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-xs font-bold rounded-xl border border-slate-800 text-slate-300 transition-all cursor-pointer">
+            <Download size={14} /><span>Download Batch Excel</span>
+          </button>
+          <button onClick={handleSaveLogs} className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-xs font-extrabold rounded-xl text-white hover:brightness-110 shadow-lg shadow-indigo-600/10 transition-all cursor-pointer">
+            <Save size={14} /><span>Save Session Logs</span>
+          </button>
+        </div>
       </div>
 
       {/* Control Filters Block */}

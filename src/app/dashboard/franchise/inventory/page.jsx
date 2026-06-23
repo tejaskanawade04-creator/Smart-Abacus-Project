@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { 
   Package, Search, Plus, Minus, AlertTriangle, CheckCircle, 
-  Layers, ShoppingBag, ArrowDownUp, RefreshCw, X, Save 
+  Layers, ShoppingBag, ArrowDownUp, RefreshCw, X, Save, Download 
 } from "lucide-react";
 
 export default function InventoryManagement() {
@@ -63,6 +63,34 @@ export default function InventoryManagement() {
     setSelectedItem(null);
   };
 
+  // 📥 Native Chrome CSV/Excel Export Engine
+  const downloadInventoryCSV = () => {
+    const headers = ["SKU Code", "Material Description", "Category", "Current Stock", "Safety Buffer", "Status"];
+    
+    const rows = filteredInventory.map(item => {
+      const status = item.stock < item.minRequired ? "Low Stock Alert" : "In Stock Stable";
+      return [
+        item.id,
+        `"${item.name}"`, // Wrapping spaces safely
+        item.category,
+        item.stock,
+        item.minRequired,
+        status
+      ].join(",");
+    });
+
+    // \uFEFF ensures proper UTF-8 layout inside MS Excel
+    const csvContent = "data:text/csv;charset=utf-8,\uFEFF" + [headers.join(","), ...rows].join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `Inventory_Ledger_${filterCategory}_Export.csv`);
+    document.body.appendChild(link);
+    
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="space-y-6 p-4 md:p-6 text-slate-100 max-w-[1600px] mx-auto">
       
@@ -72,6 +100,14 @@ export default function InventoryManagement() {
           <h2 className="text-xl md:text-2xl font-black tracking-tight text-white">Inventory & <span className="text-amber-500">Material Ledger</span></h2>
           <p className="text-xs text-slate-400 mt-1">Track abacus learning tools, textbook dispatches, and certificate allocations.</p>
         </div>
+        
+        {/* Chrome-friendly Download Action */}
+        <button 
+          onClick={downloadInventoryCSV}
+          className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-gray-300 font-bold rounded-xl border border-slate-800 text-xs transition-all flex items-center gap-2 cursor-pointer self-start sm:self-center"
+        >
+          <Download size={14} /> Download Inventory CSV
+        </button>
       </div>
 
       {/* Stock Summary Grid */}

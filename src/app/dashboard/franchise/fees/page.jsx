@@ -9,11 +9,9 @@ export default function FranchiseFees() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   
-
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isActionModalOpen, setIsActionModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  
   
   const [selectedRow, setSelectedRow] = useState(null);
   const [formData, setFormData] = useState({ id: "", student: "", level: "Level 1", amount: "", dueDate: "", status: "Overdue" });
@@ -29,7 +27,6 @@ export default function FranchiseFees() {
   const totalPending = feeData.filter(f => f.status === "Overdue").reduce((sum, f) => sum + Number(f.amount), 0);
   const totalTarget = totalCollected + totalPending || 1;
 
-  
   const handleRowClick = (row) => {
     setSelectedRow(row);
     setIsActionModalOpen(true);
@@ -67,7 +64,6 @@ export default function FranchiseFees() {
     setSelectedRow(null);
   };
 
-  
   const handleDeleteTrigger = () => {
     if (!selectedRow) return;
     if (window.confirm(`Are you sure you want to delete transaction ${selectedRow.id}?`)) {
@@ -84,17 +80,41 @@ export default function FranchiseFees() {
     setSelectedRow({ ...selectedRow, status: nextStatus });
   };
 
-  
   const filteredData = feeData.filter(item => {
     const matchesSearch = item.student.toLowerCase().includes(searchTerm.toLowerCase()) || item.id.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = statusFilter === "All" || item.status === statusFilter;
     return matchesSearch && matchesFilter;
   });
 
+  // 📥 Native Chrome Excel/CSV Download Engine
+  const downloadLedgerExcel = () => {
+    const headers = ["Invoice ID", "Student Name", "Abacus Level", "Amount (₹)", "Due Date", "Status"];
+    
+    const rows = filteredData.map(item => [
+      item.id,
+      `"${item.student}"`, // Handling spaces safely
+      item.level,
+      item.amount,
+      item.dueDate,
+      item.status
+    ].join(","));
+
+    // \uFEFF ensures Excel renders UTF-8 correctly
+    const csvContent = "data:text/csv;charset=utf-8,\uFEFF" + [headers.join(","), ...rows].join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `Fee_Ledger_${statusFilter}_Export.csv`);
+    document.body.appendChild(link);
+    
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="space-y-6 text-xs text-slate-300 relative">
       
-     
+      {/* Header Block */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-gray-800 pb-6">
         <div>
           <h2 className="text-2xl font-black text-white tracking-tight flex items-center gap-2">
@@ -102,15 +122,24 @@ export default function FranchiseFees() {
           </h2>
           <p className="text-xs text-gray-400 mt-1">Click on any student row to manage status, receipts, edits, or deeper view options.</p>
         </div>
-        <button 
-          onClick={() => setIsAddModalOpen(true)}
-          className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold px-5 py-3 rounded-xl shadow-lg transition-all flex items-center gap-2 cursor-pointer border border-emerald-500/20"
-        >
-          <Plus size={16} /> Record Fee Payment
-        </button>
+        <div className="flex items-center gap-2 self-end lg:self-center">
+          {/* Chrome-friendly Download Button */}
+          <button 
+            onClick={downloadLedgerExcel}
+            className="px-4 py-3 bg-slate-900 hover:bg-slate-800 text-gray-300 font-bold rounded-xl border border-gray-800 transition-all flex items-center gap-2 cursor-pointer"
+          >
+            <Download size={14} /> Download Ledger Excel
+          </button>
+          <button 
+            onClick={() => setIsAddModalOpen(true)}
+            className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold px-5 py-3 rounded-xl shadow-lg transition-all flex items-center gap-2 cursor-pointer border border-emerald-500/20"
+          >
+            <Plus size={16} /> Record Fee Payment
+          </button>
+        </div>
       </div>
 
-  
+      {/* Metrics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-gradient-to-br from-[#0e172c] to-[#0a1021] border border-gray-800/80 p-4 rounded-2xl">
           <p className="text-gray-400 font-medium">Total Collected</p>
@@ -126,7 +155,7 @@ export default function FranchiseFees() {
         </div>
       </div>
 
-   
+      {/* Filters Block */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#0d1527]/40 border border-gray-800 p-3 rounded-2xl">
         <div className="relative w-full sm:max-w-xs">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
@@ -154,7 +183,7 @@ export default function FranchiseFees() {
         </div>
       </div>
 
- 
+      {/* Data Table */}
       <div className="bg-[#0d1527]/60 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -204,6 +233,7 @@ export default function FranchiseFees() {
         </div>
       </div>
 
+      {/* Action Sheet Modal */}
       {isActionModalOpen && selectedRow && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="bg-[#0d1527] border border-gray-800 w-full max-w-sm rounded-2xl p-6 shadow-2xl relative overflow-hidden">
@@ -251,7 +281,7 @@ export default function FranchiseFees() {
         </div>
       )}
 
-      {/* २. RECORD NEW FEE PAYMENT MODAL */}
+      {/* Record Fee Payment Modal */}
       {isAddModalOpen && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="bg-[#0d1527] border border-gray-800 w-full max-w-sm rounded-2xl p-5 shadow-2xl relative">
@@ -278,7 +308,7 @@ export default function FranchiseFees() {
         </div>
       )}
 
-      {/* ३. MODIFY LEDGER MODAL */}
+      {/* Modify Ledger Modal */}
       {isEditModalOpen && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="bg-[#0d1527] border border-gray-800 w-full max-w-sm rounded-2xl p-5 shadow-2xl relative">

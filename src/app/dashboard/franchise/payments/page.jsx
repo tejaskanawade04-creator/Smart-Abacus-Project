@@ -40,6 +40,32 @@ export default function PaymentsManagement() {
     });
   }, [payments, searchQuery, filterMode]);
 
+  // 📥 Native Chrome Excel/CSV Download Engine
+  const downloadPaymentsExcel = () => {
+    const headers = ["Transaction ID", "Invoice Mapping", "Payer Name", "Payment Mode", "Settled Amount (₹)", "Settlement Date", "Status"];
+    
+    const rows = filteredPayments.map(p => [
+      p.id,
+      p.invoiceId,
+      `"${p.studentName}"`, // Handling spaces inside name safely
+      p.mode,
+      p.amount,
+      p.date,
+      p.status
+    ].join(","));
+
+    // \uFEFF forces Excel to render encoding correctly in UTF-8
+    const csvContent = "data:text/csv;charset=utf-8,\uFEFF" + [headers.join(","), ...rows].join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `Payments_Ledger_Export_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    
+    link.click(); // Triggers Chrome's native download trajectory
+    document.body.removeChild(link);
+  };
+
   const handleRecordPayment = (e) => {
     e.preventDefault();
     const newTxn = {
@@ -66,9 +92,21 @@ export default function PaymentsManagement() {
           <h2 className="text-xl md:text-2xl font-black tracking-tight text-white">Payment <span className="text-emerald-500">Gateway Ledger</span></h2>
           <p className="text-xs text-slate-400 mt-1">Audit inbound cashflows, track direct UPI transfers, and manage manual cheque clears.</p>
         </div>
-        <button onClick={() => setIsRecordOpen(true)} className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-xs font-extrabold rounded-xl text-white hover:brightness-110 shadow-lg shadow-emerald-600/10 transition-all cursor-pointer self-end sm:self-center">
-          <Plus size={14} /><span>Record Payment</span>
-        </button>
+        <div className="flex items-center gap-2 self-end sm:self-center">
+          {/* Chrome-friendly Download Action Button */}
+          <button 
+            onClick={downloadPaymentsExcel} 
+            className="flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-xs font-bold rounded-xl border border-slate-800 text-slate-300 transition-all cursor-pointer"
+          >
+            <Download size={14} /><span>Download Payments Excel</span>
+          </button>
+          <button 
+            onClick={() => setIsRecordOpen(true)} 
+            className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-xs font-extrabold rounded-xl text-white hover:brightness-110 shadow-lg shadow-emerald-600/10 transition-all cursor-pointer"
+          >
+            <Plus size={14} /><span>Record Payment</span>
+          </button>
+        </div>
       </div>
 
       {/* Roster Financial Metrics */}
