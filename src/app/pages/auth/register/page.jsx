@@ -41,6 +41,7 @@ export default function RegisterPage() {
   };
 
   return (
+    
     <div className="min-h-screen bg-[#060b13] flex items-center justify-center p-4 antialiased font-sans">
       {/* Main Container Card */}
       <div className="w-full max-w-2xl bg-[#0b1320] border border-[#162235] rounded-2xl p-8 shadow-2xl my-6">
