@@ -48,7 +48,7 @@ export default function ContactPage() {
           <div className="lg:col-span-1 space-y-6">
             <h3 className="text-2xl font-bold text-slate-800">Our Information</h3>
             
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-6">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-md space-y-6">
               {/* Phone Detail */}
               <div className="flex items-start gap-4">
                 <div className="text-2xl mt-0.5">📞</div>
@@ -81,9 +81,9 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right 2 Columns: Single Unified Contact Form */}
-          <div className="lg:col-span-2 bg-white p-8 rounded-3xl border border-slate-100 shadow-xl shadow-slate-600/[0.02] space-y-6">
-            <div className="space-y-1">
+          {/* Right 2 Columns: Single Unified Contact Form (मुख्य बॉक्स आणि इनपुट बॉक्स सुधारणा) */}
+          <div className="lg:col-span-2 bg-white p-8 rounded-3xl border-2 border-slate-200 shadow-xl space-y-6">
+            <div className="space-y-1 border-b border-slate-100 pb-4">
               <h3 className="text-2xl font-bold text-slate-900">Send Us A Message</h3>
               <p className="text-xs text-gray-500">Please provide your valid details below so our academic counselor can assist you.</p>
             </div>
@@ -91,26 +91,26 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">
                 {/* Name Field */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Your Name</label>
+                <div className="space-y-1">
+                  <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider">Your Name</label>
                   <input 
                     type="text" 
                     required 
                     placeholder="Enter Full Name"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-sm focus:outline-none focus:border-orange-500 focus:bg-white bg-slate-50 transition-all duration-200"
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                   />
                 </div>
 
                 {/* Phone Field */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Contact Number</label>
+                <div className="space-y-1">
+                  <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider">Contact Number</label>
                   <input 
                     type="tel" 
                     required 
                     placeholder="Enter 10-Digit Mobile"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-sm focus:outline-none focus:border-orange-500 focus:bg-white bg-slate-50 transition-all duration-200"
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                   />
@@ -119,23 +119,23 @@ export default function ContactPage() {
 
               <div className="grid sm:grid-cols-2 gap-4">
                 {/* Email Field */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Email Address</label>
+                <div className="space-y-1">
+                  <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider">Email Address</label>
                   <input 
                     type="email" 
                     required 
                     placeholder="name@example.com"
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-sm focus:outline-none focus:border-orange-500 focus:bg-white bg-slate-50 transition-all duration-200"
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                   />
                 </div>
 
                 {/* Subject Selection */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Inquiry Purpose</label>
+                <div className="space-y-1">
+                  <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider">Inquiry Purpose</label>
                   <select 
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50 h-[46px]"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-sm focus:outline-none focus:border-orange-500 focus:bg-white bg-slate-50 transition-all duration-200 h-[48px]"
                     value={formData.subject}
                     onChange={(e) => setFormData({...formData, subject: e.target.value})}
                   >
@@ -149,13 +149,13 @@ export default function ContactPage() {
               </div>
 
               {/* Message Field */}
-              <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Message / Questions</label>
+              <div className="space-y-1">
+                <label className="block text-xs font-bold text-slate-600 uppercase tracking-wider">Message / Questions</label>
                 <textarea 
                   rows="4" 
                   required
                   placeholder="Describe your query or mention your child's age group here..."
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-orange-500 bg-slate-50/50 resize-none"
+                  className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-sm focus:outline-none focus:border-orange-500 focus:bg-white bg-slate-50 transition-all duration-200 resize-none"
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
                 ></textarea>

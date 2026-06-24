@@ -10,7 +10,7 @@ import {
 export const Sidebar = ({ role }) => {
   const pathname = usePathname();
 
-  // 📝 अल्ट्रा स्मार्ट रोल-बेस्ड कॉन्फिगरेशन (स्क्रीनशॉटच्या अचूक मॅपिंगसह)
+  // 📝 
   const menuConfig = {
     admin: [
       { name: "Dashboard", href: "/dashboard/admin", icon: LayoutDashboard },
@@ -23,7 +23,7 @@ export const Sidebar = ({ role }) => {
       { name: "Teachers", href: "/modules/teachers", icon: UserCheck },
       { name: "Batches", href: "/modules/batches", icon: BookOpen },
       { name: "Attendance", href: "/modules/attendance", icon: CheckSquare },
-      { name: "Fees", href: "/dashboard/franchise/fees", icon: CreditCard }, // तुझा करंट ॲक्टिव्ह पाथ
+      { name: "Fees", href: "/dashboard/franchise/fees", icon: CreditCard }, //
       { name: "Inventory", href: "/modules/inventory", icon: Box },
       { name: "Payments", href: "/modules/payments", icon: CreditCard },
       { name: "Reports", href: "/modules/reports", icon: BarChart3 },
@@ -63,7 +63,7 @@ export const Sidebar = ({ role }) => {
         <nav className="space-y-1">
           {activeMenus.map((item, idx) => {
             const Icon = item.icon;
-            // Next.js पॅथ मॅचिंग लॉजिक
+            // Next.js 
             const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
             
             return (
@@ -90,7 +90,7 @@ export const Sidebar = ({ role }) => {
       {/* 👤 Bottom Footer: Profile Card & Logout */}
       <div className="space-y-3 border-t border-gray-950 pt-4 mt-auto">
         
-        {/* स्क्रीनशॉटमधील 'Mumbai West Center' प्रोफाइल कार्ड (फक्त फ्रेंचायजी आणि संबंधित रोल्ससाठी) */}
+        {/* स्क्रीनशॉटमधील 'Mumbai West Center' */}
         <div className="flex items-center gap-3 p-2.5 bg-[#071022]/60 border border-gray-950 rounded-2xl shadow-inner">
           <div className="w-9 h-9 bg-gradient-to-br from-orange-600 to-amber-500 rounded-xl flex items-center justify-center font-black text-xs text-white uppercase shadow-md shrink-0">
             {role === 'franchise' ? 'FO' : role.slice(0, 2).toUpperCase()}
@@ -105,7 +105,6 @@ export const Sidebar = ({ role }) => {
           </div>
         </div>
 
-        {/* 🛑 साइन आउट बटन */}
         <button className="flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-950/20 transition-all text-left w-full cursor-pointer group">
           <LogOut size={16} className="text-red-400/80 group-hover:translate-x-0.5 transition-transform" />
           <span>Logout Session</span>

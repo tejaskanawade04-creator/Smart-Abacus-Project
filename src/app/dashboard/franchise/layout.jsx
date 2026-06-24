@@ -23,7 +23,7 @@ export default function FranchiseLayout({ children }) {
 
   // Sign Out 
     const handleSignOut = () => {
-    router.push('/login'); 
+    router.push('/pages/auth/login'); 
   };
 
   const currentActiveItem = sidebarItems.find(item => item.href === pathname);
