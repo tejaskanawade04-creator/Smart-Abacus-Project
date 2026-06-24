@@ -13,7 +13,7 @@ function StudentLayoutInner({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = () => {
-    router.push("/pages/auth/login");
+    router.push("/login");
   };
 
   // Determine active route name and active tab id
