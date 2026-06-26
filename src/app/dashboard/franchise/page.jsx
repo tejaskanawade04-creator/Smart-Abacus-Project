@@ -1,15 +1,15 @@
 "use client";
 
 import React from "react";
-import { GraduationCap, Users, IndianRupee, Box, ArrowUpRight, TrendingUp } from "lucide-react";
+import { GraduationCap, Users, IndianRupee, Box, TrendingUp } from "lucide-react";
 
 export default function FranchiseOverview() {
   
   const stats = [
-    { title: "Total Students", count: "148", change: "+12 this month", icon: GraduationCap, color: "text-blue-400", bg: "bg-blue-500/10" },
-    { title: "Active Teachers", count: "6", change: "All active", icon: Users, color: "text-purple-400", bg: "bg-purple-500/10" },
-    { title: "Pending Fees", count: "₹24,500", change: "8 students pending", icon: IndianRupee, color: "text-rose-400", bg: "bg-rose-500/10" },
-    { title: "Abacus Stock", count: "32 Kits", change: "Low stock warning", icon: Box, color: "text-amber-400", bg: "bg-amber-500/10" },
+    { title: "Total Students", count: "148", change: "+12 this month", icon: GraduationCap, color: "text-[#4a5d4e]", bg: "bg-[#4a5d4e]/10" },
+    { title: "Active Teachers", count: "6", change: "All active", icon: Users, color: "text-[#4a5d4e]", bg: "bg-[#4a5d4e]/10" },
+    { title: "Pending Fees", count: "₹24,500", change: "8 students pending", icon: IndianRupee, color: "text-amber-800", bg: "bg-amber-500/10" },
+    { title: "Abacus Stock", count: "32 Kits", change: "Low stock warning", icon: Box, color: "text-amber-800", bg: "bg-amber-500/10" },
   ];
 
   const recentActivity = [
@@ -19,93 +19,96 @@ export default function FranchiseOverview() {
   ];
 
   return (
-    <div className="space-y-8 animate-fadeIn">
+    <div className="space-y-6 w-full">
 
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-900 pb-5">
+      {/* HEADER BAR */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#e2dcd0] pb-4">
         <div>
-          <h2 className="text-2xl font-black text-white tracking-tight">
-            Center <span className="text-orange-500">Analytics</span>
+          <h2 className="text-base font-black text-[#1a202c] tracking-tight uppercase">
+            Center Analytics
           </h2>
-          <p className="text-xs text-slate-400 mt-1 font-medium">
+          <p className="text-[11px] text-[#8a9485] mt-0.5 font-medium">
             Real-time overview of your franchise branch operations and finances.
           </p>
         </div>
      
-        <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-xl self-start sm:self-center">
-          <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span className="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider">Live Branch Syncing</span>
+        <div className="flex items-center gap-2 bg-[#4a5d4e]/10 border border-[#4a5d4e]/20 px-3 py-1.5 rounded-xl self-start sm:self-center">
+          <span className="h-2 w-2 rounded-full bg-[#4a5d4e] animate-pulse"></span>
+          <span className="text-[10px] font-mono font-bold text-[#4a5d4e] uppercase tracking-wider">Live Branch Syncing</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {/* STATS TILES GRID */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, idx) => {
           const Icon = stat.icon;
           return (
-            <div key={idx} className="bg-slate-950/40 border border-slate-800/60 backdrop-blur-md rounded-2xl p-5 flex items-center justify-between shadow-xl group hover:border-slate-700 transition-all">
-              <div className="space-y-2">
-                <p className="text-[11px] font-mono uppercase tracking-widest text-slate-500 font-bold">
+            <div key={idx} className="bg-[#fcfbfa] border border-[#e2dcd0] rounded-xl p-4 flex items-center justify-between shadow-sm group transition-all">
+              <div className="space-y-1">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[#8a9485]">
                   {stat.title}
                 </p>
-                <h3 className="text-2xl font-black text-white tracking-tight font-mono">
+                <h3 className="text-xl font-black text-[#1a202c] tracking-tight">
                   {stat.count}
                 </h3>
-                <p className="text-[10px] text-slate-400 font-medium flex items-center gap-1">
-                  <TrendingUp size={10} className="text-orange-400" />
+                <p className="text-[10px] text-[#4a5d4e] font-medium flex items-center gap-1">
+                  <TrendingUp size={10} className="text-[#4a5d4e]" />
                   <span>{stat.change}</span>
                 </p>
               </div>
-              <div className={`p-3 rounded-xl ${stat.bg} ${stat.color} border border-slate-800/40 group-hover:scale-105 transition-transform duration-300`}>
-                <Icon size={20} />
+              <div className={`p-2.5 rounded-lg ${stat.bg} ${stat.color} border border-[#e2dcd0]/40 group-hover:scale-105 transition-transform duration-300`}>
+                <Icon size={18} />
               </div>
             </div>
           );
         })}
       </div>
 
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest font-mono">
+      {/* TABLE DATA LISTING */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between px-0.5">
+          <h3 className="text-xs font-black text-[#7a8475] uppercase tracking-widest">
             Recent Center Activities
           </h3>
-          <span className="text-[11px] font-mono text-slate-500">Showing last 3 logs</span>
+          <span className="text-[10px] font-mono text-[#8a9485]">Showing last 3 logs</span>
         </div>
 
-        <div className="bg-slate-950/40 border border-slate-800/60 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl">
+        <div className="bg-[#fcfbfa] border border-[#e2dcd0] rounded-xl overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="border-b border-slate-900 bg-slate-950/60 text-[10px] uppercase font-bold tracking-wider text-slate-400 font-mono">
-                  <th className="py-4 px-6">Activity ID</th>
-                  <th className="py-4 px-6">Description / Name</th>
-                  <th className="py-4 px-6">Type</th>
-                  <th className="py-4 px-6">Date</th>
-                  <th className="py-4 px-6">Amount</th>
-                  <th className="py-4 px-6">Status</th>
+                <tr className="border-b border-[#e2dcd0] bg-[#f4f0e6] text-[10px] uppercase font-bold tracking-wider text-[#7a8475]">
+                  <th className="py-3 px-4">Activity ID</th>
+                  <th className="py-3 px-4">Description / Name</th>
+                  <th className="py-3 px-4">Type</th>
+                  <th className="py-3 px-4">Date</th>
+                  <th className="py-3 px-4">Amount</th>
+                  <th className="py-3 px-4 text-right">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-900/50 text-slate-300 font-medium">
+              <tbody className="divide-y divide-[#e2dcd0]/40 text-[#2c3539] font-medium">
                 {recentActivity.map((activity) => (
-                  <tr key={activity.id} className="hover:bg-white/5 transition-colors group">
-                    <td className="py-4 px-6 font-mono text-orange-400 font-bold group-hover:text-orange-300 transition-colors">
+                  <tr key={activity.id} className="hover:bg-[#f5f2eb]/30 transition-colors group">
+                    <td className="py-3 px-4 font-mono text-[#4a5d4e] font-bold">
                       {activity.id}
                     </td>
-                    <td className="py-4 px-6 font-bold text-white">
+                    <td className="py-3 px-4 font-bold text-[#1a202c]">
                       {activity.student}
                     </td>
-                    <td className="py-4 px-6 text-slate-400">
+                    <td className="py-3 px-4 text-[#8a9485]">
                       {activity.type}
                     </td>
-                    <td className="py-4 px-6 text-slate-500 font-mono">
+                    <td className="py-3 px-4 text-[#5a6455] font-mono">
                       {activity.date}
                     </td>
-                    <td className="py-4 px-6 font-black text-slate-200 font-mono">
+                    <td className="py-3 px-4 font-black text-[#1a202c] font-mono">
                       {activity.amount}
                     </td>
-                    <td className="py-4 px-6">
-                      <span className={`px-2.5 py-1 rounded-lg text-[10px] font-bold inline-block border ${
+                    <td className="py-3 px-4 text-right">
+                      <span className={`px-2.5 py-0.5 rounded text-[10px] font-bold inline-block border ${
                         activity.status === "Paid"
-                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
-                          : "bg-amber-500/10 text-amber-400 border-amber-500/20"
+                          ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                          : "bg-amber-50 text-amber-700 border-amber-200"
                       }`}>
                         {activity.status}
                       </span>

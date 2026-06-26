@@ -1,9 +1,12 @@
 // src/app/dashboard/teacher/layout.jsx
+"use client";
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function TeacherLayout({ children }) {
-  // Sidebar  items - Teacher 
+  const pathname = usePathname();
+
   const sidebarItems = [
     { name: 'Overview', href: '/dashboard/teacher', icon: '📊' },
     { name: 'Attendance', href: '/dashboard/teacher/attendance', icon: '📝' },
@@ -15,69 +18,80 @@ export default function TeacherLayout({ children }) {
   ];
 
   return (
-    <div className="flex h-screen bg-[#070b19] text-gray-100 font-sans">
+    // Dynamic Gradient Background
+    <div className="flex h-screen bg-gradient-to-br from-[#f1f5f9] via-[#e0e7ff] to-[#fae8ff] text-[#334155] font-sans antialiased p-4 gap-4">
       
-      {/* SIDEBAR */}
-      <aside className="w-64 bg-[#0d1527] border-r border-gray-800 flex flex-col justify-between p-4">
+      {/* SIDEBAR - Translucent Frosted Glass */}
+      <aside className="w-66 bg-white/40 backdrop-blur-xl border border-white/60 rounded-3xl flex flex-col justify-between p-6 select-none shadow-xl shadow-indigo-100/30">
         <div>
-          {/* Logo Section */}
+          {/* Logo */}
           <div className="mb-8 px-2">
-            <h1 className="text-xl font-bold tracking-wider text-white">SMART ABACUS</h1>
-            <p className="text-xs text-blue-400 font-semibold tracking-widest mt-1">TEACHER PORTAL</p>
+            <h1 className="text-base font-black tracking-wider text-[#1e293b] flex items-center gap-2">
+              <span className="w-2.5 h-2.5 bg-indigo-600 rounded-full shadow-lg shadow-indigo-600/40 animate-pulse"></span> 
+              SMART ABACUS
+            </h1>
+            <p className="text-[9px] text-indigo-950/50 font-extrabold tracking-widest uppercase mt-0.5">Glass Console</p>
           </div>
 
-          {/* Navigation Links */}
-          <nav className="space-y-1">
-            {sidebarItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-400 hover:bg-[#1a263e] hover:text-white transition-all duration-200"
-              >
-                <span>{item.icon}</span>
-                <span>{item.name}</span>
-              </Link>
-            ))}
+          {/* Nav Links */}
+          <nav className="space-y-1.5">
+            {sidebarItems.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`flex items-center space-x-3.5 px-4 py-3 rounded-2xl text-xs font-bold tracking-wide transition-all duration-300 ${
+                    isActive
+                      ? "bg-indigo-600 text-white shadow-xl shadow-indigo-600/20"
+                      : "text-slate-600 hover:bg-white/60 hover:text-indigo-600"
+                  }`}
+                >
+                  <span className={`text-sm ${isActive ? 'scale-110' : 'opacity-80'}`}>{item.icon}</span>
+                  <span>{item.name}</span>
+                </Link>
+              );
+            })}
           </nav>
         </div>
 
-        {/* User Profile & Sign Out */}
-        <div className="border-t border-gray-800 pt-4">
-          <div className="flex items-center space-x-3 p-2 bg-[#141f35] rounded-xl mb-3">
-            <div className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-sm font-bold text-white">
+        {/* Profile Footer */}
+        <div className="border-t border-white/40 pt-4">
+          <div className="flex items-center space-x-3 p-2.5 bg-white/50 border border-white/60 rounded-2xl mb-2">
+            <div className="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-black">
               TA
             </div>
             <div>
-              <p className="text-xs font-semibold text-white">Teacher Admin</p>
-              <p className="text-[10px] text-gray-400">Faculty Member</p>
+              <p className="text-xs font-black text-slate-800">Teacher Admin</p>
+              <p className="text-[9px] text-slate-400 font-bold uppercase">Faculty</p>
             </div>
           </div>
-          <button className="w-full text-left text-sm text-red-400 hover:text-red-300 font-medium px-4 py-2 transition-colors">
-            🚪 Sign Out
+          <button className="w-full text-left text-[11px] text-red-500 font-bold px-4 py-2 rounded-xl hover:bg-red-50 transition-colors">
+            🚪 Exit Session
           </button>
         </div>
       </aside>
 
-      {/* MAIN CONTENT AREA */}
-      <div className="flex-1 flex flex-col overflow-y-auto">
+      {/* MAIN LAYOUT WRAPPER */}
+      <div className="flex-1 flex flex-col min-w-0 gap-4">
         
-        {/* NAVBAR */}
-        <header className="h-16 border-b border-gray-800 bg-[#0d1527] px-8 flex items-center justify-between">
-          <div className="text-xs text-gray-400 font-medium">
-            DASHBOARD / TEACHER / <span className="text-blue-400 uppercase">Overview</span>
+        {/* NAVBAR - Frosted Glass Glassmorphism */}
+        <header className="h-16 bg-white/40 backdrop-blur-xl border border-white/60 rounded-3xl px-8 flex items-center justify-between shadow-xl shadow-indigo-100/20">
+          <div className="text-[9px] text-slate-400 font-extrabold tracking-widest uppercase">
+            Workspace / <span className="text-indigo-600 font-black">Active Workspace</span>
           </div>
-          <div className="flex items-center space-x-4 text-xs">
-            <span className="text-gray-400">SYSTEM STATUS: <span className="text-green-400 font-bold">● ONLINE</span></span>
-            <span className="text-gray-500">|</span>
-            <span className="bg-blue-950 text-blue-400 px-3 py-1 rounded-full font-semibold border border-blue-800">
-              Teacher Portal
+          <div>
+            <span className="text-[10px] font-bold text-indigo-700 bg-indigo-50/80 border border-indigo-100 px-3 py-1 rounded-xl shadow-sm">
+              ● Dynamic Interface Connected
             </span>
           </div>
         </header>
 
-        {/* PAGE CONTENT */}
-        <main className="p-8 flex-1">
-          {children}
+        {/* RENDER PAGES AREA */}
+        <main className="flex-1 overflow-y-auto pr-1">
+          <div className="max-w-6xl mx-auto">
+            {children}
+          </div>
         </main>
       </div>
 

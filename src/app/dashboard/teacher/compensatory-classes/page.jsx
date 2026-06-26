@@ -1,54 +1,90 @@
-// src/app/dashboard/teacher/compensatory-classes/page.jsx
+// src/app/dashboard/teacher/compensatory/page.jsx
 "use client";
 import React, { useState } from 'react';
-import Link from 'next/link';
+
+function LocalTable({ headers, children }) {
+  return (
+    <div className="bg-[#fcfbfa] border border-[#e2dcd0] rounded-xl overflow-hidden shadow-sm shadow-[#4a5d4e]/5">
+      <div className="overflow-x-auto">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="border-b border-[#e2dcd0] bg-[#f4f0e6] text-[10px] uppercase font-bold tracking-widest text-[#7a8475]">
+              {headers.map((header, idx) => <th key={idx} className="py-4 px-6">{header}</th>)}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-[#e2dcd0]/50 text-xs text-[#2c3539] font-medium">{children}</tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
 
 export default function CompensatoryClassesPage() {
-  const [sessions] = useState([
-    { id: 1, name: 'Sarah Jenkins', missed: '2026-06-12', booked: '2026-06-26', timing: '05:00 PM', status: 'Approved' },
-    { id: 2, name: 'Neha Patel', missed: '2026-06-20', booked: '2026-06-28', timing: '11:00 AM', status: 'Pending Review' },
+  const [compensatorySlots, setCompensatorySlots] = useState([
+    { id: 'CC-901', student: 'Pranjal Patil', originalMissedBatch: 'Batch Alpha (Sat)', compensationTime: 'Friday 04:00 PM', status: 'Scheduled', mentorNotes: 'Missed Level 1 formulas logic setup.' },
+    { id: 'CC-902', student: 'Rohan Deshmukh', originalMissedBatch: 'Batch Beta (Mon-Wed)', compensationTime: 'Thursday 05:30 PM', status: 'Completed', mentorNotes: 'Completed book 3 milestone review.' },
+    { id: 'CC-903', student: 'Abhishek Kulkarni', originalMissedBatch: 'Batch Alpha (Sat)', compensationTime: 'Sunday 11:00 AM', status: 'Scheduled', mentorNotes: 'Speed drill balancing missing assignment.' }
   ]);
+
+  const toggleStatus = (slotId) => {
+    setCompensatorySlots(prev => prev.map(slot => {
+      if (slot.id === slotId) {
+        const nextStatus = slot.status === 'Scheduled' ? 'Completed' : 'Scheduled';
+        return { ...slot, status: nextStatus };
+      }
+      return slot;
+    }));
+  };
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-4">
+      
+      {/* HEADER SECTION */}
+      <div className="flex justify-between items-center border-b border-[#e2dcd0] pb-4">
         <div>
-          <Link href="/dashboard/teacher" className="text-xs text-blue-400 font-medium hover:underline mb-1 inline-block">← BACK TO OVERVIEW</Link>
-          <h1 className="text-2xl font-bold text-white tracking-tight">Compensatory Sessions Grid</h1>
+          <h2 className="text-base font-black text-[#1a202c] tracking-tight uppercase">Compensatory Clearances</h2>
+          <p className="text-[11px] text-[#8a9485] font-medium mt-0.5">Track, schedule, and mark off makeup slots assigned for missing regular workspace routines.</p>
         </div>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-md">
-          + Book Backup Slot
-        </button>
       </div>
 
-      <div className="bg-[#0d1527]/60 border border-gray-800 rounded-2xl overflow-hidden shadow-xl">
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-left">
-            <thead>
-              <tr className="border-b border-gray-800 bg-[#0d1527] text-[10px] uppercase font-bold tracking-wider text-gray-400">
-                <th className="py-4 px-6">Student Block</th>
-                <th className="py-4 px-6">Missed Slot Timestamp</th>
-                <th className="py-4 px-6">Reallocated Date Target</th>
-                <th className="py-4 px-6">Allotted Target Shift</th>
-                <th className="py-4 px-6 text-center">System Ledger State</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-800/50 text-xs text-gray-300">
-              {sessions.map((s) => (
-                <tr key={s.id} className="hover:bg-[#10192e]/40 transition-colors">
-                  <td className="py-4 px-6 font-bold text-white">{s.name}</td>
-                  <td className="py-4 px-6 font-mono text-gray-500">{s.missed}</td>
-                  <td className="py-4 px-6 font-mono text-blue-400 font-bold">{s.booked}</td>
-                  <td className="py-4 px-6 text-gray-400">{s.timing}</td>
-                  <td className="py-4 px-6 text-center">
-                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wide uppercase ${s.status === 'Approved' ? 'bg-emerald-950 text-emerald-400 border border-emerald-900/50' : 'bg-amber-950 text-amber-400 border border-amber-900/50'}`}>{s.status}</span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      {/* COMPENSATORY RUNTIME TABLE */}
+      <LocalTable headers={["Action Registry", "Student identity", "Target Timeline Node", "Contextual Notes"]}>
+        {compensatorySlots.map((slot) => (
+          <tr key={slot.id} className="hover:bg-[#f5f2eb]/40 transition-all duration-100">
+            {/* Action Checkbox Toggle */}
+            <td className="py-4 px-6 w-44">
+              <button
+                onClick={() => toggleStatus(slot.id)}
+                className={`w-32 py-1.5 rounded-lg text-[10px] font-bold tracking-widest uppercase transition-all duration-150 cursor-pointer border ${
+                  slot.status === 'Completed'
+                    ? 'bg-[#4a5d4e]/10 text-[#4a5d4e] border-[#4a5d4e]/20'
+                    : 'bg-amber-50 text-amber-700 border-amber-200'
+                }`}
+              >
+                {slot.status === 'Completed' ? '✓ COMPLETED' : '⏱ SCHEDULED'}
+              </button>
+            </td>
+
+            {/* Student Identity and historical log */}
+            <td className="py-4 px-6">
+              <span className="font-bold text-[#1a202c] text-sm tracking-wide block">{slot.student}</span>
+              <span className="text-[9px] text-[#8a9485] font-mono uppercase">Missed: {slot.originalMissedBatch}</span>
+            </td>
+
+            {/* Compensation Date Target */}
+            <td className="py-4 px-6 font-semibold text-[#1a202c]">
+              <span className="text-xs block font-bold text-[#4a5d4e]">{slot.compensationTime}</span>
+              <span className="text-[9px] text-[#8a9485] font-mono uppercase">Node ID: {slot.id}</span>
+            </td>
+
+            {/* Notes Section */}
+            <td className="py-4 px-6 text-[#5a6455] italic max-w-xs truncate">
+              {slot.mentorNotes}
+            </td>
+          </tr>
+        ))}
+      </LocalTable>
+
     </div>
   );
 }

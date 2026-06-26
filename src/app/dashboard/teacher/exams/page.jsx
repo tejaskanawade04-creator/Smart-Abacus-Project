@@ -1,64 +1,70 @@
 // src/app/dashboard/teacher/exams/page.jsx
 "use client";
 import React, { useState } from 'react';
-import Link from 'next/link';
 
-export default function ExamsPage() {
+function LocalTable({ headers, children }) {
+  return (
+    <div className="bg-[#fcfbfa] border border-[#e2dcd0] rounded-xl overflow-hidden shadow-sm shadow-[#4a5d4e]/5">
+      <div className="overflow-x-auto">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="border-b border-[#e2dcd0] bg-[#f4f0e6] text-[10px] uppercase font-bold tracking-widest text-[#7a8475]">
+              {headers.map((header, idx) => <th key={idx} className="py-4 px-6">{header}</th>)}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-[#e2dcd0]/50 text-xs text-[#2c3539] font-medium">{children}</tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+export default function TeacherExamsPage() {
   const [exams, setExams] = useState([
-    { id: 1, name: 'Aman Sharma', level: 'Level 2', oral: 45, written: 40 },
-    { id: 2, name: 'Neha Patel', level: 'Level 1', oral: 35, written: 32 },
-    { id: 3, name: 'Kunal Verma', level: 'Level 1', oral: 20, written: 25 },
+    { id: 'EX-501', batch: 'Batch Alpha', student: 'Abhishek Kulkarni', curriculum: 'Level 1 Core', status: 'Pending Review', date: '2026-06-20' },
+    { id: 'EX-502', batch: 'Batch Alpha', student: 'Pranjal Patil', curriculum: 'Level 1 Core', status: 'Evaluated', date: '2026-06-20' },
+    { id: 'EX-503', batch: 'Batch Beta', student: 'Siddharth Joshi', curriculum: 'Level 3 Advanced', status: 'Pending Review', date: '2026-06-24' },
+    { id: 'EX-504', batch: 'Batch Beta', student: 'Rohan Deshmukh', curriculum: 'Level 3 Advanced', status: 'Evaluated', date: '2026-06-24' }
   ]);
-
-  const updateMarks = (id, field, val) => {
-    setExams(exams.map(e => e.id === id ? { ...e, [field]: parseInt(val) || 0 } : e));
-  };
 
   return (
     <div className="space-y-6">
-      <div>
-        <Link href="/dashboard/teacher" className="text-xs text-blue-400 font-medium hover:underline mb-1 inline-block">← BACK TO OVERVIEW</Link>
-        <h1 className="text-2xl font-bold text-white tracking-tight">Examination Sheet Input</h1>
-      </div>
-
-      <div className="bg-[#0d1527]/60 border border-gray-800 rounded-2xl overflow-hidden shadow-xl">
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-left">
-            <thead>
-              <tr className="border-b border-gray-800 bg-[#0d1527] text-[10px] uppercase font-bold tracking-wider text-gray-400">
-                <th className="py-4 px-6">Student Block</th>
-                <th className="py-4 px-6">Current Level</th>
-                <th className="py-4 px-6">Oral Score (Max 50)</th>
-                <th className="py-4 px-6">Written Score (Max 50)</th>
-                <th className="py-4 px-6 text-center">Aggregate Score</th>
-                <th className="py-4 px-6 text-center">Audit Result</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-800/50 text-xs text-gray-300">
-              {exams.map((e) => {
-                const total = e.oral + e.written;
-                const passed = total >= 70;
-                return (
-                  <tr key={e.id} className="hover:bg-[#10192e]/40 transition-colors">
-                    <td className="py-4 px-6 font-bold text-white">{e.name}</td>
-                    <td className="py-4 px-6 text-gray-400 font-medium">{e.level}</td>
-                    <td className="py-4 px-6">
-                      <input type="number" max="50" value={e.oral} onChange={(ex) => updateMarks(e.id, 'oral', ex.target.value)} className="w-24 bg-[#070b19] border border-gray-800 rounded-lg px-2 py-1 text-center focus:border-blue-500 focus:outline-none font-mono"/>
-                    </td>
-                    <td className="py-4 px-6">
-                      <input type="number" max="50" value={e.written} onChange={(ex) => updateMarks(e.id, 'written', ex.target.value)} className="w-24 bg-[#070b19] border border-gray-800 rounded-lg px-2 py-1 text-center focus:border-blue-500 focus:outline-none font-mono"/>
-                    </td>
-                    <td className="py-4 px-6 text-center font-mono font-bold text-blue-400">{total}%</td>
-                    <td className="py-4 px-6 text-center">
-                      <span className={`px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase border ${passed ? 'bg-emerald-950/80 text-emerald-400 border-emerald-900/60' : 'bg-rose-950/80 text-rose-400 border-rose-900/60'}`}>{passed ? 'Verified Pass' : 'Fail / Retake'}</span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      
+      {/* HEADER SECTION */}
+      <div className="flex justify-between items-center border-b border-[#e2dcd0] pb-4">
+        <div>
+          <h2 className="text-base font-black text-[#1a202c] tracking-tight uppercase">Exam Evaluation Hub</h2>
+          <p className="text-[11px] text-[#8a9485] font-medium mt-0.5">Track student progress tracking via active level testing schedules.</p>
         </div>
       </div>
+
+      {/* EXAMS CLASSIFICATION TABLE */}
+      <LocalTable headers={["Status", "Student & Curriculum Node", "Target Batch", "Log Date"]}>
+        {exams.map((exam) => (
+          <tr key={exam.id} className="hover:bg-[#f5f2eb]/40 transition-all duration-100">
+            <td className="py-4 px-6 w-40">
+              <span className={`inline-block w-28 text-center py-1 rounded-md text-[10px] font-bold tracking-wider uppercase border ${
+                exam.status === 'Evaluated'
+                  ? 'bg-[#4a5d4e]/10 text-[#4a5d4e] border-[#4a5d4e]/20'
+                  : 'bg-amber-50 text-amber-700 border-amber-200'
+              }`}>
+                {exam.status === 'Evaluated' ? '✓ Evaluated' : '⏱ Pending'}
+              </span>
+            </td>
+            <td className="py-4 px-6">
+              <span className="font-bold text-[#1a202c] text-sm tracking-wide block">{exam.student}</span>
+              <span className="text-[9px] text-[#8a9485] font-mono uppercase">{exam.curriculum} • ID: {exam.id}</span>
+            </td>
+            <td className="py-4 px-6 font-semibold text-[#4a5d4e]">
+              {exam.batch}
+            </td>
+            <td className="py-4 px-6 font-mono text-[#8a9485] text-[11px]">
+              {exam.date}
+            </td>
+          </tr>
+        ))}
+      </LocalTable>
+
     </div>
   );
 }

@@ -1,55 +1,77 @@
 // src/app/dashboard/teacher/salary-history/page.jsx
 "use client";
 import React, { useState } from 'react';
-import Link from 'next/link';
 
-export default function SalaryHistoryPage() {
-  const [payrolls] = useState([
-    { id: 1, cycle: 'May 2026', base: 15000, studentsCount: 18, incentivePerHead: 200, status: 'Settled', reference: 'TXN-90812' },
-    { id: 2, cycle: 'April 2026', base: 15000, studentsCount: 12, incentivePerHead: 200, status: 'Settled', reference: 'TXN-80714' },
+function LocalTable({ headers, children }) {
+  return (
+    <div className="bg-[#fcfbfa] border border-[#e2dcd0] rounded-xl overflow-hidden shadow-sm shadow-[#4a5d4e]/5">
+      <div className="overflow-x-auto">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="border-b border-[#e2dcd0] bg-[#f4f0e6] text-[10px] uppercase font-bold tracking-widest text-[#7a8475]">
+              {headers.map((header, idx) => <th key={idx} className="py-4 px-6">{header}</th>)}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-[#e2dcd0]/50 text-xs text-[#2c3539] font-medium">{children}</tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+export default function TeacherSalaryHistoryPage() {
+  const [salaryLogs] = useState([
+    { id: 'PAY-801', period: 'May 2026', grossAmount: '₹28,500', status: 'Disbursed', date: '2026-06-02', mode: 'Bank Transfer' },
+    { id: 'PAY-702', period: 'April 2026', grossAmount: '₹26,000', status: 'Disbursed', date: '2026-05-03', mode: 'Bank Transfer' },
+    { id: 'PAY-603', period: 'March 2026', grossAmount: '₹29,200', status: 'Disbursed', date: '2026-04-02', mode: 'UPI Link' }
   ]);
 
   return (
     <div className="space-y-6">
-      <div>
-        <Link href="/dashboard/teacher" className="text-xs text-blue-400 font-medium hover:underline mb-1 inline-block">← BACK TO OVERVIEW</Link>
-        <h1 className="text-2xl font-bold text-white tracking-tight">Settlement Remuneration Ledger</h1>
-      </div>
-
-      <div className="bg-[#0d1527]/60 border border-gray-800 rounded-2xl overflow-hidden shadow-xl">
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-left">
-            <thead>
-              <tr className="border-b border-gray-800 bg-[#0d1527] text-[10px] uppercase font-bold tracking-wider text-gray-400">
-                <th className="py-4 px-6">Payment Billing Cycle</th>
-                <th className="py-4 px-6">Base Allowance Metric</th>
-                <th className="py-4 px-6">Student Headcount Addon</th>
-                <th className="py-4 px-6 text-blue-400">Net Calculated Remuneration</th>
-                <th className="py-4 px-6 font-mono">System Audit Token Reference</th>
-                <th className="py-4 px-6 text-center">Settlement Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-800/50 text-xs text-gray-300">
-              {payrolls.map((p) => {
-                const totalIncentive = p.studentsCount * p.incentivePerHead;
-                const netGross = p.base + totalIncentive;
-                return (
-                  <tr key={p.id} className="hover:bg-[#10192e]/40 transition-colors">
-                    <td className="py-4 px-6 font-bold text-white">{p.cycle}</td>
-                    <td className="py-4 px-6 font-mono text-gray-400">₹{p.base.toLocaleString()}</td>
-                    <td className="py-4 px-6 font-mono text-emerald-400">+{p.studentsCount} Students (₹{totalIncentive})</td>
-                    <td className="py-4 px-6 font-mono text-blue-400 font-black text-sm">₹{netGross.toLocaleString()}</td>
-                    <td className="py-4 px-6 font-mono text-gray-500 text-[11px]">{p.reference}</td>
-                    <td className="py-4 px-6 text-center">
-                      <span className="bg-emerald-950 border border-emerald-900 text-emerald-400 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">{p.status}</span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+      
+      {/* HEADER SECTION */}
+      <div className="flex justify-between items-center border-b border-[#e2dcd0] pb-4">
+        <div>
+          <h2 className="text-base font-black text-[#1a202c] tracking-tight uppercase">Remuneration Ledger</h2>
+          <p className="text-[11px] text-[#8a9485] font-medium mt-0.5">Review your historical monthly salary disbursement statements and tracking records.</p>
         </div>
       </div>
+
+      {/* SALARY LEDGER DATA ENGINE */}
+      <LocalTable headers={["Status", "Statement Period", "Disbursed Value", "Settlement Node", "Reference ID"]}>
+        {salaryLogs.map((log) => (
+          <tr key={log.id} className="hover:bg-[#f5f2eb]/40 transition-all duration-100">
+            {/* Status Indicator */}
+            <td className="py-4 px-6 w-40">
+              <span className="inline-block w-28 text-center py-1 rounded-md text-[10px] font-bold tracking-wider uppercase border bg-[#4a5d4e]/10 text-[#4a5d4e] border-[#4a5d4e]/20">
+                ● {log.status}
+              </span>
+            </td>
+
+            {/* Billing Month */}
+            <td className="py-4 px-6 font-bold text-[#1a202c] text-sm tracking-wide">
+              {log.period}
+            </td>
+
+            {/* Total Cleared Remuneration */}
+            <td className="py-4 px-6 font-mono font-black text-sm text-[#2c3539]">
+              {log.grossAmount}
+            </td>
+
+            {/* Payment Method Details */}
+            <td className="py-4 px-6 font-semibold text-[#4a5d4e]">
+              <span className="text-xs block font-bold">{log.mode}</span>
+              <span className="text-[9px] text-[#8a9485] font-mono">{log.date}</span>
+            </td>
+
+            {/* Unique Hash Trace */}
+            <td className="py-4 px-6 font-mono text-[#8a9485] text-[11px] uppercase">
+              {log.id}
+            </td>
+          </tr>
+        ))}
+      </LocalTable>
+
     </div>
   );
 }
