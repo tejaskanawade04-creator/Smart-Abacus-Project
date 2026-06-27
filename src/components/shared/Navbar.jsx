@@ -32,10 +32,10 @@ export default function Navbar() {
           </div>
           
           <div className="flex flex-col justify-center">
-            <span className="text-2xl sm:text-3xl font-bold text-blue-900 leading-none tracking-tight">
-              SMART <span className="text-orange-500">ABACUS</span>
+            <span className="text-2xl sm:text-3xl font-bold text-pink-500 leading-none tracking-tight">
+              SMART <span className="text-purple-500">ABACUS</span>
             </span>
-            <span className="text-[10px] sm:text-xs text-gray-500 tracking-widest mt-1 leading-none font-medium">
+            <span className="text-[10px] sm:text-xs text-purple-500 tracking-widest mt-1 leading-none font-medium">
               Empowering Young Minds
             </span>
           </div>
@@ -58,7 +58,7 @@ export default function Navbar() {
                   </Link>
                   {/* ✨ Smooth Hover or Active Border Line Effect */}
                   <span 
-                    className={`absolute bottom-0 left-0 h-[2px] bg-orange-500 transition-all duration-300 ${
+                    className={`absolute bottom-0 left-0 h-[2px] bg-black-500 transition-all duration-300 ${
                       isActive ? "w-full" : "w-0 group-hover/link:w-full"
                     }`}
                   ></span>
@@ -80,7 +80,7 @@ export default function Navbar() {
             {/* Register Button */}
             <Link
               href="/pages/auth/register"
-              className="bg-orange-500 hover:bg-orange-600 hover:scale-105 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-orange-500/20 transition-all duration-200"
+              className="bg-blue-500 hover:bg-blue-600 hover:scale-105 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md shadow-blue-500/20 transition-all duration-200"
             >
               Register
             </Link>
@@ -128,7 +128,7 @@ export default function Navbar() {
               <Link
                 href="/pages/auth/register"
                 onClick={() => setIsOpen(false)}
-                className="w-full bg-orange-500 text-white text-center py-2.5 rounded-full font-bold hover:bg-orange-600 transition-colors"
+                className="w-full bg-blue-500 text-white text-center py-2.5 rounded-full font-bold hover:bg-blue-600 transition-colors"
               >
                 Join Now
               </Link>

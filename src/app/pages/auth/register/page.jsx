@@ -48,18 +48,18 @@ export default function RegisterPage() {
         
         {/* Header Logo & Title */}
         <div className="flex flex-col items-center mb-8">
-          <div className="bg-[#f26e00] text-white p-2.5 rounded-xl font-bold text-xl mb-4 shadow-md shadow-[#f26e00]/20">
+          <div className="bg-[blue] text-white p-2.5 rounded-xl font-bold text-xl mb-4 shadow-md shadow-[blue]/20">
             S
           </div>
           <h1 className="text-2xl font-black tracking-wider text-white flex items-center gap-2">
-            SMART <span className="text-[#f26e00]">ABACUS</span>
+            SMART <span className="text-[blue]">ABACUS</span>
           </h1>
           <p className="text-xs text-gray-500 font-semibold tracking-widest uppercase mt-1">
             Class Management System
           </p>
           
           <div className="mt-6 text-center">
-            <span className="text-[10px] bg-[#162235] text-[#f26e00] px-3 py-1 rounded-full font-bold uppercase tracking-widest border border-[#20334e]">
+            <span className="text-[10px] bg-[#162235] text-[Blue] px-3 py-1 rounded-full font-bold uppercase tracking-widest border border-[#20334e]">
               Member Registration
             </span>
             <h2 className="text-xl font-bold text-white mt-3">Join Your Team</h2>
@@ -76,7 +76,7 @@ export default function RegisterPage() {
             {/* Full Name */}
             <div className="md:col-span-2">
               <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                Full Name <span className="text-[#f26e00]">*</span>
+                Full Name <span className="text-[blue]">*</span>
               </label>
               <div className="relative">
                 <User className="absolute left-4 top-3.5 h-4 w-4 text-gray-500" />
@@ -87,7 +87,7 @@ export default function RegisterPage() {
                   value={formData.fullName}
                   onChange={handleChange}
                   placeholder="John Doe" 
-                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#f26e00] transition-colors"
+                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[blue] transition-colors"
                 />
               </div>
             </div>
@@ -95,7 +95,7 @@ export default function RegisterPage() {
             {/* Email Address */}
             <div>
               <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                Email Address <span className="text-[#f26e00]">*</span>
+                Email Address <span className="text-[blue]">*</span>
               </label>
               <div className="relative">
                 <Mail className="absolute left-4 top-3.5 h-4 w-4 text-gray-500" />
@@ -106,7 +106,7 @@ export default function RegisterPage() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="name@smartabacus.com" 
-                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#f26e00] transition-colors"
+                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[blue] transition-colors"
                 />
               </div>
             </div>
@@ -114,7 +114,7 @@ export default function RegisterPage() {
             {/* Mobile Number */}
             <div>
               <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                Mobile Number <span className="text-[#f26e00]">*</span>
+                Mobile Number <span className="text-[blue]">*</span>
               </label>
               <div className="relative flex">
                 <div className="absolute left-4 top-3.5 flex items-center pointer-events-none">
@@ -136,7 +136,7 @@ export default function RegisterPage() {
                   value={formData.mobileNumber}
                   onChange={handleChange}
                   placeholder="9876543210" 
-                  className="w-full bg-[#070c14] border border-[#162235] rounded-r-xl pt-3 pb-3 px-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#f26e00] transition-colors"
+                  className="w-full bg-[#070c14] border border-[#162235] rounded-r-xl pt-3 pb-3 px-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[blue] transition-colors"
                 />
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function RegisterPage() {
             {/* Password */}
             <div>
               <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                Password <span className="text-[#f26e00]">*</span>
+                Password <span className="text-[blue]">*</span>
               </label>
               <div className="relative">
                 <Lock className="absolute left-4 top-3.5 h-4 w-4 text-gray-500" />
@@ -155,7 +155,7 @@ export default function RegisterPage() {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="••••••••••••" 
-                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-11 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#f26e00] transition-colors"
+                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-11 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[blue] transition-colors"
                 />
                 <button 
                   type="button" 
@@ -173,7 +173,7 @@ export default function RegisterPage() {
             {/* Confirm Password */}
             <div>
               <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                Confirm Password <span className="text-[#f26e00]">*</span>
+                Confirm Password <span className="text-[blue]">*</span>
               </label>
               <div className="relative">
                 <Lock className="absolute left-4 top-3.5 h-4 w-4 text-gray-500" />
@@ -184,7 +184,7 @@ export default function RegisterPage() {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   placeholder="Confirm your password" 
-                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#f26e00] transition-colors"
+                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#blue] transition-colors"
                 />
               </div>
             </div>
@@ -200,7 +200,7 @@ export default function RegisterPage() {
                   name="gender"
                   value={formData.gender}
                   onChange={handleChange}
-                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white focus:outline-none focus:border-[#f26e00] appearance-none transition-colors cursor-pointer"
+                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white focus:outline-none focus:border-[blue] appearance-none transition-colors cursor-pointer"
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -222,7 +222,7 @@ export default function RegisterPage() {
                   value={formData.city}
                   onChange={handleChange}
                   placeholder="Pune" 
-                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#f26e00] transition-colors"
+                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[blue] transition-colors"
                 />
               </div>
             </div>
@@ -244,7 +244,7 @@ export default function RegisterPage() {
                   value={formData.emergencyContact}
                   onChange={handleChange}
                   placeholder="Emergency contact number" 
-                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#f26e00] transition-colors"
+                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[blue] transition-colors"
                 />
               </div>
             </div>
@@ -262,7 +262,7 @@ export default function RegisterPage() {
                   value={formData.currentAddress}
                   onChange={handleChange}
                   placeholder="Enter your current address" 
-                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#f26e00] transition-colors resize-none"
+                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[blue] transition-colors resize-none"
                 ></textarea>
               </div>
             </div>
@@ -280,7 +280,7 @@ export default function RegisterPage() {
                   value={formData.permanentAddress}
                   onChange={handleChange}
                   placeholder="Enter your permanent address" 
-                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#f26e00] transition-colors resize-none"
+                  className="w-full bg-[#070c14] border border-[#162235] rounded-xl pt-3 pb-3 pl-11 pr-4 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[blue] transition-colors resize-none"
                 ></textarea>
               </div>
             </div>
@@ -289,7 +289,7 @@ export default function RegisterPage() {
           {/* Submit Button */}
           <button 
             type="submit" 
-            className="w-full bg-[#f26e00] hover:bg-[#d66100] text-white font-bold text-sm py-4 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-[#f26e00]/20 transition-colors mt-8 cursor-pointer"
+            className="w-full bg-[blue] hover:bg-[blue] text-white font-bold text-sm py-4 px-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-[blue]/20 transition-colors mt-8 cursor-pointer"
           >
             Complete Registration <ArrowRight className="h-4 w-4" />
           </button>
@@ -301,7 +301,7 @@ export default function RegisterPage() {
               <button 
                 type="button"
                 onClick={() => router.push('/pages/auth/login')} 
-                className="text-[#f26e00] hover:underline font-bold bg-transparent border-none cursor-pointer"
+                className="text-[blue] hover:underline font-bold bg-transparent border-none cursor-pointer"
               >
                 Sign In
               </button>

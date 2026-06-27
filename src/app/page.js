@@ -50,10 +50,10 @@ const abacusCourses = [
   {
     id: 6,
     level: "Brain Gym",
-    title: "Memory Booster & Rubik's Cube",
+    title: "Memory Booster & Rubiks Cube",
     age: "Ages 6+ Years",
-    description: "Photographic memory training games combined with Rubik's cube algorithms. Designed to increase overall focus, patience, and left-right brain coordination.",
-    topics: ["Photographic Memory Drills", "3x3 Rubik's Cube Secrets", "Focus Enhancement Exercises"]
+    description: "Photographic memory training games combined with Rubiks cube algorithms. Designed to increase overall focus, patience, and left-right brain coordination.",
+    topics: ["Photographic Memory Drills", "3x3 Rubiks Cube Secrets", "Focus Enhancement Exercises"]
   }
 ];
 
@@ -66,7 +66,7 @@ const faqs = [
   {
     id: 2,
     question: "How often are classes held, and what is the structure of the levels in the program?",
-    answer: "Typically, classes are conducted twice a week for 2 hours per session, or as a weekend batch. The program is divided into different progressive levels (Level 1 to 8), each lasting around 3 to 4 months depending on the child's learning pace.",
+    answer: "Typically, classes are conducted twice a week for 2 hours per session, or as a weekend batch. The program is divided into different progressive levels (Level 1 to 8), each lasting around 3 to 4 months depending on the childs learning pace.",
   },
   {
     id: 3,
@@ -81,7 +81,7 @@ const faqs = [
   {
     id: 5,
     question: "Does every child have to enroll from Level 1 in your academy?",
-    answer: "Yes, generally every child starts from Level 1 because Abacus requires learning specific finger movements and bead formulas from scratch, regardless of the child's age or school grade.",
+    answer: "Yes, generally every child starts from Level 1 because Abacus requires learning specific finger movements and bead formulas from scratch, regardless of the childs age or school grade.",
   },
   {
     id: 6,
@@ -151,7 +151,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-slate-950/60 z-0"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center">
-          <h1 className="text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-400 to-indigo-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] tracking-tight">
+          <h1 className="text-5xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-400 to-indigo-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] tracking-tight">
             Smart Abacus Academy
           </h1>
           <p className="mt-6 text-lg text-slate-200 max-w-2xl font-light leading-relaxed">
@@ -161,7 +161,7 @@ export default function Home() {
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/pages/auth/login"
-              className="px-8 py-3.5 bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-extrabold rounded-full text-sm tracking-wider uppercase transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.97] shadow-[0_10px_25px_rgba(245,158,11,0.35)] cursor-pointer"
+              className="px-8 py-3.5 bg-gradient-to-r from-blue-500 to-pink-600 hover:from-pink-600 hover:to-purple-700 text-white font-extrabold rounded-full text-sm tracking-wider uppercase transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.97] shadow-[0_10px_25px_rgba(245,158,11,0.35)] cursor-pointer"
             >
               Sign In to ERP Portal
             </Link>
@@ -225,7 +225,7 @@ export default function Home() {
         <section className="py-16 px-8 bg-slate-100 rounded-3xl shadow-inner border border-slate-200">
           <div className="max-w-5xl mx-auto space-y-6">
             <h2 className="text-3xl sm:text-4xl font-black text-blue-900 tracking-tight uppercase text-center md:text-left">
-              BENEFITS OF <span className="text-orange-500">ABACUS</span>
+              BENEFITS OF <span className="text-blue-900">ABACUS</span>
             </h2>
             <p className="text-gray-700 text-base sm:text-lg leading-relaxed text-center md:text-left">
               Smart <span className="font-semibold text-blue-900">Abacus training</span> develops a dynamic number sense in children. The specific game-based technique keeps kids engaged. It removes the fear of math right from childhood. Other than Mental Math, it also improves academic performance with the development of crucial life skills such as:
@@ -241,8 +241,8 @@ export default function Home() {
                 "Photographic Memory",
                 "Listening Skill"
               ].map((benefit, i) => (
-                <div key={i} className="flex items-center gap-3 bg-white p-5 rounded-xl border border-slate-200/60 shadow-sm transition-all hover:border-orange-500/40 hover:shadow-md">
-                  <CheckCircle2 className="h-5 w-5 text-orange-500 flex-shrink-0" />
+                <div key={i} className="flex items-center gap-3 bg-white p-5 rounded-xl border border-slate-200/60 shadow-sm transition-all hover:border-blue-500/40 hover:shadow-md">
+                  <CheckCircle2 className="h-5 w-5 text-blue-500 flex-shrink-0" />
                   <span className="font-bold text-blue-900 text-sm sm:text-base">{benefit}</span>
                 </div>
               ))}
@@ -269,7 +269,7 @@ export default function Home() {
               >
                 <div>
                   <div className="flex justify-between items-center mb-4">
-                    <span className="text-xs font-bold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded-md">
+                    <span className="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md">
                       {course.level}
                     </span>
                     <span className="text-xs font-medium text-gray-500 bg-slate-100 px-2.5 py-1 rounded-full">
@@ -285,7 +285,7 @@ export default function Home() {
                     <ul className="space-y-1.5">
                       {course.topics.map((topic, index) => (
                         <li key={index} className="text-xs text-gray-700 flex items-center">
-                          <span className="w-1.5 h-1.5 rounded-full bg-orange-400 mr-2 shrink-0"></span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mr-2 shrink-0"></span>
                           {topic}
                         </li>
                       ))}
@@ -296,7 +296,7 @@ export default function Home() {
                 <div className="pt-4 border-t border-slate-100 mt-auto">
                   <Link 
                     href="/contact" 
-                    className="w-full block text-center py-2.5 bg-slate-50 hover:bg-orange-500 hover:text-white text-slate-800 font-bold text-xs rounded-xl uppercase tracking-wider transition-colors"
+                    className="w-full block text-center py-2.5 bg-slate-50 hover:bg-blue-500 hover:text-white text-slate-800 font-bold text-xs rounded-xl uppercase tracking-wider transition-colors"
                   >
                     Inquire Now
                   </Link>
@@ -310,7 +310,7 @@ export default function Home() {
         <section className="py-16 px-8 bg-white rounded-3xl shadow-sm border border-slate-100">
           <h2 className="text-4xl font-bold mb-8 text-center text-blue-900">Student Success Stories</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-pink-50/30 to-white p-8 rounded-xl border-l-4 border-pink-600 shadow-sm">
+            <div className=" bg-gradient-to-br from-pink-50/30 to-white p-8 rounded-xl border-l-4 border-pink-600 shadow-sm">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center text-white font-bold">R</div>
                 <div className="ml-4">
@@ -350,7 +350,7 @@ export default function Home() {
         <section className="py-16 px-8 bg-white rounded-3xl shadow-sm border border-slate-100">
           <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
             <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 tracking-tight uppercase">
-              Frequently Asked <span className="text-orange-500">Questions</span>
+              Frequently Asked <span className="text-blue-900">Questions</span>
             </h2>
             <p className="text-gray-600">
               Have questions about our Abacus classes? Find the answers right here.
@@ -365,17 +365,17 @@ export default function Home() {
                 <div
                   key={faq.id}
                   className={`border rounded-xl transition-all duration-300 overflow-hidden bg-white shadow-sm ${
-                    isOpen ? "border-orange-500 ring-1 ring-orange-500/20" : "border-gray-200"
+                    isOpen ? "border-blue-500 ring-1 ring-blue-500/20" : "border-gray-200"
                   }`}
                 >
                   <button
                     onClick={() => toggleFaq(faq.id)}
                     className={`w-full flex items-center justify-between p-5 text-left font-semibold text-sm sm:text-base transition-colors ${
-                      isOpen ? "bg-orange-500 text-white" : "text-gray-800 hover:bg-gray-50"
+                      isOpen ? "bg-blue-500 text-white" : "text-gray-800 hover:bg-gray-50"
                     }`}
                   >
                     <div className="flex items-center gap-3 pr-4">
-                      <HelpCircle className={`h-5 w-5 flex-shrink-0 ${isOpen ? "text-white" : "text-orange-500"}`} />
+                      <HelpCircle className={`h-5 w-5 flex-shrink-0 ${isOpen ? "text-white" : "text-blue-500"}`} />
                       <span>{faq.question}</span>
                     </div>
                     <ChevronDown
@@ -402,7 +402,7 @@ export default function Home() {
 
         {/* Call to Action Section */}
         <section className="py-16 px-8 bg-gradient-to-r from-blue-900 to-pink-600 rounded-3xl text-center text-white">
-          <h2 className="text-4xl font-bold mb-4">Ready to Transform Your Child's Future?</h2>
+          <h2 className="text-4xl font-bold mb-4">Ready to Transform Your Childs Future?</h2>
           <p className="text-xl mb-8 text-blue-100">Join thousands of successful students and start your Abacus learning journey today</p>
           <div className="flex gap-4 justify-center flex-wrap">
             <button className="px-8 py-3 bg-white text-blue-900 font-bold rounded-xl hover:bg-gray-100 transition">
