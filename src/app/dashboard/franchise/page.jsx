@@ -6,10 +6,10 @@ import { GraduationCap, Users, IndianRupee, Box, TrendingUp } from "lucide-react
 export default function FranchiseOverview() {
   
   const stats = [
-    { title: "Total Students", count: "148", change: "+12 this month", icon: GraduationCap, color: "text-[#4a5d4e]", bg: "bg-[#4a5d4e]/10" },
-    { title: "Active Teachers", count: "6", change: "All active", icon: Users, color: "text-[#4a5d4e]", bg: "bg-[#4a5d4e]/10" },
-    { title: "Pending Fees", count: "₹24,500", change: "8 students pending", icon: IndianRupee, color: "text-amber-800", bg: "bg-amber-500/10" },
-    { title: "Abacus Stock", count: "32 Kits", change: "Low stock warning", icon: Box, color: "text-amber-800", bg: "bg-amber-500/10" },
+    { title: "Total Students", count: "148", change: "+12 this month", icon: GraduationCap, color: "text-indigo-600", bg: "bg-indigo-50" },
+    { title: "Active Teachers", count: "6", change: "All active roster", icon: Users, color: "text-purple-600", bg: "bg-purple-50" },
+    { title: "Pending Fees", count: "₹24,500", change: "8 terms pending", icon: IndianRupee, color: "text-amber-600", bg: "bg-amber-50" },
+    { title: "Abacus Stock", count: "32 Kits", change: "Low stock warning", icon: Box, color: "text-rose-600", bg: "bg-rose-50" },
   ];
 
   const recentActivity = [
@@ -19,96 +19,87 @@ export default function FranchiseOverview() {
   ];
 
   return (
-    <div className="space-y-6 w-full">
+    <div className="space-y-6 w-full text-slate-800">
 
-      {/* HEADER BAR */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#e2dcd0] pb-4">
-        <div>
-          <h2 className="text-base font-black text-[#1a202c] tracking-tight uppercase">
-            Center Analytics
-          </h2>
-          <p className="text-[11px] text-[#8a9485] mt-0.5 font-medium">
-            Real-time overview of your franchise branch operations and finances.
-          </p>
-        </div>
-     
-        <div className="flex items-center gap-2 bg-[#4a5d4e]/10 border border-[#4a5d4e]/20 px-3 py-1.5 rounded-xl self-start sm:self-center">
-          <span className="h-2 w-2 rounded-full bg-[#4a5d4e] animate-pulse"></span>
-          <span className="text-[10px] font-mono font-bold text-[#4a5d4e] uppercase tracking-wider">Live Branch Syncing</span>
-        </div>
+      {/* Welcome Banner like Teacher Console */}
+      <div className="bg-white/40 backdrop-blur-md border border-white rounded-2xl p-6 shadow-sm">
+        <h2 className="text-xl font-black text-slate-900 tracking-tight">
+          Welcome Back, Center Admin
+        </h2>
+        <p className="text-xs text-slate-500 mt-1 font-medium">
+          Here is a quick telemetry slice of your Smart Abacus franchise node for today.
+        </p>
       </div>
 
-      {/* STATS TILES GRID */}
+      {/* Stats Tiles Grid with Sleek Minimal Styling */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {stats.map((stat, idx) => {
           const Icon = stat.icon;
           return (
-            <div key={idx} className="bg-[#fcfbfa] border border-[#e2dcd0] rounded-xl p-4 flex items-center justify-between shadow-sm group transition-all">
+            <div key={idx} className="bg-white border border-slate-100 rounded-2xl p-5 flex items-center justify-between shadow-sm hover:scale-[1.01] transition-all duration-200">
               <div className="space-y-1">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[#8a9485]">
+                <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
                   {stat.title}
                 </p>
-                <h3 className="text-xl font-black text-[#1a202c] tracking-tight">
+                <h3 className="text-2xl font-black text-slate-900 tracking-tight">
                   {stat.count}
                 </h3>
-                <p className="text-[10px] text-[#4a5d4e] font-medium flex items-center gap-1">
-                  <TrendingUp size={10} className="text-[#4a5d4e]" />
-                  <span>{stat.change}</span>
+                <p className="text-[10px] text-slate-500 font-medium flex items-center gap-1">
+                  <span className="text-emerald-500 font-bold">{stat.change}</span>
                 </p>
               </div>
-              <div className={`p-2.5 rounded-lg ${stat.bg} ${stat.color} border border-[#e2dcd0]/40 group-hover:scale-105 transition-transform duration-300`}>
-                <Icon size={18} />
+              <div className={`p-3 rounded-xl ${stat.bg} ${stat.color}`}>
+                <Icon size={20} />
               </div>
             </div>
           );
         })}
       </div>
 
-      {/* TABLE DATA LISTING */}
+      {/* Recent Activity Table Container */}
       <div className="space-y-3">
-        <div className="flex items-center justify-between px-0.5">
-          <h3 className="text-xs font-black text-[#7a8475] uppercase tracking-widest">
-            Recent Center Activities
+        <div className="flex items-center justify-between px-1">
+          <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            Today's Hub Activity Queue
           </h3>
-          <span className="text-[10px] font-mono text-[#8a9485]">Showing last 3 logs</span>
         </div>
 
-        <div className="bg-[#fcfbfa] border border-[#e2dcd0] rounded-xl overflow-hidden shadow-sm">
+        <div className="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="border-b border-[#e2dcd0] bg-[#f4f0e6] text-[10px] uppercase font-bold tracking-wider text-[#7a8475]">
-                  <th className="py-3 px-4">Activity ID</th>
-                  <th className="py-3 px-4">Description / Name</th>
-                  <th className="py-3 px-4">Type</th>
-                  <th className="py-3 px-4">Date</th>
-                  <th className="py-3 px-4">Amount</th>
-                  <th className="py-3 px-4 text-right">Status</th>
+                <tr className="bg-slate-50 border-b border-slate-100 text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                  <th className="py-3.5 px-5">Activity ID</th>
+                  <th className="py-3.5 px-5">Description / Name</th>
+                  <th className="py-3.5 px-5">Type</th>
+                  <th className="py-3.5 px-5">Date</th>
+                  <th className="py-3.5 px-5">Amount</th>
+                  <th className="py-3.5 px-5 text-right">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#e2dcd0]/40 text-[#2c3539] font-medium">
+              <tbody className="divide-y divide-slate-100 text-slate-600 font-medium">
                 {recentActivity.map((activity) => (
-                  <tr key={activity.id} className="hover:bg-[#f5f2eb]/30 transition-colors group">
-                    <td className="py-3 px-4 font-mono text-[#4a5d4e] font-bold">
+                  <tr key={activity.id} className="hover:bg-slate-50/60 transition-colors">
+                    <td className="py-3.5 px-5 font-mono text-indigo-600 font-bold">
                       {activity.id}
                     </td>
-                    <td className="py-3 px-4 font-bold text-[#1a202c]">
+                    <td className="py-3.5 px-5 font-bold text-slate-900">
                       {activity.student}
                     </td>
-                    <td className="py-3 px-4 text-[#8a9485]">
+                    <td className="py-3.5 px-5 text-slate-400">
                       {activity.type}
                     </td>
-                    <td className="py-3 px-4 text-[#5a6455] font-mono">
+                    <td className="py-3.5 px-5 font-mono text-slate-500">
                       {activity.date}
                     </td>
-                    <td className="py-3 px-4 font-black text-[#1a202c] font-mono">
+                    <td className="py-3.5 px-5 font-black text-slate-900 font-mono">
                       {activity.amount}
                     </td>
-                    <td className="py-3 px-4 text-right">
-                      <span className={`px-2.5 py-0.5 rounded text-[10px] font-bold inline-block border ${
+                    <td className="py-3.5 px-5 text-right">
+                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold inline-block border ${
                         activity.status === "Paid"
-                          ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                          : "bg-amber-50 text-amber-700 border-amber-200"
+                          ? "bg-emerald-50 text-emerald-600 border-emerald-200"
+                          : "bg-amber-50 text-amber-600 border-amber-200"
                       }`}>
                         {activity.status}
                       </span>

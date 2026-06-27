@@ -3,6 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import { useStudentData } from "./StudentContext";
+// स्क्रीनशॉटमधील इंटरफेस मॅच करण्यासाठी मॉडर्न पेस्टेल-स्टाईल आयकॉन्स
+import { 
+  GraduationCap, BarChart3, Calendar, BookOpen, 
+  ChevronRight, Award, CreditCard, Bell, User
+} from "lucide-react";
 
 export default function StudentDashboardOverview() {
   const { profile, assignments, submitAssignment } = useStudentData();
@@ -11,161 +16,138 @@ export default function StudentDashboardOverview() {
 
   return (
     <div className="space-y-6">
-      {/* Welcome Banner Alert */}
-      <div className="rounded-2xl border border-blue-500/20 bg-blue-500/10 px-5 py-4 flex items-start gap-3.5 shadow-[inset_0_1px_3px_rgba(255,255,255,0.05)] animate-fade-in">
-        <div className="p-2 rounded-xl bg-blue-500/20 text-blue-300 border border-blue-500/20">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347" />
-          </svg>
-        </div>
-        <div>
-          <h4 className="text-sm font-extrabold text-blue-100">
-            Welcome Back, {profile.name}!
-          </h4>
-          <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-            You have successfully completed <strong>{profile.classesAttended} classes</strong> in your Level {profile.level} course. Keep up the great practice!
-          </p>
-        </div>
+      
+      {/* 1. Welcome Card Banner (तंतोतंत स्क्रीनशॉटच्या लेआउटसारखे) */}
+      <div className="rounded-3xl bg-white p-6 md:p-8 border border-slate-200/60 shadow-xs">
+        <h2 className="text-xl md:text-2xl font-extrabold text-[#1e293b] tracking-tight">
+          Welcome Back, {profile.name}
+        </h2>
+        <p className="text-xs md:text-sm text-slate-500 mt-2 leading-relaxed">
+          Here is a quick learning telemetry slice of your Smart Abacus student node for today.
+        </p>
       </div>
 
-      {/* KPI Stat Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {/* 2. KPI Stats Grid (स्क्रीनशॉट प्रमाणे राइट-साईड आयकॉन बॉक्ससह) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { title: "Current Level", value: `Level ${profile.level}`, subtitle: "Beginner Arithmetic", icon: "M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25", border: "border-blue-500/15" },
-          { title: "Learning Progress", value: `${profile.progress}%`, subtitle: `${profile.classesAttended}/${profile.totalClasses} Classes Done`, icon: "M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z", border: "border-emerald-500/15" },
-          { title: "Classes Attended", value: profile.classesAttended, subtitle: "Next session: Sat 10:00 AM", icon: "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5", border: "border-amber-500/15" },
-          { title: "Assignments Due", value: pendingAssignments.length, subtitle: `${profile.assignmentsDone}/${profile.assignmentsTotal} Completed`, icon: "M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125", border: pendingAssignments.length > 0 ? "border-rose-500/30 text-rose-300" : "border-slate-500/15" }
+          { 
+            title: "CURRENT LEVEL", 
+            value: `Level ${profile.level}`, 
+            subtitle: "Beginner Arithmetic", 
+            icon: <GraduationCap className="w-5 h-5 text-[#4f46e5]" />, 
+            iconBg: "bg-indigo-50" 
+          },
+          { 
+            title: "LEARNING PROGRESS", 
+            value: `${profile.progress}%`, 
+            subtitle: `${profile.classesAttended}/${profile.totalClasses} Classes`, 
+            icon: <BarChart3 className="w-5 h-5 text-emerald-500" />, 
+            iconBg: "bg-emerald-50" 
+          },
+          { 
+            title: "CLASSES ATTENDED", 
+            value: profile.classesAttended, 
+            subtitle: "Next: Sat 10:00 AM", 
+            icon: <Calendar className="w-5 h-5 text-amber-500" />, 
+            iconBg: "bg-amber-50" 
+          },
+          { 
+            title: "ASSIGNMENTS DUE", 
+            value: pendingAssignments.length, 
+            subtitle: `${profile.assignmentsDone} Completed`, 
+            icon: <BookOpen className="w-5 h-5 text-rose-500" />, 
+            iconBg: "bg-rose-50" 
+          }
         ].map((stat, i) => (
-          <div key={i} className={`rounded-2xl border bg-white/[0.03] p-5 shadow-md backdrop-blur-md transition-all hover:bg-white/[0.05] hover:scale-[1.02] ${stat.border}`}>
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{stat.title}</span>
-              <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d={stat.icon} />
-              </svg>
+          <div key={i} className="rounded-2xl bg-white p-5 border border-slate-200/60 shadow-xs flex justify-between items-center">
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">{stat.title}</span>
+              <div className="text-2xl font-black text-slate-900 tracking-tight">{stat.value}</div>
+              <span className="text-[10px] font-bold text-slate-400 block">{stat.subtitle}</span>
             </div>
-            <div className="text-3xl font-extrabold text-white mt-3 font-mono">
-              {stat.value}
+            <div className={`w-10 h-10 rounded-2xl ${stat.iconBg} flex items-center justify-center shrink-0 ml-2`}>
+              {stat.icon}
             </div>
-            <span className="text-[10px] text-slate-500 font-semibold block mt-1">
-              {stat.subtitle}
-            </span>
           </div>
         ))}
       </div>
 
-      {/* Quick Actions & Assignments Panel */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      {/* 3. Split Row Panel - Operations & Task Queue */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         
-        {/* Quick Operations Panel */}
-        <div className="lg:col-span-5 rounded-2xl border border-white/5 bg-slate-900/40 p-6 backdrop-blur-md flex flex-col justify-between">
+        {/* Quick Operations List (डावी बाजू - 5 Columns) */}
+        <div className="lg:col-span-5 rounded-2xl bg-white p-5 border border-slate-200/60 shadow-xs flex flex-col justify-between">
           <div>
-            <h3 className="text-sm font-bold text-white tracking-wide uppercase border-b border-white/5 pb-3 mb-4">
-              Quick Operations
+            <h3 className="text-xs font-bold text-slate-400 tracking-wider uppercase border-b border-slate-100 pb-3 mb-4">
+              QUICK OPERATIONS
             </h3>
-            <div className="grid grid-cols-2 gap-3">
-              <Link
-                href="/dashboard/student/exams"
-                className="p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.06] text-left transition-all duration-300"
-              >
-                <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-3">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75" />
-                  </svg>
-                </div>
-                <span className="text-xs font-bold text-slate-200 block">Exams & Tests</span>
-                <span className="text-[9px] text-slate-500 block mt-0.5">Check dates & reports</span>
-              </Link>
-
-              <Link
-                href="/dashboard/student/attendance"
-                className="p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.06] text-left transition-all duration-300"
-              >
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-3">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9 3.75l2.25 2.25L15 12" />
-                  </svg>
-                </div>
-                <span className="text-xs font-bold text-slate-200 block">Class Attendance</span>
-                <span className="text-[9px] text-slate-500 block mt-0.5">Logs & Leave requests</span>
-              </Link>
-
-              <Link
-                href="/dashboard/student/fees"
-                className="p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.06] text-left transition-all duration-300"
-              >
-                <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-3">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01" />
-                  </svg>
-                </div>
-                <span className="text-xs font-bold text-slate-200 block">Tuition Fees</span>
-                <span className="text-[9px] text-slate-500 block mt-0.5">Pay due invoice fee</span>
-              </Link>
-
-              <Link
-                href="/dashboard/student/notifications"
-                className="p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.06] text-left transition-all duration-300"
-              >
-                <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-3">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7" />
-                  </svg>
-                </div>
-                <span className="text-xs font-bold text-slate-200 block">Announcements</span>
-                <span className="text-[9px] text-slate-500 block mt-0.5">Check notifications</span>
-              </Link>
-
-              <Link
-                href="/dashboard/student/profile"
-                className="p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.06] text-left transition-all duration-300"
-              >
-                <div className="w-8 h-8 rounded-lg bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 mb-3">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0" />
-                  </svg>
-                </div>
-                <span className="text-xs font-bold text-slate-200 block">Edit Profile</span>
-                <span className="text-[9px] text-slate-500 block mt-0.5">Change phone or email</span>
-              </Link>
+            <div className="grid grid-cols-1 gap-2">
+              {[
+                { href: "/dashboard/student/exams", title: "Exams & Tests", desc: "Check dates & reports", icon: <Award className="w-4 h-4 text-indigo-600" /> },
+                { href: "/dashboard/student/attendance", title: "Class Attendance", desc: "Logs & Leave requests", icon: <Calendar className="w-4 h-4 text-emerald-600" /> },
+                { href: "/dashboard/student/fees", title: "Tuition Fees", desc: "Pay due invoice fee", icon: <CreditCard className="w-4 h-4 text-amber-600" /> },
+                { href: "/dashboard/student/notifications", title: "Announcements", desc: "Check notifications", icon: <Bell className="w-4 h-4 text-indigo-500" /> }
+              ].map((link, idx) => (
+                <Link key={idx} href={link.href} className="p-3 rounded-xl bg-slate-50/60 border border-slate-100 hover:bg-slate-50 transition-all flex items-center justify-between group">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-white border border-slate-100 flex items-center justify-center shadow-2xs">
+                      {link.icon}
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold text-slate-800 block group-hover:text-[#4f46e5] transition-colors">{link.title}</span>
+                      <span className="text-[10px] text-slate-400 block mt-0.5">{link.desc}</span>
+                    </div>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-slate-500 transition-all" />
+                </Link>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Pending Assignments List Panel */}
-        <div className="lg:col-span-7 rounded-2xl border border-white/5 bg-slate-900/40 p-6 backdrop-blur-md">
-          <h3 className="text-sm font-bold text-white tracking-wide uppercase border-b border-white/5 pb-3 mb-4 flex items-center justify-between">
-            <span>Assignments Tracker</span>
-            <span className="text-[10px] text-slate-500 tracking-normal font-mono">Active Tasks</span>
+        {/* Task Queue Table (उजवी बाजू - 7 Columns - "TODAY'S HUB ACTIVITY QUEUE" स्टाईल) */}
+        <div className="lg:col-span-7 rounded-2xl bg-white p-5 border border-slate-200/60 shadow-xs">
+          <h3 className="text-xs font-bold text-slate-400 tracking-wider uppercase border-b border-slate-100 pb-3 mb-4">
+            TODAY'S HUB TASK QUEUE
           </h3>
           
-          <div className="space-y-3 max-h-[260px] overflow-y-auto pr-1">
-            {assignments.map((assign) => (
-              <div key={assign.id} className="flex items-center justify-between text-xs py-2.5 border-b border-white/5 last:border-b-0">
-                <div className="flex flex-col gap-0.5">
-                  <span className={`font-semibold ${assign.status === "Completed" ? "text-slate-500 line-through" : "text-slate-200"}`}>
-                    {assign.title}
-                  </span>
-                  <span className="text-[10px] text-slate-400 font-light">
-                    Due by {assign.dueDate} • Difficulty: <strong className="text-blue-400">{assign.difficulty}</strong>
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-mono text-slate-500 font-bold">{assign.points}</span>
-                  {assign.status === "Pending" ? (
-                    <button
-                      onClick={() => submitAssignment(assign.id)}
-                      className="px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/30 text-blue-300 hover:bg-blue-500/25 active:scale-95 transition-all text-[10px] font-bold"
-                    >
-                      Submit
-                    </button>
-                  ) : (
-                    <span className="px-2.5 py-0.5 rounded text-[9px] font-bold border border-emerald-500/25 bg-emerald-500/10 text-emerald-400">
-                      Completed
-                    </span>
-                  )}
-                </div>
-              </div>
-            ))}
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr className="text-slate-400 font-bold uppercase border-b border-slate-100">
+                  <th className="pb-2 font-bold tracking-wider">TASK TITLE</th>
+                  <th className="pb-2 font-bold tracking-wider text-center">DUE DATE</th>
+                  <th className="pb-2 font-bold tracking-wider text-center">POINTS</th>
+                  <th className="pb-2 font-bold tracking-wider text-right">STATUS</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {assignments.map((assign) => (
+                  <tr key={assign.id} className="group hover:bg-slate-50/40 transition-all">
+                    <td className="py-3 pr-2 font-bold text-[#4f46e5] group-hover:underline cursor-pointer">
+                      {assign.title}
+                      <div className="text-[10px] font-normal text-slate-400 mt-0.5">Diff: {assign.difficulty}</div>
+                    </td>
+                    <td className="py-3 text-center text-slate-500 font-medium">{assign.dueDate}</td>
+                    <td className="py-3 text-center text-slate-600 font-bold font-mono">{assign.points}</td>
+                    <td className="py-3 text-right">
+                      {assign.status === "Pending" ? (
+                        <button
+                          onClick={() => submitAssignment(assign.id)}
+                          className="px-3 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-500 hover:text-white transition-all font-bold text-[10px]"
+                        >
+                          Pending
+                        </button>
+                      ) : (
+                        <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 inline-block">
+                          Paid
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 

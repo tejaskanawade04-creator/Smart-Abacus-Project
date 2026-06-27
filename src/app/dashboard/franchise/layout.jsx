@@ -3,26 +3,29 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { 
+  LayoutDashboard, GraduationCap, Users, Calendar, 
+  CheckSquare, CreditCard, Box, BarChart3, Menu, X, LogOut 
+} from "lucide-react";
 
 export default function FranchiseLayout({ children }) {
   const pathname = usePathname();
-  const router = useRouter(); // Router 
+  const router = useRouter();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const sidebarItems = [
-    { name: 'Overview', href: '/dashboard/franchise', icon: '📊' },
-    { name: 'Students', href: '/dashboard/franchise/students', icon: '🎓' },
-    { name: 'Teachers', href: '/dashboard/franchise/teachers', icon: '👩‍🏫' },
-    { name: 'Batches', href: '/dashboard/franchise/batches', icon: '👥' },
-    { name: 'Attendance', href: '/dashboard/franchise/attendance', icon: '📝' },
-    { name: 'Fees', href: '/dashboard/franchise/fees', icon: '💰' },
-    { name: 'Inventory', href: '/dashboard/franchise/inventory', icon: '📦' },
-    { name: 'Payments', href: '/dashboard/franchise/payments', icon: '💳' },
-    { name: 'Reports', href: '/dashboard/franchise/reports', icon: '📈' },
+    { name: 'Overview', href: '/dashboard/franchise', icon: LayoutDashboard },
+    { name: 'Students', href: '/dashboard/franchise/students', icon: GraduationCap },
+    { name: 'Teachers', href: '/dashboard/franchise/teachers', icon: Users },
+    { name: 'Batches', href: '/dashboard/franchise/batches', icon: Calendar },
+    { name: 'Attendance', href: '/dashboard/franchise/attendance', icon: CheckSquare },
+    { name: 'Fees', href: '/dashboard/franchise/fees', icon: CreditCard },
+    { name: 'Inventory', href: '/dashboard/franchise/inventory', icon: Box },
+    { name: 'Payments', href: '/dashboard/franchise/payments', icon: CreditCard },
+    { name: 'Reports', href: '/dashboard/franchise/reports', icon: BarChart3 },
   ];
 
-  // Sign Out 
-    const handleSignOut = () => {
+  const handleSignOut = () => {
     router.push('/login'); 
   };
 
@@ -30,41 +33,58 @@ export default function FranchiseLayout({ children }) {
   const pageTitle = currentActiveItem ? currentActiveItem.name : "Center Metrics";
 
   return (
-    <div className="flex h-screen bg-[#070b19] text-gray-100 font-sans overflow-hidden">
+    <div className="flex h-screen bg-[#eceffd] text-slate-800 font-sans overflow-hidden w-full relative">
+      
+      {/* Background Radial Ambient Gradients like Teacher Console */}
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-200/50 blur-[120px] pointer-events-none z-0"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[50%] rounded-full bg-purple-200/40 blur-[120px] pointer-events-none z-0"></div>
+
+      {/* Mobile Sidebar Overlay */}
       {isMobileOpen && (
         <div 
           onClick={() => setIsMobileOpen(false)} 
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-40 bg-slate-900/20 backdrop-blur-sm md:hidden"
         />
       )}
       
-      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#0d1527] border-r border-gray-800 flex flex-col justify-between p-4 overflow-y-auto transition-transform duration-300 md:translate-x-0 md:static md:block shrink-0 ${
+      {/* Modern Glass Console Sidebar */}
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-white/70 backdrop-blur-md border-r border-slate-200 flex flex-col justify-between p-5 transition-transform duration-300 md:translate-x-0 md:static md:flex shrink-0 m-0 md:m-4 md:mr-0 md:rounded-3xl shadow-sm ${
         isMobileOpen ? "translate-x-0" : "-translate-x-full"
       }`}>
         <div>
-          <div className="mb-6 px-2 flex items-center justify-between">
+          {/* Header Branding */}
+          <div className="mb-8 px-2 flex items-center justify-between">
             <div>
-              <h1 className="text-xl font-bold tracking-wider text-white">SMART ABACUS</h1>
-              <p className="text-xs text-amber-400 font-semibold tracking-widest mt-1">FRANCHISE PORTAL</p>
+              <div className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-indigo-600"></span>
+                <h1 className="text-sm font-black tracking-wider text-slate-900 uppercase font-sans">
+                  SMART ABACUS
+                </h1>
+              </div>
+              <p className="text-[10px] text-slate-400 font-bold tracking-widest mt-0.5 ml-4 uppercase">FRANCHISE CONSOLE</p>
             </div>
-            <button onClick={() => setIsMobileOpen(false)} className="md:hidden text-gray-400 hover:text-white text-xl">✕</button>
+            <button onClick={() => setIsMobileOpen(false)} className="md:hidden text-slate-400 hover:text-slate-900 p-1 cursor-pointer">
+              <X size={18} />
+            </button>
           </div>
 
-          <nav className="space-y-1">
+          {/* Navigation Links with Active States like Teacher UI */}
+          <nav className="space-y-1 text-xs font-bold">
             {sidebarItems.map((item) => {
               const isActive = pathname === item.href;
+              const IconComponent = item.icon;
               return (
                 <Link
                   key={item.name}
                   href={item.href}
-                  onClick={() => setIsMobileOpen(false)} 
-                  className={`flex items-center space-x-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  onClick={() => setIsOpen ? setIsMobileOpen(false) : null} 
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? "bg-blue-600/10 text-blue-400 border border-blue-500/20 shadow-md shadow-blue-950/20"
-                      : "text-gray-400 hover:bg-[#1a263e] hover:text-white border border-transparent"
+                      ? "bg-indigo-600 text-white shadow-md shadow-indigo-200 translate-x-1"
+                      : "text-slate-500 hover:bg-slate-100/80 hover:text-slate-900"
                   }`}
                 >
-                  <span className="text-base">{item.icon}</span>
+                  <IconComponent size={16} className={isActive ? "text-white" : "text-slate-400"} />
                   <span>{item.name}</span>
                 </Link>
               );
@@ -72,48 +92,58 @@ export default function FranchiseLayout({ children }) {
           </nav>
         </div>
 
-        <div className="border-t border-gray-800 pt-4 mt-4">
-          <div className="flex items-center space-x-3 p-2 bg-[#141f35] rounded-xl mb-3">
-            <div className="w-9 h-9 rounded-full bg-amber-600 flex items-center justify-center text-sm font-bold text-white shrink-0">FO</div>
+        {/* Sidebar Footer Profile */}
+        <div className="border-t border-slate-100 pt-4 mt-4">
+          <div className="flex items-center gap-3 p-2 bg-slate-50/80 rounded-xl mb-2 border border-slate-100">
+            <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-xs font-black text-white shrink-0">
+              MW
+            </div>
             <div className="truncate">
-              <p className="text-xs font-semibold text-white truncate">Mumbai West Center</p>
-              <p className="text-[10px] text-gray-400">Franchise Owner</p>
+              <p className="text-xs font-black text-slate-800 truncate">Mumbai West Center</p>
+              <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Franchise Owner</p>
             </div>
           </div>
           <button 
             onClick={handleSignOut} 
-            className="w-full text-left text-sm text-red-400 hover:text-red-300 font-medium px-4 py-2 transition-colors flex items-center gap-2"
+            className="w-full text-left text-xs text-red-500 hover:text-red-600 font-bold px-3 py-2 transition-colors flex items-center gap-2 rounded-lg hover:bg-red-50 cursor-pointer"
           >
-            <span>🚪</span> Sign Out
+            <LogOut size={14} /> <span>Exit Session</span>
           </button>
         </div>
       </aside>
 
-      <div className="flex-1 flex flex-col h-full overflow-hidden">
-        <header className="h-16 border-b border-gray-800 bg-[#0d1527] px-4 md:px-8 flex items-center justify-between shrink-0">
+      {/* Main Content Viewport */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden z-10">
+        
+        {/* Top Header */}
+        <header className="h-16 px-4 md:px-8 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
             <button 
               onClick={() => setIsMobileOpen(true)}
-              className="p-2 -ml-2 rounded-lg bg-[#141f35] border border-gray-800 md:hidden text-white"
-            >☰</button>
-            <div className="text-[11px] md:text-xs text-gray-400 font-medium tracking-wide">
-              DASHBOARD / FRANCHISE / <span className="text-amber-400 uppercase">{pageTitle}</span>
+              className="p-2 rounded-xl bg-white/80 border border-slate-200 md:hidden text-slate-700 cursor-pointer shadow-sm"
+            >
+              <Menu size={16} />
+            </button>
+            <div className="text-[10px] md:text-xs font-bold text-slate-400 tracking-wider font-mono">
+              WORKSPACE / <span className="text-indigo-600 uppercase font-sans font-black">{pageTitle}</span>
             </div>
           </div>
 
-          <div className="flex items-center space-x-4 text-[11px] md:text-xs">
-            <span className="text-gray-400 hidden sm:inline">CENTER STATUS: <span className="text-emerald-400 font-bold">● ACTIVE</span></span>
-            <span className="bg-amber-950/40 text-amber-400 px-3 py-1 rounded-full font-semibold border border-amber-900/50">
-              Franchise Mode
+          <div className="flex items-center gap-3 text-[10px] md:text-xs">
+            <span className="bg-emerald-500/10 text-emerald-600 px-3 py-1 rounded-full font-bold border border-emerald-500/20 flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              Live Sync Active
             </span>
           </div>
         </header>
 
-        <main className="p-4 md:p-8 flex-1 overflow-y-auto bg-[#070b19]">
-          <div className="max-w-7xl mx-auto">
+        {/* Main Content Card Container */}
+        <main className="p-4 md:p-6 pt-0 flex-1 overflow-y-auto w-full">
+          <div className="max-w-[1600px] mx-auto h-full">
             {children}
           </div>
         </main>
+
       </div>
     </div>
   );
