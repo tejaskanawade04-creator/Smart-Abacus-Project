@@ -5,6 +5,7 @@ import { useState } from "react";
 import { usePathname } from "next/navigation"; // 💡 Active Page check krnyasathi
 import { Menu, X, ChevronDown } from "lucide-react"; // Dropdown icon sathi
 import Logo from "./Logo";
+// Demo component import
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
