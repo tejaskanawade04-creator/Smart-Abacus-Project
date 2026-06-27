@@ -65,7 +65,6 @@ export default function StudentAttendancePage() {
       setLeaveDetail("");
       setLeaveClassId("");
       
-      // Auto-clear success message after 4 seconds
       setTimeout(() => {
         setSubmitSuccess(false);
       }, 4000);
@@ -76,17 +75,17 @@ export default function StudentAttendancePage() {
   const upcomingClasses = ATTENDANCE_RECORDS.filter(r => r.status === "Scheduled");
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-6 animate-fade-in font-sans antialiased text-slate-800">
       
       {/* Top Banner Overview */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/[0.02] border border-white/5 p-4 rounded-2xl backdrop-blur-md">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white/70 backdrop-blur-md border border-white/80 p-5 rounded-2xl shadow-sm">
         <div>
-          <h3 className="text-sm font-bold text-white">Student Attendance Dashboard</h3>
-          <p className="text-[10px] text-slate-400 font-light mt-0.5">
+          <h3 className="text-sm font-black text-slate-800 uppercase tracking-tight">Student Attendance Dashboard</h3>
+          <p className="text-[10px] text-slate-400 font-bold mt-0.5 uppercase tracking-wider">
             Track your class attendance rate, upcoming schedules, and manage leave requests.
           </p>
         </div>
-        <div className="px-4 py-2.5 rounded-xl bg-blue-500/10 border border-blue-500/20 text-xs font-bold text-blue-300">
+        <div className="px-4 py-2.5 rounded-xl bg-indigo-50 border border-indigo-100/80 text-xs font-bold text-indigo-600">
           Academic Term: June - August 2026
         </div>
       </div>
@@ -95,19 +94,18 @@ export default function StudentAttendancePage() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
         
         {/* Circular Gauge Card */}
-        <div className="md:col-span-4 rounded-2xl border border-white/5 bg-slate-900/40 p-6 backdrop-blur-md shadow-lg flex flex-col items-center justify-center text-center">
-          <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-5">
+        <div className="md:col-span-4 rounded-3xl border border-white/80 bg-white/70 p-6 backdrop-blur-md shadow-xl shadow-indigo-100/30 flex flex-col items-center justify-center text-center">
+          <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-5">
             Attendance Rate
           </h4>
           
           <div className="relative w-36 h-36 flex items-center justify-center">
-            {/* SVG Ring Gauge */}
             <svg className="w-full h-full transform -rotate-90">
               <circle
                 cx="72"
                 cy="72"
                 r="62"
-                className="stroke-slate-800"
+                className="stroke-slate-100"
                 strokeWidth="10"
                 fill="transparent"
               />
@@ -115,7 +113,7 @@ export default function StudentAttendancePage() {
                 cx="72"
                 cy="72"
                 r="62"
-                className="stroke-gradient stroke-blue-500"
+                className="stroke-indigo-600"
                 strokeWidth="10"
                 fill="transparent"
                 strokeDasharray={2 * Math.PI * 62}
@@ -124,27 +122,27 @@ export default function StudentAttendancePage() {
               />
             </svg>
             <div className="absolute flex flex-col items-center">
-              <span className="text-3xl font-extrabold text-white font-mono">{attendanceRate}%</span>
-              <span className="text-[9px] text-slate-500 font-semibold uppercase mt-0.5">Present</span>
+              <span className="text-3xl font-black text-slate-800 font-mono">{attendanceRate}%</span>
+              <span className="text-[9px] text-slate-400 font-bold uppercase mt-0.5">Present</span>
             </div>
           </div>
           
-          <p className="text-[10px] text-slate-400 font-light mt-5 leading-relaxed max-w-[200px]">
-            You attended <strong>{presentCount}</strong> out of <strong>{presentCount + absentCount}</strong> past sessions.
+          <p className="text-[11px] text-slate-500 font-medium mt-5 leading-relaxed max-w-[200px]">
+            You attended <strong className="text-indigo-600">{presentCount}</strong> out of <strong className="text-slate-700">{presentCount + absentCount}</strong> past sessions.
           </p>
         </div>
 
         {/* Numeric Stats Cards and Details */}
         <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-5">
           {[
-            { title: "Total Program Classes", value: totalRecords, subtitle: "Full Level 1 Course", border: "border-white/5", color: "text-slate-100" },
-            { title: "Sessions Present", value: presentCount, subtitle: "Bead Practice Cleared", border: "border-emerald-500/10 bg-emerald-500/[0.01]", color: "text-emerald-400" },
-            { title: "Sessions Excused", value: absentCount, subtitle: "Medical/Prior Permission", border: "border-rose-500/10 bg-rose-500/[0.01]", color: "text-rose-400" }
+            { title: "Total Program Classes", value: totalRecords, subtitle: "Full Level 1 Course", border: "border-white/80 bg-white/70 shadow-xl shadow-indigo-100/30", color: "text-slate-800" },
+            { title: "Sessions Present", value: presentCount, subtitle: "Bead Practice Cleared", border: "border-emerald-100 bg-emerald-50/40 shadow-xl shadow-emerald-100/10", color: "text-emerald-600" },
+            { title: "Sessions Excused", value: absentCount, subtitle: "Medical/Prior Permission", border: "border-rose-100 bg-rose-50/40 shadow-xl shadow-rose-100/10", color: "text-rose-600" }
           ].map((stat, i) => (
-            <div key={i} className={`rounded-2xl border bg-white/[0.02] p-5 shadow-md flex flex-col justify-between ${stat.border}`}>
+            <div key={i} className={`rounded-3xl border p-5 flex flex-col justify-between ${stat.border}`}>
               <div>
-                <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest block mb-1">{stat.title}</span>
-                <span className="text-[10px] text-slate-400 font-light block">{stat.subtitle}</span>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">{stat.title}</span>
+                <span className="text-[10px] text-slate-500 font-medium block">{stat.subtitle}</span>
               </div>
               <div className={`text-3xl font-black mt-6 font-mono ${stat.color}`}>
                 {stat.value}
@@ -153,10 +151,10 @@ export default function StudentAttendancePage() {
           ))}
 
           {/* Quick info alert on attendance rule */}
-          <div className="col-span-1 sm:col-span-3 rounded-xl border border-blue-500/15 bg-blue-500/5 p-4 flex gap-3 text-xs leading-relaxed text-blue-300">
-            <span className="text-sm">ℹ</span>
+          <div className="col-span-1 sm:col-span-3 rounded-2xl border border-indigo-100 bg-indigo-50/50 p-4 flex gap-3 text-xs leading-relaxed text-slate-600">
+            <span className="text-indigo-600 font-bold text-sm">ℹ</span>
             <div>
-              <strong className="text-white block font-bold text-[11px] mb-0.5">Note on Scheduled Classes</strong>
+              <strong className="text-slate-800 block font-bold text-[11px] mb-0.5">Note on Scheduled Classes</strong>
               Class schedules are set for weekend batches (Saturday & Sunday). In case of an emergency, please use the Leave Request form below to inform your instructor at least 24 hours prior.
             </div>
           </div>
@@ -168,14 +166,14 @@ export default function StudentAttendancePage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Attendance Log Table Panel */}
-        <div className="lg:col-span-8 rounded-2xl border border-white/5 bg-slate-900/40 p-6 backdrop-blur-md shadow-lg flex flex-col justify-between">
+        <div className="lg:col-span-8 rounded-3xl border border-white/80 bg-white/70 p-6 backdrop-blur-md shadow-xl shadow-indigo-100/30 flex flex-col justify-between">
           <div>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/5 pb-4 mb-5 gap-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 mb-5 gap-3">
               <div>
-                <h3 className="text-xs font-bold text-slate-200 uppercase tracking-wider">
+                <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
                   Class Session Logs
                 </h3>
-                <p className="text-[10px] text-slate-500 font-light mt-0.5">
+                <p className="text-[10px] text-slate-400 font-bold mt-0.5 uppercase tracking-wider">
                   Detailed timeline of syllabus topics, dates, and check-in times.
                 </p>
               </div>
@@ -187,25 +185,26 @@ export default function StudentAttendancePage() {
                   placeholder="Search topic or class..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="bg-slate-950 border border-white/5 rounded-lg px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500/40 w-44"
+                  className="bg-white/80 border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500 w-44 font-medium"
                 />
               </div>
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex flex-wrap gap-1.5 mb-4 border-b border-white/[0.03] pb-3">
+            <div className="flex flex-wrap gap-1.5 mb-4 border-b border-slate-100 pb-3">
               {["All", "Present", "Absent", "Scheduled"].map((tab) => (
                 <button
                   key={tab}
+                  type="button"
                   onClick={() => setFilter(tab)}
-                  className={`px-3 py-1 rounded-lg text-[10px] font-bold tracking-wide transition-all ${
+                  className={`px-3 py-1.5 rounded-xl text-[10px] font-bold tracking-wide transition-all cursor-pointer ${
                     filter === tab 
-                      ? "bg-blue-500/10 border border-blue-500/30 text-blue-400 shadow-inner" 
-                      : "text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent"
+                      ? "bg-indigo-600 border border-indigo-600 text-white shadow-sm" 
+                      : "text-slate-500 hover:text-slate-800 hover:bg-slate-50 border border-slate-200"
                   }`}
                 >
                   {tab === "All" ? "All Sessions" : tab} 
-                  <span className="ml-1.5 px-1.5 py-0.2 rounded-md bg-white/5 text-[9px] font-mono">
+                  <span className={`ml-1.5 px-1.5 py-0.2 rounded-md text-[9px] font-mono ${filter === tab ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"}`}>
                     {tab === "All" ? totalRecords : tab === "Present" ? presentCount : tab === "Absent" ? absentCount : scheduledCount}
                   </span>
                 </button>
@@ -216,55 +215,55 @@ export default function StudentAttendancePage() {
             <div className="overflow-x-auto max-h-[480px] overflow-y-auto pr-1">
               <table className="w-full text-left border-collapse text-xs">
                 <thead>
-                  <tr className="border-b border-white/5 text-slate-500 text-[10px] uppercase font-bold tracking-wider">
-                    <th className="py-2.5">Class</th>
+                  <tr className="border-b border-slate-200 text-slate-400 text-[10px] uppercase font-bold tracking-wider">
+                    <th className="py-2.5 pl-2">Class</th>
                     <th className="py-2.5">Topic Details</th>
                     <th className="py-2.5">Date & Time</th>
                     <th className="py-2.5 text-center">Status</th>
-                    <th className="py-2.5 text-right">Check-in</th>
+                    <th className="py-2.5 text-right pr-2">Check-in</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/[0.03]">
+                <tbody className="divide-y divide-slate-100">
                   {filteredRecords.length > 0 ? (
                     filteredRecords.map((record) => (
                       <tr 
                         key={record.id} 
-                        className="group hover:bg-white/[0.01] transition-all"
+                        className="group hover:bg-slate-50/50 transition-all"
                       >
-                        <td className="py-3.5 font-bold font-mono text-slate-400 text-center w-10">
+                        <td className="py-3.5 pl-2 font-bold font-mono text-slate-400 w-10">
                           #{record.classNum}
                         </td>
                         <td className="py-3.5 max-w-[220px] pr-3">
-                          <span className="font-semibold text-slate-200 block truncate group-hover:text-white transition-colors">
+                          <span className="font-bold text-slate-800 block truncate group-hover:text-indigo-600 transition-colors">
                             {record.topic}
                           </span>
-                          <span className="text-[10px] text-slate-500 block truncate mt-0.5">
+                          <span className="text-[10px] text-slate-400 font-medium block truncate mt-0.5">
                             {record.teacherNotes}
                           </span>
                         </td>
-                        <td className="py-3.5 text-slate-300 font-mono">
-                          <span className="block font-bold">{record.date}</span>
-                          <span className="text-[9px] text-slate-500">{record.time}</span>
+                        <td className="py-3.5 text-slate-600 font-mono">
+                          <span className="block font-bold text-slate-700">{record.date}</span>
+                          <span className="text-[9px] text-slate-400 font-medium">{record.time}</span>
                         </td>
                         <td className="py-3.5 text-center">
                           <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-bold border ${
                             record.status === "Present" 
-                              ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400"
+                              ? "bg-emerald-50 border-emerald-200 text-emerald-600"
                               : record.status === "Absent"
-                                ? "bg-rose-500/10 border-rose-500/20 text-rose-400"
-                                : "bg-slate-800/40 border-white/5 text-slate-400"
+                                ? "bg-rose-50 border-rose-200 text-rose-600"
+                                : "bg-slate-50 border-slate-200 text-slate-500"
                           }`}>
                             {record.status}
                           </span>
                         </td>
-                        <td className="py-3.5 text-right font-mono font-bold text-slate-400">
+                        <td className="py-3.5 text-right pr-2 font-mono font-bold text-slate-500">
                           {record.checkIn}
                         </td>
                       </tr>
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="5" className="py-8 text-center text-slate-500 font-light italic">
+                      <td colSpan="5" className="py-8 text-center text-slate-400 font-medium italic">
                         No sessions match the current search or filters.
                       </td>
                     </tr>
@@ -276,37 +275,37 @@ export default function StudentAttendancePage() {
         </div>
 
         {/* Leave Request Sidebar Form */}
-        <div className="lg:col-span-4 rounded-2xl border border-white/5 bg-slate-900/40 p-6 backdrop-blur-md shadow-lg flex flex-col justify-between">
+        <div className="lg:col-span-4 rounded-3xl border border-white/80 bg-white/70 p-6 backdrop-blur-md shadow-xl shadow-indigo-100/30 flex flex-col justify-between">
           <div>
-            <h3 className="text-xs font-bold text-slate-200 uppercase tracking-wider border-b border-white/5 pb-3 mb-4">
+            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wider border-b border-slate-100 pb-3 mb-4">
               Submit Leave Request
             </h3>
             
             {submitSuccess ? (
-              <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-5 text-center animate-fade-in flex flex-col items-center justify-center my-6">
-                <div className="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-3 text-lg font-bold">
+              <div className="rounded-2xl border border-emerald-200 bg-emerald-50/50 p-5 text-center animate-fade-in flex flex-col items-center justify-center my-6">
+                <div className="w-10 h-10 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-3 text-lg font-bold">
                   ✓
                 </div>
-                <h4 className="text-xs font-bold text-emerald-300">Request Sent Successfully</h4>
-                <p className="text-[9px] text-slate-400 font-light mt-1.5 max-w-[200px] leading-relaxed">
+                <h4 className="text-xs font-bold text-emerald-700">Request Sent Successfully</h4>
+                <p className="text-[10px] text-slate-500 font-medium mt-1.5 max-w-[200px] leading-relaxed">
                   Your leave notice has been forwarded to teacher <strong>Aman Sharma</strong>. Check notifications later for approval.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleLeaveSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 pl-0.5">
                     Select Upcoming Session
                   </label>
                   <select
                     required
                     value={leaveClassId}
                     onChange={(e) => setLeaveClassId(e.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2.5 text-xs text-white outline-none focus:border-blue-500/50 transition-all cursor-pointer"
+                    className="w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2.5 text-xs text-slate-800 outline-none focus:border-indigo-500 transition-all cursor-pointer font-medium"
                   >
-                    <option value="" disabled className="bg-slate-900 text-slate-400">-- Choose Upcoming Class --</option>
+                    <option value="" disabled className="text-slate-400">-- Choose Upcoming Class --</option>
                     {upcomingClasses.map((item) => (
-                      <option key={item.id} value={item.id} className="bg-slate-900 text-white">
+                      <option key={item.id} value={item.id} className="text-slate-800">
                         Class #{item.classNum} ({item.date}) - {item.topic.split(":")[0]}
                       </option>
                     ))}
@@ -314,23 +313,23 @@ export default function StudentAttendancePage() {
                 </div>
 
                 <div>
-                  <label className="block text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 pl-0.5">
                     Reason for Leave
                   </label>
                   <select
                     value={leaveReason}
                     onChange={(e) => setLeaveReason(e.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-slate-950/40 px-3 py-2.5 text-xs text-white outline-none focus:border-blue-500/50 transition-all cursor-pointer"
+                    className="w-full rounded-xl border border-slate-200 bg-white/80 px-3 py-2.5 text-xs text-slate-800 outline-none focus:border-indigo-500 transition-all cursor-pointer font-medium"
                   >
-                    <option value="Medical" className="bg-slate-900">Medical / Health Issue</option>
-                    <option value="Family" className="bg-slate-900">Family Event / Out of Station</option>
-                    <option value="School" className="bg-slate-900">School Examinations</option>
-                    <option value="Other" className="bg-slate-900">Other Personal Reason</option>
+                    <option value="Medical">Medical / Health Issue</option>
+                    <option value="Family">Family Event / Out of Station</option>
+                    <option value="School">School Examinations</option>
+                    <option value="Other">Other Personal Reason</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 pl-0.5">
                     Additional Details
                   </label>
                   <textarea
@@ -339,17 +338,17 @@ export default function StudentAttendancePage() {
                     placeholder="Brief details about your leave request..."
                     value={leaveDetail}
                     onChange={(e) => setLeaveDetail(e.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-slate-950/40 px-4 py-2.5 text-xs text-white outline-none focus:border-blue-500/50 transition-all resize-none placeholder-slate-500"
+                    className="w-full rounded-xl border border-slate-200 bg-white/80 px-4 py-2.5 text-xs text-slate-800 outline-none focus:border-indigo-500 transition-all resize-none placeholder-slate-400 font-medium"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={isSubmitting || upcomingClasses.length === 0}
-                  className={`w-full py-2.5 text-xs font-bold rounded-xl text-white shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                  className={`w-full py-3.5 text-xs font-bold rounded-xl text-white shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer ${
                     upcomingClasses.length === 0 
-                      ? "bg-slate-800 text-slate-500 cursor-not-allowed border border-white/5" 
-                      : "bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 active:scale-95 shadow-blue-500/10"
+                      ? "bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300/50 shadow-none" 
+                      : "bg-indigo-600 hover:bg-indigo-700 active:scale-95 shadow-indigo-100"
                   }`}
                 >
                   {isSubmitting ? (
@@ -370,9 +369,9 @@ export default function StudentAttendancePage() {
             )}
           </div>
           
-          <div className="border-t border-white/5 pt-4 mt-6">
-            <span className="text-[9px] font-bold text-slate-500 uppercase tracking-widest block mb-1">Leave Policy Guidelines</span>
-            <p className="text-[9.5px] text-slate-500 leading-normal font-light">
+          <div className="border-t border-slate-100 pt-4 mt-6">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Leave Policy Guidelines</span>
+            <p className="text-[10px] text-slate-400 leading-relaxed font-medium">
               Leaves submitted within 24 hours of scheduled class are marked as Excused Absent only upon approval. Maximum 3 leaves permitted per course Level.
             </p>
           </div>

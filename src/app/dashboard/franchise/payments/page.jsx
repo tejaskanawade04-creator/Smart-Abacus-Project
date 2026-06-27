@@ -84,25 +84,25 @@ export default function PaymentsManagement() {
   };
 
   return (
-    <div className="space-y-6 p-4 md:p-6 text-slate-100 max-w-[1600px] mx-auto">
+    <div className="space-y-6 p-4 md:p-6 text-[#2c3539] max-w-[1600px] mx-auto bg-[#fcfbfa] font-sans min-h-screen">
       
       {/* Top Banner Section */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-900 pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#e2dcd0] pb-5">
         <div>
-          <h2 className="text-xl md:text-2xl font-black tracking-tight text-white">Payment <span className="text-emerald-500">Gateway Ledger</span></h2>
-          <p className="text-xs text-slate-400 mt-1">Audit inbound cashflows, track direct UPI transfers, and manage manual cheque clears.</p>
+          <h2 className="text-xl md:text-2xl font-black tracking-tight text-[#1a202c]">Payment <span className="text-[#4a5d4e]">Gateway Ledger</span></h2>
+          <p className="text-xs text-[#7a8475] mt-1">Audit inbound cashflows, track direct UPI transfers, and manage manual cheque clears.</p>
         </div>
-        <div className="flex items-center gap-2 self-end sm:self-center">
+        <div className="flex items-center gap-2 self-start sm:self-center">
           {/* Chrome-friendly Download Action Button */}
           <button 
             onClick={downloadPaymentsExcel} 
-            className="flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-xs font-bold rounded-xl border border-slate-800 text-slate-300 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2.5 bg-[#fcfbfa] hover:bg-[#f4f0e6] text-xs font-bold rounded-xl border border-[#e2dcd0] text-[#2c3539] transition-all cursor-pointer shadow-sm"
           >
-            <Download size={14} /><span>Download Payments Excel</span>
+            <Download size={14} className="text-[#7a8475]" /><span>Download Payments Excel</span>
           </button>
           <button 
             onClick={() => setIsRecordOpen(true)} 
-            className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-600 text-xs font-extrabold rounded-xl text-white hover:brightness-110 shadow-lg shadow-emerald-600/10 transition-all cursor-pointer"
+            className="flex items-center gap-2 px-4 py-2.5 bg-[#4a5d4e] hover:bg-[#3d4d40] text-xs font-extrabold rounded-xl text-white shadow-sm transition-all cursor-pointer"
           >
             <Plus size={14} /><span>Record Payment</span>
           </button>
@@ -111,36 +111,38 @@ export default function PaymentsManagement() {
 
       {/* Roster Financial Metrics */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-[#0b1220] border border-slate-900 rounded-xl p-4 flex items-center justify-between">
+        <div className="bg-[#fcfbfa] border border-[#e2dcd0] rounded-xl p-4 flex items-center justify-between shadow-sm">
           <div>
-            <div className="text-[10px] uppercase font-mono tracking-wider text-gray-500">Settled Net Inflow</div>
-            <div className="text-xl font-black text-emerald-400 mt-1">₹{metrics.successTotal.toLocaleString()}</div>
+            <div className="text-[10px] uppercase font-mono tracking-wider text-[#7a8475] font-bold">Settled Net Inflow</div>
+            <div className="text-xl font-black text-emerald-700 mt-1">₹{metrics.successTotal.toLocaleString()}</div>
           </div>
-          <div className="p-2.5 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl"><CheckCircle size={18} /></div>
+          <div className="p-2.5 bg-emerald-50 border border-emerald-100 text-emerald-700 rounded-xl"><CheckCircle size={18} /></div>
         </div>
-        <div className="bg-[#0b1220] border border-slate-900 rounded-xl p-4 flex items-center justify-between">
+        
+        <div className="bg-[#fcfbfa] border border-[#e2dcd0] rounded-xl p-4 flex items-center justify-between shadow-sm">
           <div>
-            <div className="text-[10px] uppercase font-mono tracking-wider text-amber-500">Cheque Inbound Clearances</div>
-            <div className="text-xl font-black text-amber-400 mt-1">₹{metrics.pendingTotal.toLocaleString()}</div>
+            <div className="text-[10px] uppercase font-mono tracking-wider text-amber-700 font-bold">Cheque Inbound Clearances</div>
+            <div className="text-xl font-black text-amber-700 mt-1">₹{metrics.pendingTotal.toLocaleString()}</div>
           </div>
-          <div className="p-2.5 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-xl"><Clock size={18} /></div>
+          <div className="p-2.5 bg-amber-50 border border-amber-100 text-amber-600 rounded-xl"><Clock size={18} /></div>
         </div>
-        <div className="bg-[#0b1220] border border-slate-900 rounded-xl p-4 flex items-center justify-between">
+        
+        <div className="bg-[#fcfbfa] border border-[#e2dcd0] rounded-xl p-4 flex items-center justify-between shadow-sm">
           <div>
-            <div className="text-[10px] uppercase font-mono tracking-wider text-cyan-400">Total Cleared Logs</div>
-            <div className="text-xl font-black text-cyan-400 mt-1">{metrics.count} Transactions</div>
+            <div className="text-[10px] uppercase font-mono tracking-wider text-blue-700 font-bold">Total Cleared Logs</div>
+            <div className="text-xl font-black text-blue-900 mt-1">{metrics.count} Transactions</div>
           </div>
-          <div className="p-2.5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 rounded-xl"><ArrowDownLeft size={18} /></div>
+          <div className="p-2.5 bg-blue-50 border border-blue-100 text-blue-700 rounded-xl"><ArrowDownLeft size={18} /></div>
         </div>
       </div>
 
       {/* Filters Search Matrix */}
-      <div className="bg-slate-950/60 border border-slate-900 p-4 rounded-xl flex flex-col sm:flex-row gap-3 items-center">
+      <div className="bg-[#fcfbfa] border border-[#e2dcd0] p-4 rounded-xl flex flex-col sm:flex-row gap-3 items-center shadow-sm">
         <div className="relative w-full sm:max-w-xs">
-          <Search className="absolute left-3 top-3 text-gray-500" size={14} />
-          <input type="text" placeholder="Search Txn ID, Student, Invoice..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="w-full bg-slate-900 text-xs text-white rounded-xl pl-9 pr-4 py-2.5 border border-slate-800 focus:outline-none focus:border-slate-700" />
+          <Search className="absolute left-3 top-3 text-[#7a8475]" size={14} />
+          <input type="text" placeholder="Search Txn ID, Student, Invoice..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="w-full bg-[#fcfbfa] text-xs text-[#1a202c] rounded-xl pl-9 pr-4 py-2.5 border border-[#e2dcd0] focus:outline-none focus:border-[#4a5d4e] placeholder-[#7a8475]/60" />
         </div>
-        <select value={filterMode} onChange={(e) => setFilterMode(e.target.value)} className="bg-slate-900 px-3 py-2.5 rounded-xl border border-slate-800 text-xs text-slate-300 focus:outline-none w-full sm:w-40 sm:ml-auto">
+        <select value={filterMode} onChange={(e) => setFilterMode(e.target.value)} className="bg-[#fcfbfa] px-3 py-2.5 rounded-xl border border-[#e2dcd0] text-xs text-[#2c3539] font-medium focus:outline-none w-full sm:w-43 sm:ml-auto focus:border-[#4a5d4e]">
           <option value="All">All Payment Modes</option>
           <option value="UPI">UPI (GPay/PhonePe)</option>
           <option value="Cash">Cash Deposits</option>
@@ -149,11 +151,11 @@ export default function PaymentsManagement() {
       </div>
 
       {/* Main Core Roster Data Grid Table */}
-      <div className="bg-slate-950/40 border border-slate-800/60 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl">
+      <div className="bg-[#fcfbfa] border border-[#e2dcd0] rounded-2xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs min-w-[850px]">
             <thead>
-              <tr className="border-b border-slate-900 bg-slate-950/60 text-[10px] uppercase font-bold tracking-wider text-gray-400 font-mono">
+              <tr className="border-b border-[#e2dcd0] bg-[#f4f0e6]/60 text-[10px] uppercase font-bold tracking-wider text-[#4a5d4e] font-mono">
                 <th className="py-4 px-6">Transaction ID</th>
                 <th className="py-4 px-6">Invoice Mapping</th>
                 <th className="py-4 px-6">Payer Name</th>
@@ -163,23 +165,23 @@ export default function PaymentsManagement() {
                 <th className="py-4 px-6 text-center">Status</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-900/50 text-slate-300 font-medium">
+            <tbody className="divide-y divide-[#e2dcd0]/60 text-[#2c3539] font-medium">
               {filteredPayments.map((p) => (
-                <tr key={p.id} className="hover:bg-white/5 transition-colors group">
-                  <td className="py-4 px-6 font-mono text-emerald-500 font-bold">{p.id}</td>
-                  <td className="py-4 px-6 font-mono text-slate-500">{p.invoiceId}</td>
-                  <td className="py-4 px-6 font-bold text-white">{p.studentName}</td>
+                <tr key={p.id} className="hover:bg-[#f4f0e6]/30 transition-colors group">
+                  <td className="py-4 px-6 font-mono text-[#4a5d4e] font-bold">{p.id}</td>
+                  <td className="py-4 px-6 font-mono text-[#7a8475]">{p.invoiceId}</td>
+                  <td className="py-4 px-6 font-black text-[#1a202c]">{p.studentName}</td>
                   <td className="py-4 px-6">
-                    <span className="flex items-center gap-1.5 text-slate-300">
-                      <CreditCard size={13} className="text-slate-500" /> {p.mode}
+                    <span className="flex items-center gap-1.5 text-[#2c3539]">
+                      <CreditCard size={13} className="text-[#7a8475]" /> {p.mode}
                     </span>
                   </td>
-                  <td className="py-4 px-6 font-mono text-right text-white font-black">₹{p.amount}</td>
-                  <td className="py-4 px-6 font-mono text-center text-slate-400">{p.date}</td>
+                  <td className="py-4 px-6 font-mono text-right text-[#1a202c] font-black">₹{p.amount}</td>
+                  <td className="py-4 px-6 font-mono text-center text-[#7a8475]">{p.date}</td>
                   <td className="py-4 px-6 text-center">
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
-                      p.status === "Success" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" :
-                      "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold font-mono ${
+                      p.status === "Success" ? "bg-emerald-50 text-emerald-700 border border-emerald-200" :
+                      "bg-amber-50 text-amber-700 border border-amber-200"
                     }`}>{p.status}</span>
                   </td>
                 </tr>
@@ -191,32 +193,32 @@ export default function PaymentsManagement() {
 
       {/* Manual Payment Entry Record Popup Form */}
       {isRecordOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-          <div className="bg-[#0b1220] border border-slate-800 w-full max-w-md rounded-2xl p-6 shadow-2xl relative">
-            <button onClick={() => setIsRecordOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors cursor-pointer"><X size={16} /></button>
-            <h3 className="text-xs font-black text-white mb-5 uppercase font-mono tracking-wider border-b border-slate-900 pb-2">Log Manual Payment Entry</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+          <div className="bg-[#fcfbfa] border border-[#e2dcd0] w-full max-w-md rounded-2xl p-6 shadow-xl relative text-[#2c3539]">
+            <button onClick={() => setIsRecordOpen(false)} className="absolute top-4 right-4 text-[#7a8475] hover:text-[#1a202c] transition-colors cursor-pointer"><X size={16} /></button>
+            <h3 className="text-xs font-black text-[#1a202c] mb-5 uppercase font-mono tracking-wider border-b border-[#e2dcd0] pb-2">Log Manual Payment Entry</h3>
             
             <form onSubmit={handleRecordPayment} className="space-y-4 text-xs">
               <div>
-                <label className="block text-slate-400 mb-1.5 font-bold">Payer Student Name</label>
-                <input type="text" required placeholder="e.g. Rahul Patil" value={formData.studentName} onChange={(e) => setFormData({...formData, studentName: e.target.value})} className="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white focus:outline-none" />
+                <label className="block text-[#4a5d4e] mb-1.5 font-bold">Payer Student Name</label>
+                <input type="text" required placeholder="e.g. Rahul Patil" value={formData.studentName} onChange={(e) => setFormData({...formData, studentName: e.target.value})} className="w-full px-3 py-2.5 rounded-xl bg-[#fcfbfa] border border-[#e2dcd0] text-[#1a202c] focus:outline-none focus:border-[#4a5d4e]" />
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-400 mb-1.5 font-bold">Linked Invoice ID</label>
-                  <input type="text" placeholder="e.g. INV-2026-001" value={formData.invoiceId} onChange={(e) => setFormData({...formData, invoiceId: e.target.value})} className="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white font-mono focus:outline-none" />
+                  <label className="block text-[#4a5d4e] mb-1.5 font-bold">Linked Invoice ID</label>
+                  <input type="text" placeholder="e.g. INV-2026-001" value={formData.invoiceId} onChange={(e) => setFormData({...formData, invoiceId: e.target.value})} className="w-full px-3 py-2.5 rounded-xl bg-[#fcfbfa] border border-[#e2dcd0] text-[#1a202c] font-mono focus:outline-none focus:border-[#4a5d4e]" />
                 </div>
                 <div>
-                  <label className="block text-slate-400 mb-1.5 font-bold">Collected Gross (₹)</label>
-                  <input type="number" required placeholder="5310" value={formData.amount} onChange={(e) => setFormData({...formData, amount: e.target.value})} className="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white font-mono focus:outline-none" />
+                  <label className="block text-[#4a5d4e] mb-1.5 font-bold">Collected Gross (₹)</label>
+                  <input type="number" required placeholder="5310" value={formData.amount} onChange={(e) => setFormData({...formData, amount: e.target.value})} className="w-full px-3 py-2.5 rounded-xl bg-[#fcfbfa] border border-[#e2dcd0] text-[#1a202c] font-mono focus:outline-none focus:border-[#4a5d4e]" />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-400 mb-1.5 font-bold">Payment Instrument</label>
-                  <select value={formData.mode} onChange={(e) => setFormData({...formData, mode: e.target.value})} className="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 focus:outline-none">
+                  <label className="block text-[#4a5d4e] mb-1.5 font-bold">Payment Instrument</label>
+                  <select value={formData.mode} onChange={(e) => setFormData({...formData, mode: e.target.value})} className="w-full px-3 py-2.5 rounded-xl bg-[#fcfbfa] border border-[#e2dcd0] text-[#2c3539] font-medium focus:outline-none focus:border-[#4a5d4e]">
                     <option value="UPI (GPay)">UPI (GPay/PhonePe)</option>
                     <option value="Cash">Cash Deposit</option>
                     <option value="Cheque">Cheque Instrument</option>
@@ -224,17 +226,17 @@ export default function PaymentsManagement() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-slate-400 mb-1.5 font-bold">Clearance Status</label>
-                  <select value={formData.status} onChange={(e) => setFormData({...formData, status: e.target.value})} className="w-full px-3 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 focus:outline-none">
+                  <label className="block text-[#4a5d4e] mb-1.5 font-bold">Clearance Status</label>
+                  <select value={formData.status} onChange={(e) => setFormData({...formData, status: e.target.value})} className="w-full px-3 py-2.5 rounded-xl bg-[#fcfbfa] border border-[#e2dcd0] text-[#2c3539] font-medium focus:outline-none focus:border-[#4a5d4e]">
                     <option value="Success">Success (Settled)</option>
                     <option value="Pending">Pending (In-clearance)</option>
                   </select>
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-3 pt-4 border-t border-slate-900 mt-2">
-                <button type="button" onClick={() => setIsRecordOpen(false)} className="px-4 py-2 rounded-xl bg-slate-900 text-slate-400 border border-slate-800 cursor-pointer hover:text-white transition-colors">Cancel</button>
-                <button type="submit" className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold cursor-pointer hover:brightness-110 transition-all"><DollarSign size={14} /><span>Commit Transaction</span></button>
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#e2dcd0] mt-2">
+                <button type="button" onClick={() => setIsRecordOpen(false)} className="px-4 py-2 rounded-xl bg-[#fcfbfa] text-[#7a8475] border border-[#e2dcd0] cursor-pointer hover:text-[#1a202c] transition-colors font-medium">Cancel</button>
+                <button type="submit" className="flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#4a5d4e] hover:bg-[#3d4d40] text-white font-bold cursor-pointer transition-all shadow-sm"><DollarSign size={14} /><span>Commit Transaction</span></button>
               </div>
             </form>
           </div>
